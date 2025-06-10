@@ -1,0 +1,49 @@
+// components/layout/ThemeToggle.tsx
+'use client';
+
+import { useTheme } from 'next-themes';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
+import React, { useEffect, useState } from 'react';
+import { Switch } from '@/components/ui/switch';
+import { Moon, Sun } from 'lucide-react';
+
+export const ThemeToggle: React.FC = () => {
+    const { theme, setTheme, resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return <div className="h-5 w-5 bg-gray-200 rounded-full animate-pulse" />;
+    }
+
+    let CurrentIcon;
+    let nextThemeLabel = '';
+
+    if (theme === 'dark') {
+        CurrentIcon = MoonIcon;
+        nextThemeLabel = 'light';
+    } else {
+        CurrentIcon = SunIcon;
+        nextThemeLabel = 'dark';
+    }
+
+    const handleToggle = () => {
+        if (theme === 'light') {
+            setTheme('dark');
+        } else {
+            setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+        }
+    };
+
+    return (
+        <Switch
+            checked={theme === "dark"}
+            onCheckedChange={handleToggle}
+            iconOn={<Moon className="w-3 h-3 text-primary-foreground" />}
+            iconOff={<Sun className="w-3 h-3 text-yellow-300" />}
+            className='data-[state=unchecked]:bg-space-blue-light w-13 h-5' id="airplane-mode" />
+    );
+};
