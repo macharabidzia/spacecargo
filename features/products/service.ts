@@ -29,7 +29,6 @@ export const productService = {
         await httpClient.delete(`${PRODUCTS_ENDPOINT}/${id}`);
     },
 
-    // getPosts and getComments are now methods of productService
     async getPosts() {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         return [

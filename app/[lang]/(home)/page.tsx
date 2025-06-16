@@ -9,11 +9,13 @@ import Services from "@/components/features/home/Services";
 import News from "@/components/features/home/News";
 import InfiniteCarousel from "@/components/features/home/InfiniteCarousel";
 import Footer from "@/components/layout/Footer";
+import { Button } from "@/components/ui/button";
+import { commentsService } from "@/features/comments/service";
 const Home = () => {
   const queryClient = getQueryClient();
   queryClient.prefetchQuery({
-    queryKey: ["posts", "list"],
-    queryFn: () => productService.getPosts(),
+    queryKey: ["comments", "list"],
+    queryFn: () => commentsService.getPosts(),
   });
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

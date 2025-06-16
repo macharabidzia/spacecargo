@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
 
 const InfiniteCarousel = () => {
   const plugin = React.useRef(
@@ -37,9 +38,15 @@ const InfiniteCarousel = () => {
         ].map((src, idx) => (
           <CarouselItem
             key={idx}
-            className="sm:basis-1/2 md:basis-1/3 lg:basis-1/5 flex items-center justify-center"
+            className="sm:basis-1/2 md:basis-1/3 lg:basis-1/5 flex items-center justify-center h-[171px]"
           >
-            <img className="w-60 mx-auto" src={src} alt={`slide-${idx}`} />
+            <Image
+              width={240}
+              height={171}
+              className="w-60 h-auto mx-auto"
+              src={src}
+              alt={`slide-${idx}`}
+            />
           </CarouselItem>
         ))}
       </CarouselContent>

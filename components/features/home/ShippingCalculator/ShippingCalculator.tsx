@@ -15,14 +15,15 @@ const ShippingCalculator = () => {
                     WebkitBackdropFilter: 'blur(16px)',
                     backdropFilter: 'blur(16px)',
                 }}
-                className="bg-white/70 opacity-90 rounded-xl w-full h-auto flex flex-col p-4 sm:p-6 md:p-8 "
+                className="bg-accent opacity-90 rounded-xl w-full h-auto flex flex-col p-4 sm:p-6 md:p-8 "
             >
+                
                 <Tabs defaultValue="air" className="w-ful">
                     <TabsList className="grid grid-cols-2 gap-2 sm:flex sm:gap-0 bg-transparent">
                         <TabsTrigger value="air" className="flex-1 bg-transparent">საჰაერო</TabsTrigger>
                         <TabsTrigger value="land" className="flex-1 bg-transparent">სახმელეთო</TabsTrigger>
                     </TabsList>
-                    <Separator className="my-4" />
+                    <Separator className="my-4 dark:bg-white" />
                     <TabsContent value="air" className="mt-4">
                         <ShippingDetailsForm />
                     </TabsContent>

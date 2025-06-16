@@ -29,6 +29,10 @@ const countries = [
   { value: "uk", label: "ბრიტანეთი", flag: "🇬🇧" },
 ];
 
+/**
+ * Shipping Details Form
+ * @returns 
+ */
 const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
   const [weight, setWeight] = React.useState("7.8");
   const [volume, setVolume] = React.useState("95");
@@ -48,6 +52,7 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
           />
           <SelectValue className="font-semibold truncate">
             {country.label}
+            {selectedCountry}
           </SelectValue>
         </>
       );
@@ -62,12 +67,12 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
 
   return (
     <div className="flex flex-col md:flex-row gap-4 items-stretch justify-between h-auto md:h-[60px] text-left">
-      <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-white flex flex-col justify-center min-w-0">
+      <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-background flex flex-col justify-center min-w-0">
         <p className="text-xs text-gray-500 ml-9">ქვეყანა</p>
         <Select value={selectedCountry} onValueChange={setSelectedCountry}>
           <SelectTrigger
             style={{ boxShadow: "none" }}
-            className="w-full h-auto flex items-center justify-between p-0 border-none focus:ring-0 focus:ring-offset-0 bg-transparent"
+            className="w-full h-auto flex items-center justify-between p-0 border-none focus:ring-0 focus:ring-offset-0"
           >
             <div className="flex items-center space-x-2">
               {getSelectedCountryDisplay()}
@@ -86,13 +91,13 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
         </Select>
       </div>
 
-      <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-white flex flex-col justify-center min-w-0">
+      <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-background flex flex-col justify-center min-w-0">
         <p className="text-xs text-gray-500 mb-2">წონა (კგ)</p>
         <div className="flex items-center space-x-3">
           <Weight className="text-md" />
           <Input
             className="font-semibold truncate w-full bg-transparent border-none focus:outline-none focus:ring-0 focus:border-transparent p-0 h-auto
-                       focus-visible:outline-none focus-visible:ring-0 focus-visible:border-transparent" // Added focus-visible overrides
+                       focus-visible:outline-none focus-visible:ring-0 focus-visible:border-transparent"
             placeholder="7.8"
             type="number"
             value={weight}
@@ -101,7 +106,7 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
         </div>
       </div>
 
-      <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-white flex flex-col justify-center min-w-0">
+      <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-background flex flex-col justify-center min-w-0">
         <p className="text-xs text-gray-500 mb-2">მოცულობა (მ³)</p>
         <div className="flex items-center space-x-3">
           <Package className="text-md" />

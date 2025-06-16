@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
 
 const tariffsData = [
   {
@@ -69,8 +70,8 @@ const Tariffs: React.FC<{
 }> = ({}) => {
   return (
     <section className="mt-20 space-y-6">
-      <h1 className="text-4xl font-bold text-center text-gray-800">ტარიფები</h1>
-      <p className="text-center text-gray-600">
+      <h1 className="text-4xl font-bold text-center text-foreground">ტარიფები</h1>
+      <p className="text-center text-foreground/60">
         გაიგე ზუსტად რას გადაიხდი — გამჭვირვალე და კონკურენტული ფასები
       </p>
       <Tabs defaultValue="account">
@@ -89,11 +90,11 @@ const Tariffs: React.FC<{
           </TabsTrigger>
         </TabsList>
         <TabsContent value="account">
-          <div className="shadow-sm rounded-lg overflow-hidden">
-            <Table className="shadow-sm rounded-lg">
+          <div className="shadow-md rounded-lg overflow-hidden">
+            <Table className="rounded-lg">
               <TableHeader className="bg-space-blue-light rounded-t-lg hidden md:table-header-group">
                 <TableRow>
-                  <TableHead className="p-4 text-gray-100">ქვეყანა</TableHead>
+                  <TableHead className="p-4 text-white">ქვეყანა</TableHead>
                   <TableHead className="p-4 text-gray-100">
                     იმპორტი საქართველოში
                   </TableHead>
@@ -103,7 +104,7 @@ const Tariffs: React.FC<{
                   </TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody className="bg-white space-y-4">
+              <TableBody className="bg-background space-y-4">
                 {tariffsData.map((tariff) => (
                   <TableRow
                     key={tariff.country}
@@ -113,14 +114,14 @@ const Tariffs: React.FC<{
                       <span className="inline-block w-1/2 font-bold text-gray-500 md:hidden">
                         ქვეყანა:
                       </span>
-                      <div className="inline-block md:block text-lg">
+                      <div className="inline-block md:block text-lg text-foreground">
                         <div className="flex flex-row gap-4 items-center">
-                          <img className="w-5 h-5" src={tariff.image} />
+                          <Image width={20} height={20} alt="tariff name" className="w-5 h-5" src={tariff.image} />
                           <span>{tariff.country}</span>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell className="block px-0 py-1 text-gray-700 md:p-4 md:table-cell">
+                    <TableCell className="block px-0 py-1 text-foreground md:p-4 md:table-cell">
                       <span className="inline-block w-1/2 font-bold text-gray-500 md:hidden">
                         იმპორტი საქართველოში:
                       </span>
@@ -128,7 +129,7 @@ const Tariffs: React.FC<{
                         {tariff.importMethod}
                       </span>
                     </TableCell>
-                    <TableCell className="block px-0 py-1 text-gray-700 md:p-4 md:table-cell">
+                    <TableCell className="block px-0 py-1 text-foreground md:p-4 md:table-cell">
                       <span className="inline-block w-1/2 font-bold text-gray-500 md:hidden">
                         ფასი(1კგ):
                       </span>
@@ -136,7 +137,7 @@ const Tariffs: React.FC<{
                         {tariff.pricePerKg}
                       </span>
                     </TableCell>
-                    <TableCell className="block px-0 py-1 text-right text-gray-700 md:p-4 md:table-cell">
+                    <TableCell className="block px-0 py-1 text-right text-foreground md:p-4 md:table-cell">
                       <span className="inline-block w-1/2 font-bold text-gray-500 md:hidden">
                         არაგაბარიტული წონა:
                       </span>

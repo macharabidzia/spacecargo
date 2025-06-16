@@ -22,7 +22,6 @@ export interface CreateProductDto {
 
 export interface UpdateProductDto extends Partial<CreateProductDto> { }
 
-// For API responses that might include pagination
 export interface PaginatedProductsResponse {
     items: Product[];
     totalItems: number;

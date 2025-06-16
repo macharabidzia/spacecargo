@@ -1,16 +1,34 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
+import { useTheme } from "next-themes";
+import Image from "next/image";
 
-const Footer = () => {
+type FooterInteface = {};
+
+const Footer = ({}: FooterInteface) => {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <Image src="/icons/logo.svg" width={55} height={100} alt="Logo" />;
+  }
+  const src = theme === "dark" ? "/icons/logo-white.svg" : "/icons/logo.svg";
   return (
     <section className="px-4 py-8 md:px-8 lg:px-16 xl:px-33">
-      <hr className="mb-8" />
+      <hr className="mb-8 bg-foreground" />
       <div className="container mx-auto flex flex-col md:flex-row justify-around gap-8 md:gap-4 lg:gap-8">
         <div className="flex justify-center md:justify-start mb-4 md:mb-0">
-          <img
+          <Image
             className="h-[80px] w-[80px]"
-            src="/icons/logo.svg"
+            src={src}
+            width={80}
+            height={80}
             alt="Company Logo"
           />
         </div>
@@ -66,16 +84,20 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="my-8" />
+      <hr className="my-8 bg-foreground" />
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
         <div className="flex flex-wrap justify-center gap-4">
-          <img
-            className="w-auto h-8"
+          <Image
+            width={36}
+            height={36}
+            className="w-auto h-9"
             src="/icons/apple.svg"
             alt="Apple App Store"
           />
-          <img
+          <Image
+            width={36}
+            height={36}
             className="w-auto h-9"
             src="/icons/google.svg"
             alt="Google Play Store"
@@ -85,9 +107,27 @@ const Footer = () => {
           Copyright &copy; {new Date().getFullYear()} All Rights Reserved
         </div>
         <div className="flex gap-4 justify-center mt-4 md:mt-0">
-          <img className="w-6 h-6" src="/icons/in.svg" alt="LinkedIn" />
-          <img className="w-6 h-6" src="/icons/fb.svg" alt="Facebook" />
-          <img className="w-6 h-6" src="/icons/ig.svg" alt="Instagram" />
+          <Image
+            width={24}
+            height={24}
+            className="w-6 h-6"
+            src="/icons/in.svg"
+            alt="LinkedIn"
+          />
+          <Image
+            width={24}
+            height={24}
+            className="w-6 h-6"
+            src="/icons/fb.svg"
+            alt="Facebook"
+          />
+          <Image
+            width={24}
+            height={24}
+            className="w-6 h-6"
+            src="/icons/ig.svg"
+            alt="Instagram"
+          />
         </div>
       </div>
     </section>

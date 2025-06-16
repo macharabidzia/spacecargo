@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: 'My Next.js App',
-  description: 'A modern Next.js 15 application with React Query, Redux Toolkit, TypeScript, and Tailwind CSS.',
+  name: 'SpaceCargo',
+  description: 'Space cargo description',
   url: 'https://your-website.com',
   ogImage: 'https://your-website.com/og-image.jpg',
   links: {

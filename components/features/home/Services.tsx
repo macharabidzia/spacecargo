@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 type Service = {
@@ -9,34 +10,34 @@ type Service = {
 const Services: React.FC = () => {
   const list: Service[] = [
     {
-      title: "ფრენები", // Flights
+      title: "ფრენები",
       text: "გადაზიდვები 300-ზე მეტი მიმართულებით, უსაფრთხო და სწრაფი ფრენა მსოფლიოს გარშემო.",
-      url: "/icons/airplane.svg", // Matches "Air Freight" concept
+      url: "/icons/airplane.svg",
     },
     {
-      title: "SMS შეტყობინება", // SMS Notification
+      title: "SMS შეტყობინება",
       text: "SMS-ით და ელ-ფოსტით ამანათზე ინფორმაციის შეტყობინება",
-      url: "/icons/sms-star.svg", // Matches "Warehousing & Distribution" given the icon name, but conceptually more about tracking
+      url: "/icons/sms-star.svg",
     },
     {
-      title: "კონსულტაცია", // Consultation
+      title: "კონსულტაცია",
       text: "საკონსულტაციო დახმარება ნებისმიერი სახის საქონლის (კანონით დადგენილი) მოძიებასა და შესყიდვასთან დაკავშირებით.",
-      url: "/icons/consulting.svg", // Matches "Road Freight" given the icon name, but conceptually about consulting
+      url: "/icons/consulting.svg",
     },
     {
-      title: "საკურიერო სერვისი", // Courier Service
+      title: "საკურიერო სერვისი",
       text: "საკურიერო სერვისი ქვეყნის მასშტაბით ტვირთის მიწოდება სწრაფად, უსაფრთხოდ და სანდოდ.",
-      url: "/icons/truck.svg", // Matches "Ocean Freight" given the icon name, but conceptually about road delivery
+      url: "/icons/truck.svg",
     },
     {
-      title: "საგადახდო სისტემები", // Payment Systems
+      title: "საგადახდო სისტემები",
       text: "მოქნილი და კომფორტული გადახდის საშუალებები (საბანკო გადარიცხვა, სწრაფი გადახდის აპარატები, ონლაინ და მობაილ გადახდები).",
-      url: "/icons/convert-card.svg", // Matches "Rail Freight" given the icon name, but conceptually about payments
+      url: "/icons/convert-card.svg",
     },
     {
-      title: "ყოველდღიური რეისები", // Daily Flights/Trips
+      title: "ყოველდღიური რეისები",
       text: "ყოველდღიური ფრენები სანდო გადაზიდვისთვის, მოქნილი გრაფიკი და სწრაფი ტრანსპორტირება.",
-      url: "/icons/clock.svg", // Matches "Customs Brokerage" given the icon name, but conceptually about daily operations/scheduling
+      url: "/icons/clock.svg",
     },
   ];
 
@@ -50,7 +51,9 @@ const Services: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto ">
         {list.map((service, index) => (
           <div key={index} className="flex flex-col items-center">
-            <img
+            <Image
+              width={80}
+              height={80}
               src={service.url}
               alt={service.title}
               className="w-20 h-20 mb-4 object-contain"

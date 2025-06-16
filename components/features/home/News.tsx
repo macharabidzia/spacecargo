@@ -6,6 +6,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const newsData = [
   {
@@ -51,7 +52,8 @@ const NewsSection = () => {
             >
               <CardContent className="pt-4 h-52">
                 <div className="absolute -top-10 -left-6 w-full h-full max-h-65 overflow-hidden rounded-lg shadow-xl">
-                  <img
+                  <Image
+                    fill
                     src={item.imgSrc}
                     alt={item.imgAlt}
                     className="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-120"
@@ -60,7 +62,7 @@ const NewsSection = () => {
                 <div
                   className={`${item.color} h-16 w-16 absolute -left-6 bottom-10 flex justify-center items-center rounded-lg`}
                 >
-                  <img className="flex h-6 w-6" src={item.image} />
+                  <Image alt="label" width={24} height={24} className="flex h-6 w-6" src={item.image} />
                 </div>
               </CardContent>
               <CardFooter className="ml-10 mb-5">
