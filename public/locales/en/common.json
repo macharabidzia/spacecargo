@@ -1,7 +1,49 @@
 {
-  "greeting": "Hello",
-  "welcome": "Welcome to our Next.js i18n App!",
-  "aboutUs": "About Us",
-  "aboutText": "This is a simple about page demonstrating i18n.",
-  "changeLanguage": "Change Language"
+  "header.register": "Register",
+  "header.login": "Log In",
+
+  "footer.contact": "Contact",
+  "footer.phone": "Phone",
+  "footer.email": "Email",
+  "footer.address": "Address",
+  "footer.sites.home": "Home",
+  "footer.sites.services": "Services",
+  "footer.sites.about_us": "About Us",
+  "footer.sites.contact": "Contact",
+  "footer.subscribe": "Subscribe",
+  "footer.subscribe_text": "Stay updated with our latest news and offers.",
+  "footer.email_placeholder": "Enter your email",
+  "footer.copyright": "© 2025 SpaceCargo. All rights reserved.",
+
+  "sidenav.application": "Application",
+  "sidenav.home": "Home",
+  "sidenav.inbox": "Inbox",
+  "sidenav.calendar": "Calendar",
+  "sidenav.search": "Search",
+  "sidenav.settings": "Settings",
+  "sidenav.click_button": "Click the button to open",
+
+  "lang.en": "English",
+  "lang.ka": "Georgian",
+
+  "welcome": "Welcome",
+
+  "mainNav.home": "Home",
+  "mainNav.aboutUs": "About Us",
+  "mainNav.flights": "Flights",
+  "mainNav.news": "News",
+  "mainNav.contact": "Contact",
+
+  "site.description": "Space cargo description",
+  "site.copyright": "© 2025 SpaceCargo. All rights reserved.",
+
+
+  "form.country": "Country",
+  "form.countryPlaceholder": "Select a country",
+  "form.weight": "Weight (kg)",
+  "form.volume": "Volume (m³)",
+  "form.calculate": "Calculate",
+  "country.china": "China",
+  "country.usa": "USA",
+  "country.uk": "United Kingdom"
 }

@@ -8,7 +8,9 @@ import Header from "@/components/layout/Header";
 import MiniHeader from "@/components/layout/MiniHeader";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SideNav } from "@/components/layout/SideNav";
-import { i18n } from "@/i18n.config";
+import { getDictionary } from "@/i18n/dictionaries";
+import { I18nProvider } from "@/i18n/i18n-provider";
+import { i18n } from "@/i18n/settings";
 
 const notoSansGeorgian = Noto_Sans_Georgian({
   subsets: ["latin"],
@@ -29,10 +31,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout(props: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: { lang: "en" | "ka" };
 }) {
   const { children, params } = props;
-  const { lang } = params;
+  const { lang } = await params;
+
+  const dictionary = await getDictionary(lang);
 
   return (
     <html
@@ -43,18 +47,23 @@ export default async function RootLayout(props: {
       <body className="text-foreground min-h-screen flex">
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
           <GlobalProviders>
-            <div className="flex flex-1 bg-background">
-              <SidebarProvider defaultOpen={false} className="flex-wrap content-start">
-                <MiniHeader>
-                  <div className="md:hidden">
-                    <SidebarTrigger />
-                  </div>
-                </MiniHeader>
-                <Header className="hidden lg:block" />
-                <SideNav />
-                <main className="flex-grow w-full mx-auto">{children}</main>
-              </SidebarProvider>
-            </div>
+            <I18nProvider lang={lang} dictionaries={dictionary}>
+              <div className="flex flex-1 bg-background">
+                <SidebarProvider
+                  defaultOpen={false}
+                  className="flex-wrap content-start"
+                >
+                  <MiniHeader currentLang={lang}>
+                    <div className="md:hidden">
+                      <SidebarTrigger />
+                    </div>
+                  </MiniHeader>
+                  <Header currentLanguage={lang} className="hidden lg:block" />
+                  <SideNav currentLang={lang} />
+                  <main className="flex-grow w-full mx-auto">{children}</main>
+                </SidebarProvider>
+              </div>
+            </I18nProvider>
           </GlobalProviders>
         </ThemeProvider>
       </body>

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
-import { i18n } from "./i18n.config"; // Adjust path as necessary
+import { i18n } from "./i18n/settings";
 
 function getLocale(request: NextRequest): string | undefined {
   // Negotiator expects plain object
@@ -30,7 +30,7 @@ export function middleware(request: NextRequest) {
 
   // If no locale is in the pathname, redirect to the detected locale
   const locale = getLocale(request);
-  request.nextUrl.pathname = `/${locale}${pathname}`; 
+  request.nextUrl.pathname = `/${locale}${pathname}`;
   return NextResponse.redirect(request.nextUrl);
 }
 

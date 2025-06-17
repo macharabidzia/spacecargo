@@ -1,38 +1,33 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import { Skeleton } from "../ui/skeleton";
+import { getDictionary } from "@/i18n/dictionaries";
+import { AppDictionary, CommonDictionary } from "@/types/dictionary";
 
 type HeaderInterface = {
   children?: React.ReactNode;
   className?: string;
+  currentLanguage: "en" | "ka";
 };
 
-const Header: React.FC<HeaderInterface> = ({ className }) => {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const logoSrc =
-    mounted && theme === "dark" ? "/icons/logo-white.svg" : "/icons/logo.svg";
+const Header: React.FC<HeaderInterface> = async ({
+  className,
+  currentLanguage,
+}) => {
   const logoWidth = 75;
   const logoHeight = 100;
+  // Fetch the dictionary. Assuming getDictionary returns the flat object structure you provided.
+  const fullDictionary: AppDictionary = await getDictionary(currentLanguage);
+  const dictionary: CommonDictionary = fullDictionary.common;
 
   return (
     <header className={cn("w-full py-4", className)}>
       <div className="container flex h-14 items-center justify-between">
         <nav className="flex space-x-6 justify-center items-center">
           <Link
-            href="/"
+            href={`/${currentLanguage}/`}
             className="space-x-2 text-2xl font-bold text-foreground hover:text-primary"
           >
             <div
@@ -40,11 +35,19 @@ const Header: React.FC<HeaderInterface> = ({ className }) => {
               style={{ width: `${logoWidth}px`, height: `${logoHeight}px` }}
             >
               <Image
-                className="w-full"
-                src={logoSrc}
+                className="w-full block dark:hidden"
+                src="/icons/logo.svg"
                 width={logoWidth}
                 height={logoHeight}
-                alt="spacecargo icon"
+                alt="spacecargo light mode icon"
+                priority
+              />
+              <Image
+                className="w-full hidden dark:block"
+                src="/icons/logo-white.svg"
+                width={logoWidth}
+                height={logoHeight}
+                alt="spacecargo dark mode icon"
                 priority
               />
             </div>
@@ -52,10 +55,11 @@ const Header: React.FC<HeaderInterface> = ({ className }) => {
           {siteConfig.mainNav.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={`/${currentLanguage}${item.href}`}
               className="hover:text-primary transition-colors duration-200 text-foreground"
             >
-              {item.title}
+              
+              {dictionary[item.titleKey]}
             </Link>
           ))}
         </nav>
@@ -65,14 +69,16 @@ const Header: React.FC<HeaderInterface> = ({ className }) => {
             className="bg-space-blue-light rounded-md cursor-pointer"
             style={{ minWidth: "90px", minHeight: "40px" }}
           >
-            რეგისტრაცია
+            {/* Accessing directly from the flat dictionary object */}
+            {dictionary["header.register"]}
           </Button>
           <Button
             variant="default"
             className="bg-space-blue rounded-md cursor-pointer dark:bg-white/90"
             style={{ minWidth: "70px", minHeight: "40px" }}
           >
-            შესვლა
+            {/* Accessing directly from the flat dictionary object */}
+            {dictionary["header.login"]}
           </Button>
         </nav>
       </div>

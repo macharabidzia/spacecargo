@@ -1,5 +1,5 @@
+import React from "react";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
@@ -11,48 +11,56 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Button } from "../ui/button";
+import { getDictionary } from "@/i18n/dictionaries";
 
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
+interface SideNavProps {
+  currentLang: Lang;
+}
 
-export function SideNav() {
+export const SideNav = async ({ currentLang }: SideNavProps) => {
+  const fullDictionary = await getDictionary(currentLang);
+  const items = [
+    {
+      title: fullDictionary.common["sidenav.home"],
+      url: "#",
+      icon: Home,
+    },
+    {
+      title: fullDictionary.common["sidenav.inbox"],
+      url: "#",
+      icon: Inbox,
+    },
+    {
+      title: fullDictionary.common["sidenav.calendar"],
+      url: "#",
+      icon: Calendar,
+    },
+    {
+      title: fullDictionary.common["sidenav.search"],
+      url: "#",
+      icon: Search,
+    },
+    {
+      title: fullDictionary.common["sidenav.settings"],
+      url: "#",
+      icon: Settings,
+    },
+  ];
+
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>
+            {fullDictionary.common["sidenav.application"]}
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem
-                  key={item.title}
-                >
-                  <Button variant="outline">cclick</Button>
+                <SidebarMenuItem key={item.title}>
+                  <Button variant="outline">
+                    {fullDictionary.common["sidenav.click_button"]}
+                  </Button>
                   <SidebarMenuButton asChild>
                     <a href={item.url}>
                       <item.icon />
@@ -67,4 +75,4 @@ export function SideNav() {
       </SidebarContent>
     </Sidebar>
   );
-}
+};

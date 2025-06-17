@@ -1,7 +1,48 @@
 {
-  "greeting": "გამარჯობა",
-  "welcome": "კეთილი იყოს თქვენი მობრძანება ჩვენს Next.js i18n აპლიკაციაში!",
-  "aboutUs": "ჩვენს შესახებ",
-  "aboutText": "ეს არის მარტივი გვერდი, რომელიც დემონსტრირებს i18n-ს.",
-  "changeLanguage": "ენის შეცვლა"
+  "header.register": "რეგისტრაცია",
+  "header.login": "შესვლა",
+
+  "footer.contact": "კონტაქტი",
+  "footer.phone": "ტელეფონი",
+  "footer.email": "ელ.ფოსტა",
+  "footer.address": "მისამართი",
+  "footer.sites.home": "მთავარი",
+  "footer.sites.services": "სერვისები",
+  "footer.sites.about_us": "ჩვენ შესახებ",
+  "footer.sites.contact": "კონტაქტი",
+  "footer.subscribe": "გამოწერა",
+  "footer.subscribe_text": "მიიღეთ უახლესი ამბები და შეთავაზებები.",
+  "footer.email_placeholder": "ელ.ფოსტა",
+  "footer.copyright": "© 2025 SpaceCargo. ყველა უფლება დაცულია.",
+
+  "sidenav.application": "აპლიკაცია",
+  "sidenav.home": "მთავარი",
+  "sidenav.inbox": "შემოსულები",
+  "sidenav.calendar": "კალენდარი",
+  "sidenav.search": "ძებნა",
+  "sidenav.settings": "პარამეტრები",
+  "sidenav.click_button": "დააჭირეთ ღილაკს გასახსნელად",
+
+  "lang.en": "ინგლისური",
+  "lang.ka": "ქართული",
+
+  "welcome": "მოგესალმებით",
+
+  "mainNav.home": "მთავარი",
+  "mainNav.aboutUs": "ჩვენ შესახებ",
+  "mainNav.flights": "რეისები",
+  "mainNav.news": "სიახლეები",
+  "mainNav.contact": "კონტაქტი",
+
+  "site.description": "კოსმოსური ტვირთის აღწერა",
+  "site.copyright": "© 2025 SpaceCargo. ყველა უფლება დაცულია.",
+
+  "form.country": "ქვეყანა",
+  "form.countryPlaceholder": "აირჩიეთ ქვეყანა",
+  "form.weight": "წონა (კგ)",
+  "form.volume": "მოცულობა (მ³)",
+  "form.calculate": "გამოთვლა",
+  "country.china": "ჩინეთი",
+  "country.usa": "ამერიკა",
+  "country.uk": "ბრიტანეთი"
 }

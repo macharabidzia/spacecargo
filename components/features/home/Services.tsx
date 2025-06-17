@@ -1,51 +1,76 @@
+import { getDictionary } from "@/i18n/dictionaries";
 import Image from "next/image";
 import React from "react";
 
-type Service = {
-  title: string;
-  text: string;
-  url: string;
-};
+type Lang = "en" | "ka";
 
-const Services: React.FC = () => {
-  const list: Service[] = [
+interface ServicesDictionaryContent {
+  "services.mainTitle": string;
+  "services.description": string;
+  "services.flights.title": string;
+  "services.flights.text": string;
+  "services.sms.title": string;
+  "services.sms.text": string;
+  "services.consultation.title": string;
+  "services.consultation.text": string;
+  "services.courier.title": string;
+  "services.courier.text": string;
+  "services.paymentSystems.title": string;
+  "services.paymentSystems.text": string;
+  "services.dailyFlights.title": string;
+  "services.dailyFlights.text": string;
+}
+
+interface ServicesProps {
+  lang: Lang;
+  children?: React.ReactNode;
+  className?: string;
+}
+
+const Services = async ({ children, lang }: ServicesProps) => {
+  const fullDictionary = await getDictionary(lang);
+  const servicesDict: any = fullDictionary.home;
+
+  const list = [
     {
-      title: "ფრენები",
-      text: "გადაზიდვები 300-ზე მეტი მიმართულებით, უსაფრთხო და სწრაფი ფრენა მსოფლიოს გარშემო.",
+      title: servicesDict["services.flights.title"],
+      text: servicesDict["services.flights.text"],
       url: "/icons/airplane.svg",
     },
     {
-      title: "SMS შეტყობინება",
-      text: "SMS-ით და ელ-ფოსტით ამანათზე ინფორმაციის შეტყობინება",
+      title: servicesDict["services.sms.title"],
+      text: servicesDict["services.sms.text"],
       url: "/icons/sms-star.svg",
     },
     {
-      title: "კონსულტაცია",
-      text: "საკონსულტაციო დახმარება ნებისმიერი სახის საქონლის (კანონით დადგენილი) მოძიებასა და შესყიდვასთან დაკავშირებით.",
+      title: servicesDict["services.consultation.title"],
+      text: servicesDict["services.consultation.text"],
       url: "/icons/consulting.svg",
     },
     {
-      title: "საკურიერო სერვისი",
-      text: "საკურიერო სერვისი ქვეყნის მასშტაბით ტვირთის მიწოდება სწრაფად, უსაფრთხოდ და სანდოდ.",
+      title: servicesDict["services.courier.title"],
+      text: servicesDict["services.courier.text"],
       url: "/icons/truck.svg",
     },
     {
-      title: "საგადახდო სისტემები",
-      text: "მოქნილი და კომფორტული გადახდის საშუალებები (საბანკო გადარიცხვა, სწრაფი გადახდის აპარატები, ონლაინ და მობაილ გადახდები).",
+      title: servicesDict["services.paymentSystems.title"],
+      text: servicesDict["services.paymentSystems.text"],
       url: "/icons/convert-card.svg",
     },
     {
-      title: "ყოველდღიური რეისები",
-      text: "ყოველდღიური ფრენები სანდო გადაზიდვისთვის, მოქნილი გრაფიკი და სწრაფი ტრანსპორტირება.",
+      title: servicesDict["services.dailyFlights.title"],
+      text: servicesDict["services.dailyFlights.text"],
       url: "/icons/clock.svg",
     },
   ];
 
   return (
     <section>
-      <h1 className="text-center text-4xl font-semibold mb-4">სერვისები</h1>
+      <h1 className="text-center text-4xl font-semibold mb-4">
+        {servicesDict["services.mainTitle"]}
+      </h1>
       <p className="text-center mt-2 mb-8 max-w-2xl mx-auto text-gray-400">
-        თქვენი ტვირთი — ჩვენი პასუხისმგებლობა ცაში და მიწაზე
+        {servicesDict["services.description"]}
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto ">
@@ -65,6 +90,7 @@ const Services: React.FC = () => {
           </div>
         ))}
       </div>
+      {children}
     </section>
   );
 };

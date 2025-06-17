@@ -1,38 +1,41 @@
-// lib/dictionaries.ts
-import "server-only"; // Ensures this file is only ever run on the server
+import "server-only";
+import type {
+  CommonDictionary,
+  HomeDictionary,
+  AppDictionary,
+} from "@/types/dictionary";
+import { cache } from "react";
+import { i18n } from "./settings";
 
-// CORRECTED LINE: Change 'import type' to 'import'
-import { i18n } from "../i18n.config"; // Adjust path based on your setup
-
-import { CommonDictionary } from "@/types/dictionary";
-
-// Define the available dictionaries by locale.
-// Each function imports a specific common.json file.
+const loadCombinedDictionary = async (
+  locale: (typeof i18n)["locales"][number]
+): Promise<AppDictionary> => {
+  const common = await import(`../public/locales/${locale}/common.json`).then(
+    (m) => m.default as CommonDictionary
+  );
+  const home = await import(`../public/locales/${locale}/home.json`).then(
+    (m) => m.default as HomeDictionary
+  );
+  return {
+    common,
+    home,
+  } as AppDictionary;
+};
 const dictionaries = {
-  en: () =>
-    import("../public/locales/en/common.json").then(
-      (module) => module.default as CommonDictionary
-    ),
-  ka: () =>
-    import("../public/locales/ka/common.json").then(
-      (module) => module.default as CommonDictionary
-    ),
+  en: () => loadCombinedDictionary("en"),
+  ka: () => loadCombinedDictionary("ka"),
 };
 
-// Type for the keys of the dictionaries object (e.g., 'en', 'ka', 'ru')
 type DictionaryKeys = keyof typeof dictionaries;
 
-// Main function to get the dictionary for a given locale
-export const getDictionary = async (
-  locale: DictionaryKeys
-): Promise<CommonDictionary> => {
-  if (!dictionaries[locale]) {
-    // Fallback to defaultLocale if the requested locale is not found
-    console.warn(
-      `Locale "${locale}" not found, falling back to default locale "${i18n.defaultLocale}".`
-    );
-    // Now i18n.defaultLocale will correctly reference the runtime value
-    return dictionaries[i18n.defaultLocale]();
+export const getDictionary = cache(
+  async (locale: DictionaryKeys): Promise<AppDictionary> => {
+    if (!dictionaries[locale]) {
+      console.warn(
+        `Locale "${locale}" not found, falling back to default locale "${i18n.defaultLocale}".`
+      );
+      return dictionaries[i18n.defaultLocale as DictionaryKeys]();
+    }
+    return dictionaries[locale]();
   }
-  return dictionaries[locale]();
-};
+);

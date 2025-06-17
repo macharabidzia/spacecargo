@@ -4,20 +4,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { useParams } from "next/navigation";
+import { useClientTranslation } from "@/i18n/i18n-provider";
 
 type FooterInteface = {};
 
 const Footer = ({}: FooterInteface) => {
+  const { t } = useClientTranslation("common");
+
   const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <Image src="/icons/logo.svg" width={55} height={100} alt="Logo" />;
-  }
   const src = theme === "dark" ? "/icons/logo-white.svg" : "/icons/logo.svg";
   return (
     <section className="px-4 py-8 md:px-8 lg:px-16 xl:px-33">
@@ -34,51 +29,53 @@ const Footer = ({}: FooterInteface) => {
         </div>
 
         <div className="mt-4 text-center md:text-left">
-          <h1 className="font-semibold mb-4 text-lg">კონტაქტი</h1>
+          <h1 className="font-semibold mb-4 text-lg">{t("footer.contact")}</h1>
           <ul className="space-y-3 text-sm">
-            <li>+ 995 (032) 2 12 09 90</li>
-            <li>customerservice@spacecargo.ge</li>
-            <li>თბილისი ალ. ყაზბეგის გამზ. 30ა</li>
+            <li>{t("footer.phone")}</li>
+            <li>{t("footer.email")}</li>
+            <li>{t("footer.address")}</li>
           </ul>
         </div>
 
         <div className="mt-4 text-center md:text-left">
-          <h1 className="font-semibold mb-4 text-lg">საიტები</h1>
+          <h1 className="font-semibold mb-4 text-lg">{t("footer.sites")}</h1>
           <ul className="space-y-3 text-sm">
             <li>
               <a href="#" className="hover:underline">
-                მთავარი
+                {t("footer.home")}
               </a>
             </li>
             <li>
               <a href="#" className="hover:underline">
-                სერვისები
+                {t("footer.services")}
               </a>
             </li>
             <li>
               <a href="#" className="hover:underline">
-                ჩვენს შესახებ
+                {t("footer.about_us")}
               </a>
             </li>
             <li>
               <a href="#" className="hover:underline">
-                კონტაქტი
+                {t("footer.contact")}
               </a>
             </li>
           </ul>
         </div>
 
         <div className="mt-4 text-center md:text-left">
-          <h1 className="font-semibold mb-4 text-lg">გამოწერა</h1>
+          <h1 className="font-semibold mb-4 text-lg">
+            {t("footer.subscribe")}
+          </h1>
           <div className="space-y-3 text-sm flex flex-col items-center md:items-start">
-            <p>გამოიწერე და არ ჩამორჩე სიახლეებს!</p>
+            <p>{t("footer.subscribe_text")}</p>
             <div className="flex w-full max-w-sm items-center space-x-2">
               <Input
                 type="email"
-                placeholder="ელ-ფოსტა"
+                placeholder={t("footer.email_placeholder")}
                 className="flex-grow"
               />
-              <Button type="submit">გამოწერა</Button>
+              <Button type="submit">{t("footer.subscribe")}</Button>
             </div>
           </div>
         </div>
@@ -104,7 +101,7 @@ const Footer = ({}: FooterInteface) => {
           />
         </div>
         <div className="text-center md:text-left mt-4 md:mt-0">
-          Copyright &copy; {new Date().getFullYear()} All Rights Reserved
+          {t("footer.copyright", { year: new Date().getFullYear() })}
         </div>
         <div className="flex gap-4 justify-center mt-4 md:mt-0">
           <Image

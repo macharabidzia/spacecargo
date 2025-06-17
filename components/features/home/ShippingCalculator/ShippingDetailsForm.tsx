@@ -11,29 +11,31 @@ import {
 import { Input } from "@/components/ui/input";
 import { Weight, Package } from "lucide-react";
 import Image from "next/image";
+import { useParams } from "next/navigation";
+import { CommonDictionary } from "@/types/dictionary";
+import { useClientTranslation } from "@/i18n/i18n-provider";
 
 interface Country {
   value: string;
-  label: string;
+  labelKey: string;
   flag: string;
 }
 
 interface ShippingDetailsFormProps {
   selectedCountry?: string;
   setSelectedCountry?: (country: string) => void;
-  countries?: Country[];
 }
-const countries = [
-  { value: "china", label: "ჩინეთი", flag: "🇨🇳" },
-  { value: "usa", label: "ამერიკა", flag: "🇺🇸" },
-  { value: "uk", label: "ბრიტანეთი", flag: "🇬🇧" },
-];
 
-/**
- * Shipping Details Form
- * @returns 
- */
 const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
+  const { t,lang } = useClientTranslation();
+  console.log()
+
+  const countries: Country[] = [
+    { value: "china", labelKey: "country.china", flag: "/icons/china.svg" },
+    { value: "usa", labelKey: "country.usa", flag: "/icons/usa.svg" },
+    { value: "uk", labelKey: "country.uk", flag: "/icons/england.svg" },
+  ];
+
   const [weight, setWeight] = React.useState("7.8");
   const [volume, setVolume] = React.useState("95");
   const [selectedCountry, setSelectedCountry] = useState("china");
@@ -46,20 +48,19 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
           <Image
             width={30}
             height={30}
-            alt="china-flag"
-            src="/icons/china.svg"
+            alt={`${t(country.labelKey)} flag`}
+            src={country.flag}
             className="mb-5 rounded-2xl"
           />
           <SelectValue className="font-semibold truncate">
-            {country.label}
-            {selectedCountry}
+            {t(country.labelKey)}
           </SelectValue>
         </>
       );
     }
     return (
       <SelectValue
-        placeholder="აირჩიეთ ქვეყანა"
+        placeholder={t("form.countryPlaceholder")}
         className="font-semibold truncate"
       />
     );
@@ -68,7 +69,7 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
   return (
     <div className="flex flex-col md:flex-row gap-4 items-stretch justify-between h-auto md:h-[60px] text-left">
       <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-background flex flex-col justify-center min-w-0">
-        <p className="text-xs text-gray-500 ml-9">ქვეყანა</p>
+        <p className="text-xs text-gray-500 ml-9">{t("form.country")}</p>
         <Select value={selectedCountry} onValueChange={setSelectedCountry}>
           <SelectTrigger
             style={{ boxShadow: "none" }}
@@ -82,8 +83,14 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
             {countries.map((country) => (
               <SelectItem key={country.value} value={country.value}>
                 <div className="flex items-center space-x-2">
-                  <span className="text-2xl">{country.flag}</span>
-                  <span>{country.label}</span>
+                  <Image
+                    width={20}
+                    height={20}
+                    alt={`${t(country.labelKey)} flag`}
+                    src={country.flag}
+                    className="rounded-full"
+                  />
+                  <span>{t(country.labelKey)}</span>
                 </div>
               </SelectItem>
             ))}
@@ -92,12 +99,12 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
       </div>
 
       <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-background flex flex-col justify-center min-w-0">
-        <p className="text-xs text-gray-500 mb-2">წონა (კგ)</p>
+        <p className="text-xs text-gray-500 mb-2">{t("form.weight")}</p>
         <div className="flex items-center space-x-3">
           <Weight className="text-md" />
           <Input
             className="font-semibold truncate w-full bg-transparent border-none focus:outline-none focus:ring-0 focus:border-transparent p-0 h-auto
-                       focus-visible:outline-none focus-visible:ring-0 focus-visible:border-transparent"
+            focus-visible:outline-none focus-visible:ring-0 focus-visible:border-transparent"
             placeholder="7.8"
             type="number"
             value={weight}
@@ -107,12 +114,12 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
       </div>
 
       <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-background flex flex-col justify-center min-w-0">
-        <p className="text-xs text-gray-500 mb-2">მოცულობა (მ³)</p>
+        <p className="text-xs text-gray-500 mb-2">{t("form.volume")}</p>
         <div className="flex items-center space-x-3">
           <Package className="text-md" />
           <Input
             className="font-semibold truncate w-full bg-transparent border-none focus:outline-none focus:ring-0 focus:border-transparent p-0 h-auto
-                       focus-visible:outline-none focus-visible:ring-0 focus-visible:border-transparent" // Added focus-visible overrides
+            focus-visible:outline-none focus-visible:ring-0 focus-visible:border-transparent"
             placeholder="95"
             type="number"
             value={volume}
@@ -122,7 +129,7 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
       </div>
 
       <Button className="bg-blue-500 text-white p-4 rounded-lg flex items-center justify-center space-x-2 w-full md:w-auto md:ml-4 mt-4 md:mt-0 h-auto">
-        <span>გამოთვლა</span>
+        <span>{t("form.calculate")}</span>
         <span className="text-md">➤</span>
       </Button>
     </div>
