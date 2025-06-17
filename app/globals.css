@@ -149,11 +149,11 @@ body {
   --button-foreground: oklch(0.985 0 0);
 
   --space-blue: oklch(0.2365 0.0654 266.44);
-  --space-blue-light: oklch(0.70 0.177 248.89);
-  --space-blue-standard: oklch(0.70 0.2059 265.81);
-  --space-muted-default: oklch(0.20 0.0051 247.88);
-  --space-orange-default: oklch(0.80 0.188771 50.7445);
-  --space-green-default: oklch(0.80 0.2046 138.12);
+  --space-blue-light: oklch(0.7 0.177 248.89);
+  --space-blue-standard: oklch(0.7 0.2059 265.81);
+  --space-muted-default: oklch(0.2 0.0051 247.88);
+  --space-orange-default: oklch(0.8 0.188771 50.7445);
+  --space-green-default: oklch(0.8 0.2046 138.12);
 }
 
 @layer base {
