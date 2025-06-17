@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import {useState} from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -11,8 +11,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Weight, Package } from "lucide-react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
-import { CommonDictionary } from "@/types/dictionary";
 import { useClientTranslation } from "@/i18n/i18n-provider";
 
 interface Country {
@@ -27,8 +25,8 @@ interface ShippingDetailsFormProps {
 }
 
 const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
-  const { t,lang } = useClientTranslation();
-  console.log()
+  const { t, lang } = useClientTranslation();
+  console.log();
 
   const countries: Country[] = [
     { value: "china", labelKey: "country.china", flag: "/icons/china.svg" },
@@ -36,8 +34,8 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
     { value: "uk", labelKey: "country.uk", flag: "/icons/england.svg" },
   ];
 
-  const [weight, setWeight] = React.useState("7.8");
-  const [volume, setVolume] = React.useState("95");
+  const [weight, setWeight] = useState("7.8");
+  const [volume, setVolume] = useState("95");
   const [selectedCountry, setSelectedCountry] = useState("china");
 
   const getSelectedCountryDisplay = () => {

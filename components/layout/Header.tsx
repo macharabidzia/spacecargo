@@ -16,8 +16,8 @@ const Header: React.FC<HeaderInterface> = async ({
   className,
   currentLanguage,
 }) => {
-  const logoWidth = 75;
-  const logoHeight = 100;
+  const logoWidth = 88;
+  const logoHeight = 88;
   // Fetch the dictionary. Assuming getDictionary returns the flat object structure you provided.
   const fullDictionary: AppDictionary = await getDictionary(currentLanguage);
   const dictionary: CommonDictionary = fullDictionary.common;
@@ -56,10 +56,10 @@ const Header: React.FC<HeaderInterface> = async ({
             <Link
               key={item.href}
               href={`/${currentLanguage}${item.href}`}
-              className="hover:text-primary transition-colors duration-200 text-foreground"
+              className="hover:text-space-blue-light transition-colors duration-200 text-foreground"
             >
-              
               {dictionary[item.titleKey]}
+              
             </Link>
           ))}
         </nav>
