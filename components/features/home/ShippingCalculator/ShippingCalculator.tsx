@@ -5,12 +5,13 @@ import { getDictionary } from "@/i18n/dictionaries";
 
 const ShippingCalculator = async ({ lang }: { lang: Lang }) => {
   const dictionary = await getDictionary(lang);
-const triggerStyles = `
+  const triggerStyles = `
+    cursor-pointer
     relative flex-1 bg-transparent text-muted-foreground transition-none
-    hover:text-primary
+    hover:text-
     data-[state=active]:text-primary data-[state=active]:shadow-none
     after:content-[''] after:absolute after:h-[2px] after:w-full
-    after:bg-primary after:-bottom-3
+    after:bg-space-blue-light after:-bottom-3
     after:left-0 after:scale-x-0 after:origin-center
     after:transition-transform after:duration-300 after:ease-in-out
     hover:after:scale-x-100
@@ -33,7 +34,7 @@ const triggerStyles = `
         className="bg-accent opacity-90 rounded-xl w-full h-auto flex flex-col p-4 sm:p-6 md:p-8 "
       >
         <Tabs defaultValue="air" className="w-ful">
-          <TabsList className="grid grid-cols-2 gap-2 sm:flex sm:gap-0 bg-transparent">
+          <TabsList className="grid grid-cols-2 gap-2 sm:flex sm:gap-4 bg-transparent py-0.5 px-0">
             <TabsTrigger value="air" className={triggerStyles}>
               {dictionary.home["tariffs.importMethods.air"]}
             </TabsTrigger>
