@@ -59,7 +59,6 @@ const Header: React.FC<HeaderInterface> = async ({
               className="hover:text-space-blue-light transition-colors duration-200 text-foreground"
             >
               {dictionary[item.titleKey]}
-              
             </Link>
           ))}
         </nav>

@@ -11,6 +11,7 @@ import { SideNav } from "@/components/layout/SideNav";
 import { getDictionary } from "@/i18n/dictionaries";
 import { I18nProvider } from "@/i18n/i18n-provider";
 import { i18n } from "@/i18n/settings";
+import Footer from "@/components/layout/Footer";
 
 const notoSansGeorgian = Noto_Sans_Georgian({
   subsets: ["latin"],
@@ -46,25 +47,27 @@ export default async function RootLayout(props: {
     >
       <body className="text-foreground min-h-screen flex">
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
-          <GlobalProviders>
-            <I18nProvider lang={lang} dictionaries={dictionary}>
-              <div className="flex flex-1 bg-background">
-                <SidebarProvider
-                  defaultOpen={false}
-                  className="flex-wrap content-start"
-                >
-                  <MiniHeader currentLang={lang}>
-                    <div className="md:hidden">
-                      <SidebarTrigger />
-                    </div>
-                  </MiniHeader>
-                  <Header currentLanguage={lang} className="hidden lg:block" />
-                  <SideNav currentLang={lang} />
-                  <main className="flex-grow w-full mx-auto">{children}</main>
-                </SidebarProvider>
-              </div>
-            </I18nProvider>
-          </GlobalProviders>
+          <I18nProvider lang={lang} dictionaries={dictionary}>
+            <div className="flex flex-1 bg-background">
+              <SidebarProvider
+                defaultOpen={false}
+                className="flex-wrap content-start"
+              >
+                <MiniHeader currentLang={lang}>
+                  <div className="md:hidden">
+                    <SidebarTrigger />
+                  </div>
+                </MiniHeader>
+                <Header currentLanguage={lang} className="hidden lg:block" />
+                <SideNav currentLang={lang} />
+                <main className="flex-grow w-full mx-auto static ">
+                  {children}
+
+                  <Footer />
+                </main>
+              </SidebarProvider>
+            </div>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>

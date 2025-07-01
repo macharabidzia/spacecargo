@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { getDictionary } from "@/i18n/dictionaries";
 import React from "react";
+import { getProducts } from "@/actions/products.actions";
 
 type Lang = "en" | "ka";
 
@@ -41,6 +42,7 @@ interface TariffsProps {
 const Tariffs = async ({ children, className, lang }: TariffsProps) => {
   const fullDictionary = await getDictionary(lang);
   const dictionary: any = fullDictionary.home;
+  const data: any = await getProducts();
 
   const countryIcons: { [key: string]: string } = {
     [dictionary["tariffs.labels.country"] === "Country" ? "USA" : "აშშ"]:

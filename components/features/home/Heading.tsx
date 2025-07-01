@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { getDictionary } from "@/i18n/dictionaries";
 import { HomeDictionary } from "@/types/dictionary";
+import getBase64 from "@/lib/get-base64";
 
 interface HeadingProps {
   children?: React.ReactNode;
@@ -13,12 +14,13 @@ interface HeadingProps {
 const Heading = async ({ children, lang }: HeadingProps) => {
   const fullDictionary = await getDictionary(lang);
   const dictionary: HomeDictionary = fullDictionary.home;
-
+  const img = await getBase64("/images/home-heading.webp");
   return (
     <div className="relative w-full xl:px-36">
       <div className="relative w-full h-[600px] ">
         <Image
           src="/images/home-heading.webp"
+          blurDataURL={img}
           alt="heading"
           fill
           style={{ objectFit: "cover" }}
@@ -26,6 +28,7 @@ const Heading = async ({ children, lang }: HeadingProps) => {
           priority
           className="lg:rounded-4xl"
           fetchPriority="high"
+          placeholder="blur"
         />
         <div className="absolute w-full h-full opacity-0 dark:opacity-50 bg-black"></div>
       </div>

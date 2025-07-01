@@ -65,7 +65,7 @@ export const NewsSection = async ({ lang }: NewsSectionProps) => {
                   />
                 </div>
                 <div
-                  className={`${item.color} h-16 w-16 absolute -left-6 bottom-10 flex justify-center items-center rounded-lg`}
+                  className={`${item.color} h-16 w-16 absolute -left-6 bottom-6 flex justify-center items-center rounded-lg`}
                 >
                   <Image
                     alt="label"
@@ -89,7 +89,8 @@ export const NewsSection = async ({ lang }: NewsSectionProps) => {
         </div>
       </section>
     </>
-  );
+  ); 
 };
+
 
 export default NewsSection;
