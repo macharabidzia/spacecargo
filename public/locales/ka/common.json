@@ -4,24 +4,27 @@
 
   "footer.contact": "კონტაქტი",
   "footer.phone": "ტელეფონი",
-  "footer.email": "ელ.ფოსტა",
+  "footer.email": "ელ. ფოსტა",
   "footer.address": "მისამართი",
   "footer.sites.home": "მთავარი",
   "footer.sites.services": "სერვისები",
-  "footer.sites.about_us": "ჩვენ შესახებ",
+  "footer.sites.about_us": "ჩვენს შესახებ",
   "footer.sites.contact": "კონტაქტი",
   "footer.subscribe": "გამოწერა",
   "footer.subscribe_text": "მიიღეთ უახლესი ამბები და შეთავაზებები.",
-  "footer.email_placeholder": "ელ.ფოსტა",
+  "footer.email_placeholder": "შეიყვანეთ თქვენი ელ. ფოსტა",
   "footer.copyright": "© 2025 SpaceCargo. ყველა უფლება დაცულია.",
-
+ "footer.home": "მთავარი",
+  "footer.services": "სერვისები",
+  "footer.about_us": "ჩვენს შესახებ",
+  "footer.sites": "საიტები",
   "sidenav.application": "აპლიკაცია",
   "sidenav.home": "მთავარი",
   "sidenav.inbox": "შემოსულები",
   "sidenav.calendar": "კალენდარი",
-  "sidenav.search": "ძებნა",
+  "sidenav.search": "ძიება",
   "sidenav.settings": "პარამეტრები",
-  "sidenav.click_button": "დააჭირეთ ღილაკს გასახსნელად",
+  "sidenav.click_button": "ღილაკზე დაჭერით გახსნით",
 
   "lang.en": "ინგლისური",
   "lang.ka": "ქართული",
@@ -29,8 +32,8 @@
   "welcome": "მოგესალმებით",
 
   "mainNav.home": "მთავარი",
-  "mainNav.aboutUs": "ჩვენ შესახებ",
-  "mainNav.flights": "რეისები",
+  "mainNav.aboutUs": "ჩვენს შესახებ",
+  "mainNav.flights": "ფრენები",
   "mainNav.news": "სიახლეები",
   "mainNav.contact": "კონტაქტი",
 
@@ -42,7 +45,15 @@
   "form.weight": "წონა (კგ)",
   "form.volume": "მოცულობა (მ³)",
   "form.calculate": "გამოთვლა",
+  "form.lastName": "გვარი",
+  "form.state": "შტატი / რეგიონი",
+  "form.address1": "მისამართი 1",
+  "form.zipCode": "საფოსტო კოდი",
+  "form.address2": "მისამართი 2",
+  "form.city": "ქალაქი",
+  "form.phoneNumber": "ტელეფონის ნომერი",
+
   "country.china": "ჩინეთი",
-  "country.usa": "ამერიკა",
-  "country.uk": "ბრიტანეთი"
+  "country.usa": "აშშ",
+  "country.uk": "გაერთიანებული სამეფო"
 }

@@ -45,7 +45,8 @@ const MiniHeader: React.FC<MiniHeaderProps> = ({ children, currentLang }) => {
                     height={23}
                     src={`/icons/${currentLang}.png`}
                     alt={`${currentLang.toUpperCase()} flag`}
-                    className="object-contain"
+                    priority
+                    className="w-auto h-auto"
                   />
                 </div>
                 <ChevronDown />
@@ -72,7 +73,7 @@ const MiniHeader: React.FC<MiniHeaderProps> = ({ children, currentLang }) => {
                       height={15}
                       src={`/icons/${lang}.png`}
                       alt={`${lang.toUpperCase()} flag`}
-                      className="object-contain"
+                      className="w-full h-full"
                     />
                   </DropdownMenuShortcut>
                 </DropdownMenuItem>

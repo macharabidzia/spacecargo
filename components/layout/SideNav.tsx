@@ -22,12 +22,12 @@ export const SideNav = async ({ currentLang }: SideNavProps) => {
   const items = [
     {
       title: fullDictionary.common["sidenav.home"],
-      url: "#",
+      url: "/",
       icon: Home,
     },
     {
       title: fullDictionary.common["sidenav.inbox"],
-      url: "#",
+      url: "/dashboard/room",
       icon: Inbox,
     },
     {

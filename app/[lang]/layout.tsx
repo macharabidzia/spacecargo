@@ -4,7 +4,6 @@ import { GlobalProviders } from "@/providers/GlobalProviders";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { siteConfig } from "@/config/site";
 import "../globals.css";
-import Header from "@/components/layout/Header";
 import MiniHeader from "@/components/layout/MiniHeader";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SideNav } from "@/components/layout/SideNav";
@@ -12,6 +11,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { I18nProvider } from "@/i18n/i18n-provider";
 import { i18n } from "@/i18n/settings";
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header/Header";
 
 const notoSansGeorgian = Noto_Sans_Georgian({
   subsets: ["latin"],

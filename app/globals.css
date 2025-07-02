@@ -51,6 +51,7 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
   --color-button: var(--button);
   --color-button-foreground: var(--button-foreground);
+  --color-space-red-default: var(--space-red);
   --color-space-blue-default: var(--space-blue-default);
   --color-space-blue-light: var(--space-blue-light);
   --color-space-blue-standard: var(--space-blue-standard);
@@ -106,6 +107,7 @@ body {
   --button-foreground: oklch(0.985 0 0);
 
   --space-blue: oklch(0.2365 0.0654 266.44);
+  --space-red: #fc573b;
   --space-blue-light: oklch(0.5891 0.177 248.89);
   --space-blue-standard: oklch(0.5858 0.2059 265.81);
   --space-muted-default: oklch(0.9807 0.0051 247.88);
@@ -147,6 +149,7 @@ body {
   --sidebar-ring: oklch(0.556 0 0);
   --button: oklch(0.488 0.243 264.376);
   --button-foreground: oklch(0.985 0 0);
+  --space-red: #fc573b;
 
   --space-blue: oklch(0.2365 0.0654 266.44);
   --space-blue-light: oklch(0.7 0.177 248.89);

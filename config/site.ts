@@ -22,7 +22,7 @@ export const siteConfig = {
     },
     {
       titleKey: "mainNav.flights", // Use a key
-      href: "/flights",
+      href: "/dashboard/room",
     },
     {
       titleKey: "mainNav.news", // Use a key

@@ -44,7 +44,6 @@ export async function processForm(
       errors: errors,
     };
   }
-  console.log("Processing form data (server-side):", parsed.data);
   await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
   revalidatePath("/"); // Revalidates the root path
   return { message: "Form submitted successfully!" };

@@ -1,3 +1,6 @@
+// components/Header.tsx
+// No "use client" here, so it's a Server Component by default
+
 import Link from "next/link";
 import { siteConfig } from "@/config";
 import Image from "next/image";
@@ -5,6 +8,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDictionary } from "@/i18n/dictionaries";
 import { AppDictionary, CommonDictionary } from "@/types/dictionary";
+import { headers } from "next/headers"; // Used to get server-side headers
+
+// Import the new Client Component
+import NavLinkList from "./NavLinkList";
 
 type HeaderInterface = {
   children?: React.ReactNode;
@@ -18,17 +25,24 @@ const Header: React.FC<HeaderInterface> = async ({
 }) => {
   const logoWidth = 88;
   const logoHeight = 88;
-  // Fetch the dictionary. Assuming getDictionary returns the flat object structure you provided.
+
   const fullDictionary: AppDictionary = await getDictionary(currentLanguage);
   const dictionary: CommonDictionary = fullDictionary.common;
-
+  const headersList = await headers();
+  const currentPathNameServer =
+    headersList.get("x-pathname") || `/${currentLanguage}/`;
   return (
     <header className={cn("w-full py-4", className)}>
       <div className="container flex h-14 items-center justify-between">
         <nav className="flex space-x-6 justify-center items-center">
           <Link
             href={`/${currentLanguage}/`}
-            className="space-x-2 text-2xl font-bold text-foreground hover:text-primary"
+            className={cn(
+              "space-x-2 text-2xl font-bold text-foreground hover:text-primary",
+              (currentPathNameServer === `/${currentLanguage}` ||
+                currentPathNameServer === `/${currentLanguage}/`) &&
+                "text-primary"
+            )}
           >
             <div
               className="flex"
@@ -52,15 +66,11 @@ const Header: React.FC<HeaderInterface> = async ({
               />
             </div>
           </Link>
-          {siteConfig.mainNav.map((item) => (
-            <Link
-              key={item.href}
-              href={`/${currentLanguage}${item.href}`}
-              className="hover:text-space-blue-light transition-colors duration-200 text-foreground"
-            >
-              {dictionary[item.titleKey]}
-            </Link>
-          ))}
+          <NavLinkList
+            mainNav={siteConfig.mainNav}
+            currentLanguage={currentLanguage}
+            dictionary={dictionary}
+          />
         </nav>
         <nav className="flex items-center space-x-6">
           <Button
@@ -68,7 +78,6 @@ const Header: React.FC<HeaderInterface> = async ({
             className="bg-space-blue-light rounded-md cursor-pointer"
             style={{ minWidth: "90px", minHeight: "40px" }}
           >
-            {/* Accessing directly from the flat dictionary object */}
             {dictionary["header.register"]}
           </Button>
           <Button
@@ -76,7 +85,6 @@ const Header: React.FC<HeaderInterface> = async ({
             className="bg-space-blue rounded-md cursor-pointer dark:bg-white/90"
             style={{ minWidth: "70px", minHeight: "40px" }}
           >
-            {/* Accessing directly from the flat dictionary object */}
             {dictionary["header.login"]}
           </Button>
         </nav>

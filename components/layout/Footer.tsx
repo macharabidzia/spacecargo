@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useParams } from "next/navigation";
 import { useClientTranslation } from "@/i18n/i18n-provider";
-
+import AppleSvg from "@/public/icons/apple.svg";
 type FooterInteface = {};
 
 const Footer = ({}: FooterInteface) => {
@@ -17,13 +16,13 @@ const Footer = ({}: FooterInteface) => {
   return (
     <section className="px-4 py-8 md:px-8 lg:px-16 xl:px-33">
       <hr className="mb-8 bg-foreground" />
-      <div className="container mx-auto flex flex-col md:flex-row justify-around gap-8 md:gap-4 lg:gap-8">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8 md:gap-4 lg:gap-8">
         <div className="flex justify-center md:justify-start mb-4 md:mb-0">
           <Image
-            className="h-[80px] w-[80px]"
+            className="h-[88px] w-[88px]"
             src={src}
-            width={80}
-            height={80}
+            width={88}
+            height={88}
             alt="Company Logo"
           />
         </div>
@@ -88,14 +87,14 @@ const Footer = ({}: FooterInteface) => {
           <Image
             width={36}
             height={36}
-            className="w-auto h-9"
+            className="w-fit h-fit"
             src="/icons/apple.svg"
             alt="Apple App Store"
           />
           <Image
-            width={36}
-            height={36}
-            className="w-auto h-9"
+            width={37}
+            height={37}
+            className="w-fit h-fit"
             src="/icons/google.svg"
             alt="Google Play Store"
           />

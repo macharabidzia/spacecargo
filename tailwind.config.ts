@@ -85,6 +85,7 @@ const config: Config = {
           light: "var(--space-blue-light)",
           standard: "var(--space-blue-standard)",
         },
+
         spaceMuted: {
           DEFAULT: "var(--space-muted-default)",
         },
@@ -93,6 +94,9 @@ const config: Config = {
         },
         spaceGreen: {
           DEFAULT: "var(--space-green-default)",
+        },
+        spaceRed: {
+          DEFAULT: "var(--space-red-default)",
         },
       },
 

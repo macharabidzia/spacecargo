@@ -26,7 +26,6 @@ interface ShippingDetailsFormProps {
 
 const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
   const { t, lang } = useClientTranslation();
-  console.log();
 
   const countries: Country[] = [
     { value: "china", labelKey: "country.china", flag: "/icons/china.svg" },

@@ -22,6 +22,10 @@
   "sidenav.search": "Search",
   "sidenav.settings": "Settings",
   "sidenav.click_button": "Click the button to open",
+  "footer.home": "Home",
+  "footer.services": "Services",
+  "footer.about_us": "About Us",
+  "footer.sites": "Web Sites",
 
   "lang.en": "English",
   "lang.ka": "Georgian",
@@ -37,12 +41,19 @@
   "site.description": "Space cargo description",
   "site.copyright": "© 2025 SpaceCargo. All rights reserved.",
 
-
   "form.country": "Country",
   "form.countryPlaceholder": "Select a country",
   "form.weight": "Weight (kg)",
   "form.volume": "Volume (m³)",
   "form.calculate": "Calculate",
+  "form.lastName": "Last Name",
+  "form.state": "State",
+  "form.address1": "Address Line 1",
+  "form.zipCode": "Zip Code",
+  "form.address2": "Address Line 2",
+  "form.city": "City",
+  "form.phoneNumber": "Phone Number",
+
   "country.china": "China",
   "country.usa": "USA",
   "country.uk": "United Kingdom"

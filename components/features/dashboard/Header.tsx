@@ -14,6 +14,7 @@ import {
   Wallet,
 } from "lucide-react";
 import React from "react";
+import { TopUpBalance } from "./TopUpBalance";
 
 const Header = () => {
   const services = [
@@ -21,42 +22,74 @@ const Header = () => {
       value: 0,
       name: "Transportation",
       icon: Percent,
+      color: "space-blue-light",
     },
     {
       value: 0,
       name: "Balance",
       icon: Wallet,
+      color: "space-red-default",
     },
     {
       value: 0,
       name: "Debt",
       icon: Wallet,
+      color: "space-green",
     },
     {
       value: 0,
       name: "Space Coins",
       icon: Coins,
+      color: "space-orange",
     },
   ];
   return (
     <div className="container py-4">
       <Card>
         <CardContent className="flex-col flex md:flex-row gap-4">
-          <div className="flex flex-col items-start border-b-1 md:border-0 md:border-r-1 min-w-[200px] pr-6">
-            <Button className="w-full justify-start" variant="ghost">
-              <HomeIcon />
+          <div className="flex flex-col items-start border-b-1 md:border-0 md:border-r-1 min-w-[200px] pr-6 shadow-none gap-1">
+            <Button
+              className="w-full justify-start shadow-none bg-space-blue-light/15 cursor-pointer"
+              variant="ghost"
+            >
+              <Separator
+                orientation="vertical"
+                className="bg-space-blue-light px-0.5"
+              />
+              <HomeIcon className="size-5 cursor-pointer" />
               My Home
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <Box />
+            <Button
+              variant="ghost"
+              className="w-full justify-start cursor-pointer"
+            >
+              <Separator
+                orientation="vertical"
+                className="bg-space-blue-light px-0.5"
+              />
+              <Box className="size-5" />
               My Parcels
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <Truck />
+            <Button
+              variant="ghost"
+              className="w-full justify-start cursor-pointer"
+            >
+              <Separator
+                orientation="vertical"
+                className="bg-space-blue-light px-0.5"
+              />
+              <Truck className="size-5" />
               Courier
             </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              <Calculator />
+            <Button
+              variant="ghost"
+              className="w-full justify-start cursor-pointer"
+            >
+              <Separator
+                orientation="vertical"
+                className="bg-space-blue-light px-0.5"
+              />
+              <Calculator className="size-5" />
               Calculator
             </Button>
           </div>
@@ -72,27 +105,30 @@ const Header = () => {
                 </div>
               </div>
               <div className="flex gap-4 flex-wrap md:flex-row">
-                <Button className="bg-space-blue">
+                <Button className="bg-space-blue-light/15 text-space-blue-light hover:bg-space-blue-light/30 cursor-pointer">
                   <Plus />
                   Top Up Balance
                 </Button>
-
-                <Button className="bg-space-blue-light">
-                  <Plus />
-                  Before Button
-                </Button>
+                <TopUpBalance>
+                  <Button className="bg-space-blue-light cursor-pointer">
+                    <Plus />
+                    Before Button
+                  </Button>
+                </TopUpBalance>
               </div>
             </div>
             <Separator className="mt-4 ml-2" />
             <div className="flex lg:flex-row flex-wrap gap-4 justify-between">
               {services.map((item, i) => (
                 <div key={i} className="flex items-center gap-4 flex-1">
-                  <Avatar className="bg-gray-200 h-14 w-14 flex items-center justify-center">
+                  <Avatar
+                    className={`bg-gray-200 h-14 w-14 flex items-center justify-center bg-${item.color}/35 text-${item.color}`}
+                  >
                     <item.icon />
                   </Avatar>
                   <div>
-                    <h3>{item.name}</h3>
-                    <small>SP304040</small>
+                    <small>{item.name}</small>
+                    <h3>108.00₾</h3>
                   </div>
                 </div>
               ))}
