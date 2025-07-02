@@ -1,3 +1,4 @@
+// components/Header.tsx
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,15 +7,18 @@ import {
   Box,
   Calculator,
   Coins,
-  HomeIcon,
+  HomeIcon, // No longer needed directly here if NavLinkList uses it
   Percent,
   Plus,
-  Truck,
+  Truck, // No longer needed directly here
   UserIcon,
   Wallet,
 } from "lucide-react";
 import React from "react";
-import { TopUpBalance } from "./TopUpBalance";
+import { TopUpBalance } from "../TopUpBalance"; // Assuming TopUpBalance is a component
+import Link from "next/link"; // No longer needed for main nav links here
+
+import { NavLinkList } from "./NavLinkList"; // Import the new component
 
 const Header = () => {
   const services = [
@@ -47,52 +51,9 @@ const Header = () => {
     <div className="container py-4">
       <Card>
         <CardContent className="flex-col flex md:flex-row gap-4">
-          <div className="flex flex-col items-start border-b-1 md:border-0 md:border-r-1 min-w-[200px] pr-6 shadow-none gap-1">
-            <Button
-              className="w-full justify-start shadow-none bg-space-blue-light/15 cursor-pointer"
-              variant="ghost"
-            >
-              <Separator
-                orientation="vertical"
-                className="bg-space-blue-light px-0.5"
-              />
-              <HomeIcon className="size-5 cursor-pointer" />
-              My Home
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start cursor-pointer"
-            >
-              <Separator
-                orientation="vertical"
-                className="bg-space-blue-light px-0.5"
-              />
-              <Box className="size-5" />
-              My Parcels
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start cursor-pointer"
-            >
-              <Separator
-                orientation="vertical"
-                className="bg-space-blue-light px-0.5"
-              />
-              <Truck className="size-5" />
-              Courier
-            </Button>
-            <Button
-              variant="ghost"
-              className="w-full justify-start cursor-pointer"
-            >
-              <Separator
-                orientation="vertical"
-                className="bg-space-blue-light px-0.5"
-              />
-              <Calculator className="size-5" />
-              Calculator
-            </Button>
-          </div>
+          {/* Render the separated NavLinkList component */}
+          <NavLinkList />
+
           <div className="flex flex-col flex-1 px-4 gap-4">
             <div className="flex lg:flex-row flex-col justify-between gap-4">
               <div className="flex gap-4 items-center">
@@ -109,6 +70,7 @@ const Header = () => {
                   <Plus />
                   Top Up Balance
                 </Button>
+                {/* Assuming TopUpBalance is a component that wraps a trigger */}
                 <TopUpBalance>
                   <Button className="bg-space-blue-light cursor-pointer">
                     <Plus />

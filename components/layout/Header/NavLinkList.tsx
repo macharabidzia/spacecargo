@@ -25,12 +25,14 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
         const linkHref = `/${currentLanguage}${
           item.href === "/" ? "" : item.href
         }`;
+        console.log(item.href,linkHref)
         const isActive =
           (item.href === "/" &&
             (pathname === `/${currentLanguage}` ||
               pathname === `/${currentLanguage}/`)) ||
           (item.href !== "/" && pathname.startsWith(linkHref));
 
+          
         return (
           <Link
             key={item.href}
