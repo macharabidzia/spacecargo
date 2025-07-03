@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,11 +12,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useRouter } from "next/navigation";
 
-export function TopUpBalance({ children }: any) {
+export default function DashboardDrawer() {
+  const router = useRouter();
   return (
-    <Sheet defaultOpen>
-      <SheetTrigger asChild>{children}</SheetTrigger>
+    <Sheet onOpenChange={() => router.back()} defaultOpen={true}>
       <SheetContent>
         <SheetHeader>
           <SheetTitle>ბალანსის შევსება</SheetTitle>

@@ -32,6 +32,7 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
               pathname === `/${currentLanguage}/`)) ||
           (item.href !== "/" && pathname.startsWith(linkHref));
 
+          console.log(linkHref)
           
         return (
           <Link

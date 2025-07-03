@@ -26,32 +26,36 @@ const Header = () => {
       value: 0,
       name: "Transportation",
       icon: Percent,
-      color: "space-blue-light",
+      color: "bg-space-blue-light/15",
+      text: "text-space-blue-light",
     },
     {
       value: 0,
       name: "Balance",
       icon: Wallet,
-      color: "space-red-default",
+      color: "bg-space-red/15",
+      text: "text-space-red",
     },
     {
       value: 0,
       name: "Debt",
       icon: Wallet,
-      color: "space-green",
+      color: "bg-space-green/15",
+      text: "text-space-green",
     },
     {
       value: 0,
       name: "Space Coins",
       icon: Coins,
-      color: "space-orange",
+      color: "bg-space-orange/15",
+      text: "text-space-orange",
     },
   ];
+
   return (
     <div className="container py-4">
       <Card>
         <CardContent className="flex-col flex md:flex-row gap-4">
-          {/* Render the separated NavLinkList component */}
           <NavLinkList />
 
           <div className="flex flex-col flex-1 px-4 gap-4">
@@ -66,17 +70,18 @@ const Header = () => {
                 </div>
               </div>
               <div className="flex gap-4 flex-wrap md:flex-row">
-                <Button className="bg-space-blue-light/15 text-space-blue-light hover:bg-space-blue-light/30 cursor-pointer">
-                  <Plus />
-                  Top Up Balance
-                </Button>
-                {/* Assuming TopUpBalance is a component that wraps a trigger */}
-                <TopUpBalance>
+                <Link href={"/dashboard/top-up"}>
+                  <Button className="bg-space-blue-light/15 text-space-blue-light hover:bg-space-blue-light/30 cursor-pointer">
+                    <Plus />
+                    Top Up Balance
+                  </Button>
+                </Link>
+                <Link href={"/dashboard/edit"}>
                   <Button className="bg-space-blue-light cursor-pointer">
                     <Plus />
                     Before Button
                   </Button>
-                </TopUpBalance>
+                </Link>
               </div>
             </div>
             <Separator className="mt-4 ml-2" />
@@ -84,12 +89,12 @@ const Header = () => {
               {services.map((item, i) => (
                 <div key={i} className="flex items-center gap-4 flex-1">
                   <Avatar
-                    className={`bg-gray-200 h-14 w-14 flex items-center justify-center bg-${item.color}/35 text-${item.color}`}
+                    className={`h-14 w-14 flex items-center justify-center ${item.color}`}
                   >
-                    <item.icon />
+                    <item.icon className={`${item.text} opacity-100`} />
                   </Avatar>
                   <div>
-                    <small>{item.name}</small>
+                    <small className={`text-${item.color}`}>{item.name}</small>
                     <h3>108.00₾</h3>
                   </div>
                 </div>

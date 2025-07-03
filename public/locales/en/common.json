@@ -14,6 +14,10 @@
   "footer.subscribe_text": "Stay updated with our latest news and offers.",
   "footer.email_placeholder": "Enter your email",
   "footer.copyright": "© 2025 SpaceCargo. All rights reserved.",
+  "footer.home": "Home",
+  "footer.services": "Services",
+  "footer.about_us": "About Us",
+  "footer.sites": "Web Sites",
 
   "sidenav.application": "Application",
   "sidenav.home": "Home",
@@ -22,10 +26,6 @@
   "sidenav.search": "Search",
   "sidenav.settings": "Settings",
   "sidenav.click_button": "Click the button to open",
-  "footer.home": "Home",
-  "footer.services": "Services",
-  "footer.about_us": "About Us",
-  "footer.sites": "Web Sites",
 
   "lang.en": "English",
   "lang.ka": "Georgian",
@@ -53,8 +53,29 @@
   "form.address2": "Address Line 2",
   "form.city": "City",
   "form.phoneNumber": "Phone Number",
+  "form.email": "Email",
+  "form.password": "Password",
+  "form.confirmPassword": "Confirm Password",
 
   "country.china": "China",
   "country.usa": "USA",
-  "country.uk": "United Kingdom"
+  "country.uk": "United Kingdom",
+
+  "auth": {
+    "welcomeTitle": "Welcome to My App",
+    "openLogin": "Login",
+    "loginTitle": "Login",
+    "loginDescription": "Please log in. If you don't have an account, please register to use our services.",
+    "noAccount": "Don't have an account?",
+    "registerLink": "Register!",
+    "loginButton": "Login",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "loggingIn": "Logging in...",
+    "close": "Close",
+    "logoAltText": "Space Cargo Logo",
+    "switchRegisterTriggered": "Switched to registration!"
+  }
 }

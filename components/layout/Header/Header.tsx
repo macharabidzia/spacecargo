@@ -25,14 +25,13 @@ const Header: React.FC<HeaderInterface> = async ({
 }) => {
   const logoWidth = 88;
   const logoHeight = 88;
-
   const fullDictionary: AppDictionary = await getDictionary(currentLanguage);
   const dictionary: CommonDictionary = fullDictionary.common;
   const headersList = await headers();
   const currentPathNameServer =
     headersList.get("x-pathname") || `/${currentLanguage}/`;
   return (
-    <header className={cn("w-full py-4", className)}>
+    <header className={cn("w-full py-4 bg-white", className)}>
       <div className="container flex h-14 items-center justify-between">
         <nav className="flex space-x-6 justify-center items-center">
           <Link
@@ -80,13 +79,15 @@ const Header: React.FC<HeaderInterface> = async ({
           >
             {dictionary["header.register"]}
           </Button>
-          <Button
-            variant="default"
-            className="bg-space-blue rounded-md cursor-pointer dark:bg-white/90"
-            style={{ minWidth: "70px", minHeight: "40px" }}
-          >
-            {dictionary["header.login"]}
-          </Button>
+          <Link href="/login">
+            <Button
+              variant="default"
+              className="bg-space-blue rounded-md cursor-pointer dark:bg-white/90"
+              style={{ minWidth: "70px", minHeight: "40px" }}
+            >
+              {dictionary["header.login"]}
+            </Button>
+          </Link>
         </nav>
       </div>
     </header>

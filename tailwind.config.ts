@@ -1,3 +1,4 @@
+// tailwind.config.ts
 import type { Config } from "tailwindcss";
 import defaultTheme from "tailwindcss/defaultTheme";
 
@@ -8,6 +9,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./features/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
     container: {
       screens: {
@@ -25,6 +27,7 @@ const config: Config = {
         xl: "5rem",
       },
     },
+
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
@@ -80,23 +83,20 @@ const config: Config = {
           foreground: "var(--button-foreground)",
         },
 
-        spaceBlue: {
+        "space-blue": {
           DEFAULT: "var(--space-blue)",
           light: "var(--space-blue-light)",
           standard: "var(--space-blue-standard)",
         },
-
-        spaceMuted: {
+        "space-red": "var(--space-red)",
+        "space-muted": {
           DEFAULT: "var(--space-muted-default)",
         },
-        spaceOrange: {
+        "space-orange": {
           DEFAULT: "var(--space-orange-default)",
         },
-        spaceGreen: {
+        "space-green": {
           DEFAULT: "var(--space-green-default)",
-        },
-        spaceRed: {
-          DEFAULT: "var(--space-red-default)",
         },
       },
 

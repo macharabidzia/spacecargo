@@ -106,8 +106,9 @@ body {
   --button: oklch(0.205 0.009 265);
   --button-foreground: oklch(0.985 0 0);
 
+  /* Space colors without alpha-value placeholder */
   --space-blue: oklch(0.2365 0.0654 266.44);
-  --space-red: #fc573b;
+  --space-red: oklch(0.6763 0.2056 32.09);
   --space-blue-light: oklch(0.5891 0.177 248.89);
   --space-blue-standard: oklch(0.5858 0.2059 265.81);
   --space-muted-default: oklch(0.9807 0.0051 247.88);
@@ -149,8 +150,9 @@ body {
   --sidebar-ring: oklch(0.556 0 0);
   --button: oklch(0.488 0.243 264.376);
   --button-foreground: oklch(0.985 0 0);
-  --space-red: #fc573b;
 
+  /* Dark theme space colors without alpha-value placeholder */
+  --space-red: oklch(0.6763 0.2056 32.09);
   --space-blue: oklch(0.2365 0.0654 266.44);
   --space-blue-light: oklch(0.7 0.177 248.89);
   --space-blue-standard: oklch(0.7 0.2059 265.81);

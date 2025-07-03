@@ -1,3 +1,4 @@
+"use client";
 import Form from "@/components/features/dashboard/Form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
