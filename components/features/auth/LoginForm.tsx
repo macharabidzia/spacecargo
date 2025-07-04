@@ -2,9 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import * as React from "react";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,18 +10,17 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel, // Keeping FormLabel for consistency, though you might hide it with CSS
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { LoginFormValues, loginFormSchema } from "@/schemas/auth.schema";
-import { useClientTranslation } from "@/i18n/i18n-provider"; // Assuming your i18n setup
+import { LoginFormSchema, LoginFormValues } from "@/schemas/auth.schema";
+import { useClientTranslation } from "@/i18n/i18n-provider";
+import { getLoginFormFields } from "@/lib/form/login.fields";
 
-// Define a prop for the LoginForm to handle switching to register mode
 interface LoginFormProps {
   onSwitchToRegister?: () => void;
-  // You can add other props like `className` for external styling
   className?: string;
 }
 
@@ -32,31 +29,28 @@ const LoginForm: React.FC<LoginFormProps> = ({
   className,
 }) => {
   const { t } = useClientTranslation("common");
-  const [showPassword, setShowPassword] = React.useState(false);
 
   const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginFormSchema),
+    resolver: zodResolver(LoginFormSchema(t)),
     defaultValues: {
       email: "",
       password: "",
-      rememberMe: false, // Default for checkbox
+      rememberMe: false,
     },
     mode: "onBlur",
   });
 
   const onSubmit = async (values: LoginFormValues) => {
     try {
-      // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log("Login successful:", values);
       alert("Login successful!");
       form.reset();
-      // Here you would typically handle user session/token, redirect, etc.
     } catch (error) {
-      console.error("Login failed:", error);
       alert("Login failed. Please check your credentials.");
     }
   };
+
+  const formFields = getLoginFormFields(t);
 
   return (
     <Form {...form}>
@@ -64,57 +58,30 @@ const LoginForm: React.FC<LoginFormProps> = ({
         onSubmit={form.handleSubmit(onSubmit)}
         className={`space-y-4 ${className || ""}`}
       >
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>{t("form.email")}</FormLabel> // Uncomment if you want labels */}
-              <FormControl>
-                <Input
-                  type="email"
-                  placeholder={t("auth.emailPlaceholder")}
-                  {...field}
-                  className="h-14 bg-gray-100 border-gray-300 focus:border-blue-500 focus-visible:ring-offset-0 focus-visible:ring-0"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>{t("form.password")}</FormLabel> // Uncomment if you want labels */}
-              <FormControl>
-                <div className="relative">
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder={t("auth.passwordPlaceholder")}
-                    {...field}
-                    className="h-14 bg-gray-100 border-gray-300 focus:border-blue-500 focus-visible:ring-offset-0 focus-visible:ring-0 pr-10"
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 text-gray-500 hover:bg-transparent"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                  >
-                    {showPassword ? (
-                      <EyeOffIcon className="h-4 w-4" />
-                    ) : (
-                      <EyeIcon className="h-4 w-4" />
-                    )}
-                  </Button>
-                </div>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {formFields.map((fieldConfig) => (
+          <FormField
+            key={fieldConfig.name}
+            control={form.control}
+            name={fieldConfig.name}
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      type={fieldConfig.type}
+                      placeholder={fieldConfig.placeholder}
+                      {...field}
+                      className={`h-14 bg-gray-100 border-gray-300 focus:border-blue-500 focus-visible:ring-offset-0 focus-visible:ring-0 ${
+                        fieldConfig.isPassword ? "pr-10" : ""
+                      }`}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        ))}
 
         <div className="flex items-center justify-between text-sm">
           <FormField
@@ -158,6 +125,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           <Button
             variant="link"
             className="text-space-blue-light cursor-pointer"
+            onClick={onSwitchToRegister}
           >
             დარეგისტრირდი
           </Button>

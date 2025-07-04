@@ -25,21 +25,18 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
         const linkHref = `/${currentLanguage}${
           item.href === "/" ? "" : item.href
         }`;
-        console.log(item.href,linkHref)
         const isActive =
           (item.href === "/" &&
             (pathname === `/${currentLanguage}` ||
               pathname === `/${currentLanguage}/`)) ||
           (item.href !== "/" && pathname.startsWith(linkHref));
 
-          console.log(linkHref)
-          
         return (
           <Link
             key={item.href}
             href={linkHref}
             className={cn(
-              "hover:text-space-blue-light font-medium transition-colors duration-200 text-foreground",
+              "hover:text-space-blue-light font-medium transition-colors duration-200 text-foreground/75",
               isActive
                 ? "text-space-blue-light dark:text-white/90"
                 : "active:text-white"

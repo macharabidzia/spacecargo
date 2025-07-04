@@ -56,15 +56,17 @@
   "form.email": "Email",
   "form.password": "Password",
   "form.confirmPassword": "Confirm Password",
-
+  "form.phoneNumberPlaceholder": "Phone Number",
   "country.china": "China",
   "country.usa": "USA",
   "country.uk": "United Kingdom",
 
+  "common.georgiaFlag": "Georgia Flag",
+
   "auth": {
     "welcomeTitle": "Welcome to My App",
     "openLogin": "Login",
-    "loginTitle": "Login",
+    "loginTitle": "Sign In",
     "loginDescription": "Please log in. If you don't have an account, please register to use our services.",
     "noAccount": "Don't have an account?",
     "registerLink": "Register!",
@@ -76,6 +78,32 @@
     "loggingIn": "Logging in...",
     "close": "Close",
     "logoAltText": "Space Cargo Logo",
-    "switchRegisterTriggered": "Switched to registration!"
+    "switchRegisterTriggered": "Switched to registration!",
+    "firstNamePlaceholder": "First Name",
+    "lastNamePlaceholder": "Last Name",
+    "idNumberPlaceholder": "ID Number",
+    "passportNumberPlaceholder": "Passport Number",
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "termsAccepted": "I have read and agree to the",
+    "registering": "Registering...",
+    "registerButton": "Register",
+    "agreeToTerms": "I have read and agree to the",
+    "termsAndConditions": "terms and conditions",
+    "registerSuccessMessage": "Registration completed successfully!",
+    "phoneNumberPlaceholder": "Phone Number",
+    "registerTitle":"Sign Up"
+  },
+  "validation": {
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "confirmPasswordRequired": "Confirm password is required",
+    "phoneNumberRequired": "Phone number is required",
+    "invalidPhoneNumberFormat": "Invalid phone number format",
+    "termsAcceptedRequired": "You must accept the terms and conditions",
+    "passwordsDoNotMatch": "Passwords do not match"
   }
 }

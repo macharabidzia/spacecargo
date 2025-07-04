@@ -17,6 +17,7 @@ const Home = async ({ params }: HomePageProps) => {
       <Heading lang={lang}>
         <ShippingCalculator lang={lang} />
       </Heading>
+      
       <div className="sm:container">
         <div className="h-[310] md:h-auto"></div>
         <Suspense fallback={<div className="w-40 h-40">LOADING</div>}>

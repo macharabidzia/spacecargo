@@ -31,7 +31,7 @@ const Header: React.FC<HeaderInterface> = async ({
   const currentPathNameServer =
     headersList.get("x-pathname") || `/${currentLanguage}/`;
   return (
-    <header className={cn("w-full py-4 bg-white", className)}>
+    <header className={cn("w-full py-4 bg-white dark:bg-background", className)}>
       <div className="container flex h-14 items-center justify-between">
         <nav className="flex space-x-6 justify-center items-center">
           <Link
@@ -72,14 +72,16 @@ const Header: React.FC<HeaderInterface> = async ({
           />
         </nav>
         <nav className="flex items-center space-x-6">
-          <Button
-            variant="default"
-            className="bg-space-blue-light rounded-md cursor-pointer"
-            style={{ minWidth: "90px", minHeight: "40px" }}
-          >
-            {dictionary["header.register"]}
-          </Button>
-          <Link href="/login">
+          <Link href={`/${currentLanguage}/register`}>
+            <Button
+              variant="default"
+              className="bg-space-blue-light rounded-md cursor-pointer"
+              style={{ minWidth: "90px", minHeight: "40px" }}
+            >
+              {dictionary["header.register"]}
+            </Button>
+          </Link>
+          <Link href={`/${currentLanguage}/login`}>
             <Button
               variant="default"
               className="bg-space-blue rounded-md cursor-pointer dark:bg-white/90"

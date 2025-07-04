@@ -2,21 +2,11 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ShippingDetailsForm from "./ShippingDetailsForm";
 import { getDictionary } from "@/i18n/dictionaries";
+import { triggerStyles } from "@/constants/styles";
 
 const ShippingCalculator = async ({ lang }: { lang: Lang }) => {
   const dictionary = await getDictionary(lang);
-  const triggerStyles = `
-    cursor-pointer
-    relative flex-1 bg-transparent text-muted-foreground transition-none
-    hover:text-
-    data-[state=active]:text-primary data-[state=active]:shadow-none
-    after:content-[''] after:absolute after:h-[2px] after:w-full
-    after:bg-space-blue-light after:-bottom-3
-    after:left-0 after:scale-x-0 after:origin-center
-    after:transition-transform after:duration-300 after:ease-in-out
-    hover:after:scale-x-100
-    data-[state=active]:after:scale-x-100
-  `;
+
   return (
     <div
       style={{
@@ -42,9 +32,11 @@ const ShippingCalculator = async ({ lang }: { lang: Lang }) => {
               {dictionary.home["tariffs.importMethods.land"]}
             </TabsTrigger>
           </TabsList>
-          <Separator className="dark:bg-white" />
+          <Separator className="bg-white" />
           <TabsContent value="air" className="mt-4">
-            <ShippingDetailsForm />
+            <div className="opacity-0 animate-fade-slide-in">
+              <ShippingDetailsForm />
+            </div>
           </TabsContent>
           <TabsContent value="land" className="mt-4">
             <ShippingDetailsForm />

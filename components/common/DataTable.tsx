@@ -20,13 +20,14 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import NotFoundSvg from "@/public/icons/not_found.svg";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   pageSize?: number;
+  onEdit?: (row: TData) => void;
+  onDelete?: (row: TData) => void;
 }
-
 export function DataTable<TData, TValue>({
   columns,
   data,
@@ -77,9 +78,8 @@ export function DataTable<TData, TValue>({
   /* ---------- render ---------- */
 
   return (
-    <div className="rounded-xl border bg-white p-4 shadow-sm">
+    <div className="bg-white">
       <Table>
-        {/* header */}
         <TableHeader className="hidden md:table-header-group">
           {table.getHeaderGroups().map((hg) => (
             <TableRow key={hg.id}>
@@ -123,7 +123,10 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                <div className="flex flex-col gap-4 items-center justify-center min-h-[526px] h-fit">
+                  <NotFoundSvg className="w-36 h-36" />
+                  <h1 className="text-lg font-extralight">ამ განყოფილებაში ამანათები არ გაქვთ</h1>
+                </div>
               </TableCell>
             </TableRow>
           )}

@@ -1,5 +1,5 @@
 "use client";
-import {useState} from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -124,11 +124,10 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
           />
         </div>
       </div>
-
-      <Button className="bg-blue-500 text-white p-4 rounded-lg flex items-center justify-center space-x-2 w-full md:w-auto md:ml-4 mt-4 md:mt-0 h-auto">
-        <span>{t("form.calculate")}</span>
-        <span className="text-md">➤</span>
-      </Button>
+        <Button className="bg-blue-500 text-white p-4 rounded-lg flex items-center justify-center space-x-2 w-full md:w-auto  mt-4 md:mt-0 h-auto">
+          <span>{t("form.calculate")}</span>
+          <span className="text-md">➤</span>
+        </Button>
     </div>
   );
 };

@@ -105,13 +105,17 @@ const config: Config = {
       },
 
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+        // Define the custom keyframes for the fade-in and slide-up effect
+        "fade-slide-in": {
+          "0%": { opacity: "0", transform: "translateY(50px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
-        fadeIn: "fadeIn 0.5s ease-in-out",
+        // Apply the keyframes with the desired duration, easing, and delay
+        // Format: [animation-name] [duration] [timing-function] [delay] [fill-mode]
+        "fade-slide-in":
+          "fade-slide-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards",
       },
     },
   },
