@@ -1,6 +1,7 @@
 {
   "header.register": "Register",
   "header.login": "Log In",
+  "header.log_out": "Log Out",
 
   "footer.contact": "Contact",
   "footer.phone": "Phone",
@@ -91,7 +92,7 @@
     "termsAndConditions": "terms and conditions",
     "registerSuccessMessage": "Registration completed successfully!",
     "phoneNumberPlaceholder": "Phone Number",
-    "registerTitle":"Sign Up"
+    "registerTitle": "Sign Up"
   },
   "validation": {
     "emailRequired": "Email is required",
@@ -105,5 +106,25 @@
     "invalidPhoneNumberFormat": "Invalid phone number format",
     "termsAcceptedRequired": "You must accept the terms and conditions",
     "passwordsDoNotMatch": "Passwords do not match"
+  },
+  "contact": {
+    "firstNamePlaceholder": "Name",
+    "lastNamePlaceholder": "Last Name",
+    "emailPlaceholder": "Email",
+    "phoneNumberPlaceholder": "Phone Number",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Write your message..",
+    "firstNameLabel": "Name",
+    "lastNameLabel": "Last Name",
+    "emailLabel": "Email",
+    "phoneNumberLabel": "Phone Number",
+    "subjectLabel": "Subject",
+    "messageLabel": "Your Message",
+    "sendMessageButton": "Send Message",
+    "sendingMessage": "Sending...",
+    "contactInformationTitle": "Contact Information",
+    "contactInformationSubtitle": "Say something to start a live chat!",
+    "addressLine1": "A.D.L. Space Cargo LLC,",
+    "addressLine2": "Saburtalo str. building 30a / 3, Tbilisi, Georgia"
   }
 }

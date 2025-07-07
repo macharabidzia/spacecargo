@@ -10,11 +10,14 @@ type AuthLayoutProps = {
 const AuthLayout = async ({ children }: AuthLayoutProps) => {
   const headersList = await headers();
 
-  const currentPath =
-    headersList.get("x-invoke-path") ||
-    new URL(headersList.get("referer") || "/").pathname;
+  const currentPath = headersList.get("x-invoke-path");
 
-  let isRegisterLaw = currentPath.includes("register");
+  const refererUrl = headersList.get("referer");
+  const parsedRefererPath = refererUrl ? new URL(refererUrl).pathname : "/";
+
+  const finalPath = currentPath || parsedRefererPath;
+
+  const isRegisterLaw = finalPath.includes("register");
 
   console.log(isRegisterLaw);
   return (

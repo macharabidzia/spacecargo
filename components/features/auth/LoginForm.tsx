@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as React from "react";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,6 +17,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { LoginFormSchema, LoginFormValues } from "@/schemas/auth.schema";
 import { useClientTranslation } from "@/i18n/i18n-provider";
 import { getLoginFormFields } from "@/lib/form/login.fields";
+import { login } from "@/actions/auth.actions";
+import { redirect } from "next/navigation";
 
 interface LoginFormProps {
   onSwitchToRegister?: () => void;
@@ -41,13 +42,8 @@ const LoginForm: React.FC<LoginFormProps> = ({
   });
 
   const onSubmit = async (values: LoginFormValues) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert("Login successful!");
-      form.reset();
-    } catch (error) {
-      alert("Login failed. Please check your credentials.");
-    }
+    await login(values.email, values.password);
+    redirect("/dashboard");
   };
 
   const formFields = getLoginFormFields(t);

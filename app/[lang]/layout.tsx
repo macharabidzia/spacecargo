@@ -1,7 +1,7 @@
 import { getDictionary } from "@/i18n/dictionaries";
 import { I18nProvider } from "@/i18n/i18n-provider";
 import { i18n } from "@/i18n/settings";
-import MiniHeader from "@/components/layout/MiniHeader";
+import MiniHeader from "@/components/layout/MiniHeader/MiniHeader";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SideNav } from "@/components/layout/SideNav";
 import Footer from "@/components/layout/Footer";

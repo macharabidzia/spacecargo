@@ -1,6 +1,7 @@
 {
   "header.register": "რეგისტრაცია",
   "header.login": "შესვლა",
+  "header.log_out": "გასვლა",
 
   "footer.contact": "კონტაქტი",
   "footer.phone": "ტელეფონი",
@@ -92,8 +93,7 @@
     "termsAndConditions": "წესებს და პირობებს",
     "registerSuccessMessage": "რეგისტრაცია წარმატებით დასრულდა!",
     "phoneNumberPlaceholder": "ტელეფონის ნომერი",
-    "registerTitle":"რეგისტრაცია"
-
+    "registerTitle": "რეგისტრაცია"
   },
   "validation": {
     "emailRequired": "ელ-ფოსტა აუცილებელია",
@@ -107,5 +107,26 @@
     "invalidPhoneNumberFormat": "არასწორი ტელეფონის ნომრის ფორმატი",
     "termsAcceptedRequired": "თქვენ უნდა დაეთანხმოთ წესებსა და პირობებს",
     "passwordsDoNotMatch": "პაროლები არ ემთხვევა"
+  },
+  "contact": {
+    "firstNamePlaceholder": "სახელი",
+    "lastNamePlaceholder": "გვარი",
+    "emailPlaceholder": "ელ-ფოსტა",
+    "phoneNumberPlaceholder": "ტელეფონის ნომერი",
+    "subjectPlaceholder": "სათაური",
+    "messagePlaceholder": "თქვენი შეტყობინება..",
+    "firstNameLabel": "სახელი",
+    "lastNameLabel": "გვარი",
+    "emailLabel": "ელ-ფოსტა",
+    "phoneNumberLabel": "ტელეფონის ნომერი",
+    "subjectLabel": "სათაური",
+    "messageLabel": "თქვენი შეტყობინება",
+    "sendMessageButton": "შეტყობინების გაგზავნა",
+    "sendingMessage": "იგზავნება...",
+    "contactInformationTitle": "საკონტაქტო ინფორმაცია",
+    "contactInformationSubtitle": "დაიწყეთ ცოცხალი ჩეთი!",
+    "addressLine1": "ა.დ.ლ. სპეის კარგიო შპს,",
+    "addressLine2": "საბურთალოს ქ. 30ა / 3, თბილისი, საქართველო",
+    "pageTitle": "კონტაქტი"
   }
 }

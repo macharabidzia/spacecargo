@@ -8,6 +8,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   SortingState,
+  Table as ReactTableType, // Alias to avoid naming conflict
   useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -18,20 +19,34 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import NotFoundSvg from "@/public/icons/not_found.svg";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import Pagination from "./Pagination";
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   pageSize?: number;
   onEdit?: (row: TData) => void;
   onDelete?: (row: TData) => void;
+  notFoundText?: string;
+  rowClassName?: string | ((row: TData) => string);
+  cellClassName?: string | ((cell: any) => string);
+  headerClassName?: string;
+  bodyClassName?: string;
 }
+
+// DataTable Component
 export function DataTable<TData, TValue>({
   columns,
   data,
   pageSize = 10,
+  notFoundText = "No data available.",
+  rowClassName,
+  cellClassName,
+  headerClassName,
+  bodyClassName,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [{ pageIndex }, setPagination] = React.useState({
@@ -50,43 +65,32 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  /* ---------- helpers ---------- */
-
-  // 1. Text label for stacked cells on mobile
-  const labelFor = (col: ColumnDef<any, any>) => {
-    /* ✅ 1. explicit string header */
+  // Helper for mobile stacked cells label
+  const labelFor = (col: ColumnDef<any, any>): string => {
     if (typeof col.header === "string") return col.header;
-
-    /* ✅ 2. accessorKey (most common when you don’t give `id`) */
-    //    accessorKey can be string | number | undefined, so cast to string safely
     if (typeof (col as any).accessorKey === "string")
-      return (col as any).accessorKey as string;
-
-    /* ✅ 3. id explicitly supplied in the column def */
+      return (col as any).accessorKey;
     if (col.id) return String(col.id);
-
-    /* ❌ 4. nothing useful → return empty, not "Field" */
     return "";
   };
 
-  // 2. Page numbers (sliding window of ±2 around current page)
-  const total = table.getPageCount();
-  const pages = Array.from({ length: total }, (_, i) => i).filter(
-    (n) => Math.abs(n - pageIndex) <= 2 || n === 0 || n === total - 1
-  );
-
-  /* ---------- render ---------- */
+  console.log(table.getState())
 
   return (
-    <div className="bg-white">
-      <Table>
-        <TableHeader className="hidden md:table-header-group">
+    <div className="rounded-lg overflow-hidden">
+      <Table className="rounded-lg">
+        <TableHeader
+          className={cn(
+            "bg-background rounded-t-lg hidden md:table-header-group",
+            headerClassName
+          )}
+        >
           {table.getHeaderGroups().map((hg) => (
             <TableRow key={hg.id}>
               {hg.headers.map((h) => (
                 <TableHead
                   key={h.id}
-                  className="h-12 text-center font-semibold justify-items-center"
+                  className="p-4 text-white font-semibold justify-items-center"
                   onClick={h.column.getToggleSortingHandler()}
                 >
                   {h.isPlaceholder
@@ -98,22 +102,28 @@ export function DataTable<TData, TValue>({
           ))}
         </TableHeader>
 
-        {/* body */}
-        <TableBody>
+        <TableBody className={cn("space-y-4", bodyClassName)}>
           {table.getRowModel().rows.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}
-                className="block md:table-row border-b p-4 md:p-0"
+                className={cn(
+                  "block mb-4 p-4 border border-gray-200 rounded-lg md:table-row md:mb-0 md:p-0 md:border-b md:border-none",
+                  typeof rowClassName === "function"
+                    ? rowClassName(row.original as TData)
+                    : rowClassName
+                )}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
                     data-label={labelFor(cell.column.columnDef)}
-                    className="block md:table-cell text-right md:text-center
-                               before:float-left before:font-medium
-                               before:content-[attr(data-label)]
-                               md:before:content-[''] md:justify-items-center justify-items-end"
+                    className={cn(
+                      "block px-0 py-1 text-gray-700 md:p-4 md:table-cell before:float-left before:font-medium before:content-[attr(data-label)] md:before:content-[''] md:justify-items-center justify-items-end",
+                      typeof cellClassName === "function"
+                        ? cellClassName(cell)
+                        : cellClassName
+                    )}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -123,64 +133,24 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                <div className="flex flex-col gap-4 items-center justify-center min-h-[526px] h-fit">
-                  <NotFoundSvg className="w-36 h-36" />
-                  <h1 className="text-lg font-extralight">ამ განყოფილებაში ამანათები არ გაქვთ</h1>
+                <div className="flex flex-col gap-4 items-center justify-center min-h-[300px] h-fit">
+                  <Image
+                    src={NotFoundSvg}
+                    alt="No data found"
+                    width={144}
+                    height={144}
+                    className="w-36 h-36"
+                  />
+                  <h1 className="text-lg font-extralight text-foreground/70">
+                    {notFoundText}
+                  </h1>
                 </div>
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
-
-      {/* pagination */}
-      <div className="mt-6 flex justify-center">
-        <div className="flex items-center space-x-2 rounded-xl border p-1">
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-            className="px-3 py-2"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            Previous
-          </Button>
-
-          {pages.map((n, i) =>
-            i > 0 && n - pages[i - 1] > 1 ? (
-              <span key={`gap-${i}`} className="px-2 py-1">
-                …
-              </span>
-            ) : (
-              <Button
-                key={n}
-                size="icon"
-                variant="ghost"
-                onClick={() => table.setPageIndex(n)}
-                className={`h-9 w-9 rounded-full ${
-                  n === pageIndex
-                    ? "bg-blue-600 text-white"
-                    : "hover:bg-gray-100"
-                }`}
-              >
-                {n + 1}
-              </Button>
-            )
-          )}
-
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-            className="px-3 py-2"
-          >
-            Next
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+      {table.getPageCount() > 1 && <Pagination totalPages={table.getTotalSize()} />}
     </div>
   );
 }
