@@ -14,7 +14,6 @@ interface NewsSectionProps {
 export const NewsSection = async ({ lang, data }: NewsSectionProps) => {
   const fullDictionary = await getDictionary(lang);
 
-  console.log(fullDictionary);
 
   return (
     <section className="w-full ml-0">

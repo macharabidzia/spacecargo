@@ -2,23 +2,20 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import LogoIcon from "@/public/icons/logo.svg"; // Assuming LogoIcon is correctly configured to accept className
-// No longer need getDictionary here as it's passed via props
-// import { getDictionary } from "@/i18n/dictionaries";
-import { CommonDictionary } from "@/types/dictionary"; // Ensure this import is correct
+import LogoIcon from "@/public/icons/logo.svg";
+import { CommonDictionary } from "@/types/dictionary";
 
 type FooterInterface = {
-  dictionary: CommonDictionary; // Use the specific CommonDictionary type
+  dictionary: CommonDictionary;
 };
 
 const Footer = async ({ dictionary }: FooterInterface) => {
-  console.log(dictionary);
   return (
     <section className="px-4 py-8 md:px-8 lg:px-16 xl:px-33">
       <hr className="mb-8 bg-foreground" />
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8 md:gap-4 lg:gap-8">
         <div className="flex justify-center md:justify-start mb-4 md:mb-0">
-          <LogoIcon className="h-[88px] w-full dark:fill-red-400" />
+          <LogoIcon className="h-[88px] w-full dark:fill-white" />
         </div>
         <div className="mt-4 text-center md:text-left">
           <h1 className="font-semibold mb-4 text-lg">

@@ -39,6 +39,12 @@
   "mainNav.news": "News",
   "mainNav.contact": "Contact",
 
+  "dashboardNav.overview": "Overview",
+  "dashboardNav.shipments": "Shipments",
+  "dashboardNav.profile": "Profile",
+  "dashboardNav.settings": "Settings",
+  "dashboardNav.notifications": "Notifications",
+
   "site.description": "Space cargo description",
   "site.copyright": "© 2025 SpaceCargo. All rights reserved.",
 
@@ -125,6 +131,7 @@
     "contactInformationTitle": "Contact Information",
     "contactInformationSubtitle": "Say something to start a live chat!",
     "addressLine1": "A.D.L. Space Cargo LLC,",
-    "addressLine2": "Saburtalo str. building 30a / 3, Tbilisi, Georgia"
+    "addressLine2": "Saburtalo str. building 30a / 3, Tbilisi, Georgia",
+    "pageTitle": "Contact"
   }
 }

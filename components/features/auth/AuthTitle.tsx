@@ -1,4 +1,3 @@
-// src/components/features/auth/AuthTitle.tsx
 "use client";
 
 import React from "react";
@@ -12,7 +11,7 @@ const AuthTitle = () => {
   const isRegisterPage = pathname.includes("register");
   return (
     <>
-      <h1 className="text-4xl font-extrabold text-space-blue">
+      <h1 className="text-4xl font-extrabold text-space-blue dark:text-white">
         {isRegisterPage ? t("auth.registerTitle") : t("auth.loginTitle")}
       </h1>
       <p className="text-sm mt-2">

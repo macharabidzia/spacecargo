@@ -23,7 +23,6 @@ export const siteConfig = {
     {
       titleKey: "mainNav.flights", // Use a key
       href: "/dashboard",
-      
     },
     {
       titleKey: "mainNav.news", // Use a key
@@ -34,6 +33,29 @@ export const siteConfig = {
       href: "/contact",
     },
   ],
+  dashboardNav: [
+    // New array for dashboard-specific navigation
+    {
+      titleKey: "dashboardNav.overview", // Example key
+      href: "/dashboard",
+    },
+    {
+      titleKey: "dashboardNav.shipments", // Example key
+      href: "/dashboard/shipments",
+    },
+    {
+      titleKey: "dashboardNav.profile", // Example key
+      href: "/dashboard/profile",
+    },
+    {
+      titleKey: "dashboardNav.settings", // Example key
+      href: "/dashboard/settings",
+    },
+    {
+      titleKey: "dashboardNav.notifications", // Example key
+      href: "/dashboard/notifications",
+    },
+  ],
   contactEmail: "info@your-website.com",
   copyright: `© ${new Date().getFullYear()} My Next.js App. All rights reserved.`,
 };
@@ -42,6 +64,11 @@ export const siteConfig = {
 export type SiteConfig = typeof siteConfig & {
   mainNav: {
     titleKey: keyof CommonDictionary; // This specifies that titleKey must be a key from CommonDictionary
+    href: string;
+  }[];
+  dashboardNav: {
+    // Add dashboardNav to the SiteConfig type
+    titleKey: keyof CommonDictionary;
     href: string;
   }[];
 };

@@ -49,7 +49,6 @@ export function RegisterForm({ fields, type, dictionary }: RegisterFormProps) {
   });
 
   const handleInternalSubmit = (values: RegisterFormValues) => {
-    console.log("Registration submitted from RegisterForm:", values);
     alert(t("auth.registerSuccessMessage"));
     form.reset();
   };

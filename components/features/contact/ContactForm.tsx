@@ -41,7 +41,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 
   const onSubmit = async (values: ContactFormValues) => {
     // Handle form submission logic here
-    console.log("Contact Form Submitted:", values);
     try {
       // Simulate API call or actual submission logic
       await new Promise((resolve) => setTimeout(resolve, 1500));

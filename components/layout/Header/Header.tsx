@@ -1,14 +1,12 @@
 import Link from "next/link";
 import { siteConfig } from "@/config";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDictionary } from "@/i18n/dictionaries";
 import { AppDictionary, CommonDictionary } from "@/types/dictionary";
-import { cookies, headers } from "next/headers"; // Used to get server-side headers
-
+import { cookies, headers } from "next/headers";
 import NavLinkList from "./NavLinkList";
-import { LogOutIcon, LucideLogOut } from "lucide-react";
+import { LucideLogOut } from "lucide-react";
 import { logout } from "@/actions/auth.actions";
 import LogoIcon from "@/public/icons/logo.svg";
 type HeaderInterface = {
@@ -51,7 +49,7 @@ const Header: React.FC<HeaderInterface> = async ({
               className="flex"
               style={{ width: `${logoWidth}px`, height: `${logoHeight}px` }}
             >
-              <LogoIcon className="h-fit w-full dark:fill-red-400" />
+              <LogoIcon className="h-fit w-full dark:fill-white" />
             </div>
           </Link>
           <NavLinkList
@@ -87,13 +85,12 @@ const Header: React.FC<HeaderInterface> = async ({
             {isLoggedIn && (
               <form action={logout}>
                 <Button
-                  type="submit" // Important: type="submit" for the button to trigger the form
+                  type="submit"
                   variant="default"
                   className="bg-space-blue rounded-md cursor-pointer dark:bg-white/90"
                   style={{ minWidth: "70px", minHeight: "40px" }}
                 >
                   <LucideLogOut className="mr-2 h-4 w-4" />{" "}
-                  {/* Add some spacing */}
                   {dictionary["header.log_out"]}
                 </Button>
               </form>

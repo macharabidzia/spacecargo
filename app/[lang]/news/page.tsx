@@ -64,8 +64,8 @@ const News = async ({ params }: any) => {
   ];
   return (
     <div className="container">
-      <div className="mb-24 mt-6">
-        <h1 className="text-center text-3xl font-bold text-space-blue">
+      <div className="mb-10 py-12">
+        <h1 className="text-center text-4xl font-bold text-space-blue">
           სიახლეები
         </h1>
         <p className="px-24 py-4 text-center text-gray-500">

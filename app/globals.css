@@ -204,7 +204,13 @@ body {
   outline: none;
 }
 /* Crucially, target the separator */
-
+.client-tracking-details ol {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
 /* Media query for larger screens (e.g., md breakpoint) to switch back to horizontal */
 @media (max-width: 768px) {
   .client-tracking-details .stepper-navigation-wrapper {
@@ -234,5 +240,6 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     gap: 20px;
+    flex-wrap: nowrap;
   }
 }

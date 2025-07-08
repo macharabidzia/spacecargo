@@ -173,7 +173,7 @@ const TrackingPage = async ({ params }: any) => {
             ))}
           </div>
         </div>
-        <div className="lg:flex-1 w-full mt-8 lg:mt-0 lg:pl-10 rounded-md h-auto  overflow-hidden">
+        <div className="lg:flex-1 rounded-md lg:h-auto w-full h-[600px]">
           <MapWrapper
             center={tbilisiCoordinates}
             zoom={12}

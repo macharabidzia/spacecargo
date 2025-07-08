@@ -1,5 +1,4 @@
 import React from "react";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -7,10 +6,7 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Button } from "../ui/button";
 import { getDictionary } from "@/i18n/dictionaries";
 import NavLinkList from "./Header/NavLinkList";
 import { siteConfig } from "@/config";

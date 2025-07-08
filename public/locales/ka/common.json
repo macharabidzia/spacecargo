@@ -58,6 +58,11 @@
   "form.password": "პაროლი",
   "form.confirmPassword": "პაროლის დადასტურება",
   "form.phoneNumberPlaceholder": "ტელეფონის ნომერი",
+  "dashboardNav.overview": "მიმოხილვა",
+  "dashboardNav.shipments": "გზავნილები",
+  "dashboardNav.profile": "პროფილი",
+  "dashboardNav.settings": "პარამეტრები",
+  "dashboardNav.notifications": "შეტყობინებები",
 
   "country.china": "ჩინეთი",
   "country.usa": "აშშ",

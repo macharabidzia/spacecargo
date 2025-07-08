@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { CommonDictionary } from "@/types/dictionary";
+import { useEffect, useMemo, useState } from "react";
+import { siteConfig } from "@/config";
 
 type NavLinkListProps = {
   mainNav: any[];
@@ -18,7 +20,12 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
   dictionary,
 }) => {
   const pathname = usePathname();
-
+  const menuItems = useMemo(() => {
+    // Correctly reference siteConfig.dashboardNav and siteConfig.mainNav
+    return pathname.includes("dashboard")
+      ? siteConfig.dashboardNav
+      : siteConfig.mainNav;
+  }, [pathname]);
   return (
     <div
       className={cn(
@@ -26,18 +33,21 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
         "md:flex-row md:space-x-6 md:space-y-0 md:px-0"
       )}
     >
-      {mainNav.map((item) => {
+      {menuItems.map((item) => {
         // Construct the full link path including language prefix.
         // For the root href "/", generate "/en" or "/ka".
         // For other hrefs, prefix with the language.
         const linkHref =
-          item.href === "/" ? `/${currentLanguage}` : `/${currentLanguage}${item.href}`;
+          item.href === "/"
+            ? `/${currentLanguage}`
+            : `/${currentLanguage}${item.href}`;
 
         // Normalize the current pathname by removing a trailing slash if it's not the actual root "/"
         // This helps in consistent comparison, e.g., "/ka/" becomes "/ka"
-        const normalizedPathname = pathname.endsWith('/') && pathname !== '/'
-          ? pathname.slice(0, -1)
-          : pathname;
+        const normalizedPathname =
+          pathname.endsWith("/") && pathname !== "/"
+            ? pathname.slice(0, -1)
+            : pathname;
 
         // Determine if the link is active
         const isActive =
