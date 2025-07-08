@@ -173,3 +173,64 @@ body {
 }
 
 @config "../tailwind.config.ts";
+/* Ensure your custom CSS is loaded AFTER Stepperize's CSS */
+
+/* Force Stepper.Navigation to be a column layout by default */
+.client-tracking-details .stepper-navigation-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* Align items to the start for vertical layout */
+  gap: 1.5rem; /* Space between steps */
+  padding: 0.5rem !important; /* Adjust padding */
+}
+
+/* Style the steps themselves */
+.client-tracking-details .stepper-step {
+  flex: none !important; /* Prevent steps from stretching horizontally in column layout */
+  width: 100% !important; /* Make steps take full width in column */
+  max-width: unset !important; /* Remove any max-width constraints */
+  display: flex !important;
+  flex-direction: row !important; /* Keep icon and title in a row within each step */
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.5rem; /* Space between icon and title */
+}
+
+/* Adjust the icon/title alignment if needed */
+.client-tracking-details .stepper-step-icon {
+  margin-bottom: 0 !important; /* Remove bottom margin from icon in row layout */
+}
+
+/* Crucially, target the separator */
+
+/* Media query for larger screens (e.g., md breakpoint) to switch back to horizontal */
+@media (max-width: 768px) {
+  .client-tracking-details .stepper-navigation-wrapper {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+  .client-tracking-details
+    [date-component="stepper-separator"][data-orientation="horizontal"] {
+    display: block !important; /* Hide the horizontal separator for vertical layout */
+    width: 0.1rem;
+    height: 2rem !important;
+    flex: none;
+    margin: 0 auto !important;
+  }
+
+  .client-tracking-details .stepper-step {
+    max-width: 25% !important; /* Re-apply horizontal distribution */
+    flex-direction: column !important; /* Put icon and title in column within step */
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 0.5rem;
+  }
+
+  .client-tracking-details ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 20px;
+  }
+}

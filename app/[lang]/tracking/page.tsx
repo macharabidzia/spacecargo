@@ -96,7 +96,7 @@ const TrackingPage = async ({ params }: any) => {
 
           {/* Location Section */}
           <div className="mb-6 space-y-2 border-2 rounded-md overflow-hidden">
-            <div className="bg-gray-100 p-4 sm:p-5">
+            <div className="bg-background p-4 sm:p-5">
               <div className="flex items-start text-gray-700 mb-3">
                 <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0"></div>
                 <p className="text-sm sm:text-base">
@@ -104,7 +104,7 @@ const TrackingPage = async ({ params }: any) => {
                   <span className="font-medium">{trackingData.origin}</span>
                 </p>
               </div>
-              <div className="w-0.5 h-6 bg-gray-300 ml-[3px]"></div>{" "}
+              <div className="w-0.5 h-6 ml-[3px]"></div>
               <div className="flex items-start text-gray-700 mt-3">
                 <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 mr-3 flex-shrink-0"></div>
                 <p className="text-sm sm:text-base">

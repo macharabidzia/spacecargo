@@ -30,8 +30,9 @@ const ClientTrackingDetails = ({ currentActiveStepIndex }: any) => {
 
   return (
     <>
-      <div className="py-6 mb-6">
+      <div className="py-6 mb-6 client-tracking-details">
         <Stepper.Provider
+          className="w-full"
           initialStep={steps[currentActiveStepIndex].id.toString()}
         >
           <Stepper.Navigation>
@@ -47,8 +48,6 @@ const ClientTrackingDetails = ({ currentActiveStepIndex }: any) => {
           </Stepper.Navigation>
         </Stepper.Provider>
       </div>
-
-      {/* Tracking History/Events */}
     </>
   );
 };
