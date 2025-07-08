@@ -6,6 +6,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SideNav } from "@/components/layout/SideNav";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header/Header";
+import DashboardDrawers from "@/components/features/dashboard/drawers/DashboardDrawers";
 
 // This generateStaticParams now makes sense here, as this layout defines the [lang] param.
 export async function generateStaticParams() {
@@ -30,14 +31,15 @@ export default async function LocaleLayout(props: {
         >
           <MiniHeader currentLang={lang}>
             <div className="md:hidden">
-              <SidebarTrigger />
+              <SidebarTrigger></SidebarTrigger>
             </div>
           </MiniHeader>
           <Header currentLanguage={lang} className="hidden lg:block" />
           <SideNav currentLang={lang} />
-          <main className="flex-grow w-full mx-auto static ">
-            {children} {/* This renders the actual pages within the locale */}
-            <Footer />
+          <main className="flex-grow w-full mx-auto static">
+            {children}
+            <DashboardDrawers />
+            <Footer dictionary={dictionary.common} />
           </main>
         </SidebarProvider>
       </div>

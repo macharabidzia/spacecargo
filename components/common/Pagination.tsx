@@ -1,16 +1,14 @@
-// file: components/common/Pagination.tsx
 
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useCallback } from "react";
 
-// The component now takes simple, declarative props.
 interface PaginationProps {
   totalPages: number;
   currentPage?: number;
@@ -25,23 +23,24 @@ export default function Pagination({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Helper function to create the URL for a specific page.
-  // It preserves existing query parameters (e.g., for filters or sorting).
-  const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", String(pageNumber));
-    return `${pathname}?${params.toString()}`;
-  };
+  const createPageURL = useCallback(
+    (pageNumber: number | string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set("page", String(pageNumber));
+      return `${pathname}?${params.toString()}`;
+    },
+    [pathname, searchParams]
+  );
 
-  // The core logic for calculating visible pages is excellent and can be reused.
-  // We just adapt it to use `currentPage` instead of `pageIndex`.
-  const pages = useMemo(() => {
-    const pageIndex = currentPage - 1; // Convert to 0-based index for logic
-    const arr = Array.from({ length: totalPages }, (_, i) => i);
-    const windowSize = 2;
+  const pageIndex = currentPage - 1;
+  const arr = Array.from({ length: totalPages }, (_, i) => i);
+  const windowSize = 2;
 
-    if (totalPages <= 5) return arr;
+  let pages: (number | string)[];
 
+  if (totalPages <= 5) {
+    pages = arr;
+  } else {
     let start = Math.max(0, pageIndex - windowSize);
     let end = Math.min(totalPages - 1, pageIndex + windowSize);
 
@@ -70,9 +69,8 @@ export default function Pagination({
     } else if (visiblePages[visiblePages.length - 1] === totalPages - 2) {
       finalPages.push(totalPages - 1);
     }
-
-    return finalPages;
-  }, [currentPage, totalPages]);
+    pages = finalPages;
+  }
 
   const canPreviousPage = currentPage > 1;
   const canNextPage = currentPage < totalPages;

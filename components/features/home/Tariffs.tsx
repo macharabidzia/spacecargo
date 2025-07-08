@@ -37,7 +37,6 @@ const Tariffs = async ({ children, className, lang }: TariffsProps) => {
   const fullDictionary = await getDictionary(lang);
   const dictionary: { home: TariffsDictionaryContent } = fullDictionary as any;
   const homeDictionary = dictionary.home;
-  const data: any = await getProducts();
   // Define country icons
   const countryIcons: { [key: string]: string } = {
     [homeDictionary["tariffs.labels.country"] === "Country" ? "USA" : "აშშ"]:

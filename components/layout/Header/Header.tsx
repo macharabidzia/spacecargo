@@ -10,7 +10,7 @@ import { cookies, headers } from "next/headers"; // Used to get server-side head
 import NavLinkList from "./NavLinkList";
 import { LogOutIcon, LucideLogOut } from "lucide-react";
 import { logout } from "@/actions/auth.actions";
-
+import LogoIcon from "@/public/icons/logo.svg";
 type HeaderInterface = {
   children?: React.ReactNode;
   className?: string;
@@ -51,22 +51,7 @@ const Header: React.FC<HeaderInterface> = async ({
               className="flex"
               style={{ width: `${logoWidth}px`, height: `${logoHeight}px` }}
             >
-              <Image
-                className="w-full block dark:hidden"
-                src="/icons/logo.svg"
-                width={logoWidth}
-                height={logoHeight}
-                alt="spacecargo light mode icon"
-                priority
-              />
-              <Image
-                className="w-full hidden dark:block"
-                src="/icons/logo-white.svg"
-                width={logoWidth}
-                height={logoHeight}
-                alt="spacecargo dark mode icon"
-                priority
-              />
+              <LogoIcon className="h-fit w-full dark:fill-red-400" />
             </div>
           </Link>
           <NavLinkList

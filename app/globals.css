@@ -200,7 +200,9 @@ body {
 .client-tracking-details .stepper-step-icon {
   margin-bottom: 0 !important; /* Remove bottom margin from icon in row layout */
 }
-
+:focus:not(:focus-visible) {
+  outline: none;
+}
 /* Crucially, target the separator */
 
 /* Media query for larger screens (e.g., md breakpoint) to switch back to horizontal */

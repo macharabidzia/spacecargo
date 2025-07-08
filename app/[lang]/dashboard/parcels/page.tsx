@@ -1,3 +1,4 @@
+import { getProducts } from "@/actions/products.actions";
 import ParcelsTableClient from "@/components/features/dashboard/parcels/ParcelsTableClient";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -5,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
 
-const Parcels = () => {
+const Parcels = async () => {
   const data = [
     {
       id: "p1",
@@ -159,7 +160,12 @@ const Parcels = () => {
                   value={tab.value}
                 >
                   {tab.value}
-                  <Badge className="h-5 w-5 text-xs rounded-lg" variant="destructive">2</Badge>
+                  <Badge
+                    className="h-5 w-5 text-xs rounded-lg"
+                    variant="destructive"
+                  >
+                    2
+                  </Badge>
                 </TabsTrigger>
               ))}
             </TabsList>

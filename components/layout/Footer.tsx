@@ -1,62 +1,59 @@
-"use client";
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
-import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useClientTranslation } from "@/i18n/i18n-provider";
-import AppleSvg from "@/public/icons/apple.svg";
-type FooterInteface = {};
+import LogoIcon from "@/public/icons/logo.svg"; // Assuming LogoIcon is correctly configured to accept className
+// No longer need getDictionary here as it's passed via props
+// import { getDictionary } from "@/i18n/dictionaries";
+import { CommonDictionary } from "@/types/dictionary"; // Ensure this import is correct
 
-const Footer = ({}: FooterInteface) => {
-  const { t } = useClientTranslation("common");
+type FooterInterface = {
+  dictionary: CommonDictionary; // Use the specific CommonDictionary type
+};
 
-  const { theme } = useTheme();
-  const src = theme === "dark" ? "/icons/logo-white.svg" : "/icons/logo.svg";
+const Footer = async ({ dictionary }: FooterInterface) => {
+  console.log(dictionary);
   return (
     <section className="px-4 py-8 md:px-8 lg:px-16 xl:px-33">
       <hr className="mb-8 bg-foreground" />
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8 md:gap-4 lg:gap-8">
         <div className="flex justify-center md:justify-start mb-4 md:mb-0">
-          <Image
-            className="h-[88px] w-[88px]"
-            src={src}
-            width={88}
-            height={88}
-            alt="Company Logo"
-          />
+          <LogoIcon className="h-[88px] w-full dark:fill-red-400" />
         </div>
-
         <div className="mt-4 text-center md:text-left">
-          <h1 className="font-semibold mb-4 text-lg">{t("footer.contact")}</h1>
+          <h1 className="font-semibold mb-4 text-lg">
+            {dictionary["footer.contact"]}
+          </h1>
           <ul className="space-y-3 text-sm">
-            <li>{t("footer.phone")}</li>
-            <li>{t("footer.email")}</li>
-            <li>{t("footer.address")}</li>
+            <li>{dictionary["footer.phone"]}</li>
+            <li>{dictionary["footer.email"]}</li>
+            <li>{dictionary["footer.address"]}</li>
           </ul>
         </div>
 
         <div className="mt-4 text-center md:text-left">
-          <h1 className="font-semibold mb-4 text-lg">{t("footer.sites")}</h1>
+          <h1 className="font-semibold mb-4 text-lg">
+            {dictionary["footer.sites"]}
+          </h1>
           <ul className="space-y-3 text-sm">
             <li>
               <a href="#" className="hover:underline">
-                {t("footer.home")}
+                {dictionary["footer.sites.home"]}
               </a>
             </li>
             <li>
               <a href="#" className="hover:underline">
-                {t("footer.services")}
+                {dictionary["footer.sites.services"]}
               </a>
             </li>
             <li>
               <a href="#" className="hover:underline">
-                {t("footer.about_us")}
+                {dictionary["footer.sites.about_us"]}
               </a>
             </li>
             <li>
               <a href="#" className="hover:underline">
-                {t("footer.contact")}
+                {dictionary["footer.sites.contact"]}
               </a>
             </li>
           </ul>
@@ -64,17 +61,17 @@ const Footer = ({}: FooterInteface) => {
 
         <div className="mt-4 text-center md:text-left">
           <h1 className="font-semibold mb-4 text-lg">
-            {t("footer.subscribe")}
+            {dictionary["footer.subscribe"]}
           </h1>
           <div className="space-y-3 text-sm flex flex-col items-center md:items-start">
-            <p>{t("footer.subscribe_text")}</p>
+            <p>{dictionary["footer.subscribe_text"]}</p>
             <div className="flex w-full max-w-sm items-center space-x-2">
               <Input
                 type="email"
-                placeholder={t("footer.email_placeholder")}
+                placeholder={dictionary["footer.email_placeholder"]}
                 className="flex-grow"
               />
-              <Button type="submit">{t("footer.subscribe")}</Button>
+              <Button type="submit">{dictionary["footer.subscribe"]}</Button>
             </div>
           </div>
         </div>
@@ -100,7 +97,11 @@ const Footer = ({}: FooterInteface) => {
           />
         </div>
         <div className="text-center md:text-left mt-4 md:mt-0">
-          {t("footer.copyright", { year: new Date().getFullYear() })}
+          {/* Assuming copyright string can take a 'year' placeholder */}
+          {dictionary["footer.copyright"].replace(
+            "{year}",
+            new Date().getFullYear().toString()
+          )}
         </div>
         <div className="flex gap-4 justify-center mt-4 md:mt-0">
           <Image

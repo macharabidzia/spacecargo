@@ -74,8 +74,6 @@ export function DataTable<TData, TValue>({
     return "";
   };
 
-  console.log(table.getState())
-
   return (
     <div className="rounded-lg overflow-hidden">
       <Table className="rounded-lg">

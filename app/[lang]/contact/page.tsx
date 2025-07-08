@@ -8,25 +8,24 @@ import {
   Phone,
   Mail,
   MapPin,
-  Linkedin,
-  Facebook,
-  Instagram,
-  Send,
+  Globe,
+  MessageCircle,
+  Share2,
 } from "lucide-react";
 
 const Contact = async ({ params }: { params: { lang: "en" | "ka" } }) => {
-  const { lang } = params;
+  const { lang } = await params;
   const fullDictionary = (await getDictionary(lang)).common;
 
   return (
     <div className="container py-12">
-      <h1 className="text-4xl text-center text-space-blue font-semibold mb-12">
+      <h1 className="text-4xl text-center text-space-blue dark:text-white font-semibold mb-12">
         {fullDictionary.contact["pageTitle"]}
       </h1>
       <Card className="shadow-lg p-2 ">
         <CardContent className="p-0">
           <div className="flex flex-col md:flex-row">
-            <div className="bg-space-blue-light md:rounded-md text-white p-8 flex flex-col justify-between relative overflow-hidden flex-1">
+            <div className="bg-space-blue-light dark:bg-space-blue md:rounded-md text-white p-8 flex flex-col justify-between relative overflow-hidden flex-1">
               <h2 className="text-2xl font-bold mb-2">
                 {fullDictionary.contact["contactInformationTitle"]}
               </h2>
@@ -53,27 +52,28 @@ const Contact = async ({ params }: { params: { lang: "en" | "ka" } }) => {
                 </div>
               </div>
 
+              {/* Using more generic/alternative icons for social media */}
               <div className="flex space-x-6 mt-36">
                 <a
                   href="#"
-                  aria-label="LinkedIn"
+                  aria-label="Social Link 1" // Update aria-label as per actual link
                   className="p-2 rounded-full border border-white hover:bg-white hover:text-space-blue-light transition-colors"
                 >
-                  <Linkedin size={24} />
+                  <Globe size={24} /> {/* Generic globe or website icon */}
                 </a>
                 <a
                   href="#"
-                  aria-label="Facebook"
+                  aria-label="Social Link 2" // Update aria-label as per actual link
                   className="p-2 rounded-full border border-white hover:bg-white hover:text-space-blue-light transition-colors"
                 >
-                  <Facebook size={24} />
+                  <MessageCircle size={24} /> {/* Generic message/chat icon */}
                 </a>
                 <a
                   href="#"
-                  aria-label="Instagram"
+                  aria-label="Social Link 3" // Update aria-label as per actual link
                   className="p-2 rounded-full border border-white hover:bg-white hover:text-space-blue-light transition-colors"
                 >
-                  <Instagram size={24} />
+                  <Share2 size={24} /> {/* Generic share icon */}
                 </a>
               </div>
 
@@ -84,11 +84,13 @@ const Contact = async ({ params }: { params: { lang: "en" | "ka" } }) => {
                   width={100}
                   height={100}
                   className="w-auto h-auto"
+                  priority={true} // High priority for LCP
+                  fetchPriority="high" // For Next.js 14+
                 />
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-b-md md:rounded-r-md md:rounded-bl-none flex-1">
+            <div className="p-8 rounded-b-md md:rounded-r-md md:rounded-bl-none flex-1">
               <ContactForm />
             </div>
           </div>

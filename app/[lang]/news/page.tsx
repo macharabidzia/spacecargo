@@ -1,10 +1,11 @@
 import React from "react";
-import Pagination from "@/components/common/Pagination";
 import NewsSection from "@/components/common/News";
 import { getDictionary } from "@/i18n/dictionaries";
+import Pagination from "@/components/common/Pagination";
 const News = async ({ params }: any) => {
   const { lang } = await params;
   const fullDictionary = await getDictionary(lang);
+
   const newsData = [
     {
       id: 1,
@@ -65,7 +66,7 @@ const News = async ({ params }: any) => {
     <div className="container">
       <div className="mb-24 mt-6">
         <h1 className="text-center text-3xl font-bold text-space-blue">
-         სიახლეები
+          სიახლეები
         </h1>
         <p className="px-24 py-4 text-center text-gray-500">
           ლორემ იპსუმ პლეხანოვიდან ჯაყოსაგან სოფლელნი, აგორავებს, ასაფრენი,

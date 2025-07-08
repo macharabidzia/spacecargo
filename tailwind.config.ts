@@ -116,6 +116,12 @@ const config: Config = {
         // Format: [animation-name] [duration] [timing-function] [delay] [fill-mode]
         "fade-slide-in":
           "fade-slide-in 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards",
+        "pulse-light": "pulse-light 2s infinite ease-in-out",
+        "pulse-fade": "pulse-fade 3s infinite ease-in-out",
+        "fade-in-out": "fade-in-out 4s infinite ease-in-out",
+        "trail-rise": "trail-rise 1.5s infinite ease-out",
+        "trail-rise-delay": "trail-rise-delay 1.5s infinite ease-out",
+        "loading-bar": "loading-bar 3s forwards ease-out", // '
       },
     },
   },

@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "../ui/button";
 import { getDictionary } from "@/i18n/dictionaries";
+import NavLinkList from "./Header/NavLinkList";
+import { siteConfig } from "@/config";
 
 interface SideNavProps {
   currentLang: Lang;
@@ -19,33 +21,6 @@ interface SideNavProps {
 
 export const SideNav = async ({ currentLang }: SideNavProps) => {
   const fullDictionary = await getDictionary(currentLang);
-  const items = [
-    {
-      title: fullDictionary.common["sidenav.home"],
-      url: "/",
-      icon: Home,
-    },
-    {
-      title: fullDictionary.common["sidenav.inbox"],
-      url: "/dashboard/room",
-      icon: Inbox,
-    },
-    {
-      title: fullDictionary.common["sidenav.calendar"],
-      url: "#",
-      icon: Calendar,
-    },
-    {
-      title: fullDictionary.common["sidenav.search"],
-      url: "#",
-      icon: Search,
-    },
-    {
-      title: fullDictionary.common["sidenav.settings"],
-      url: "#",
-      icon: Settings,
-    },
-  ];
 
   return (
     <Sidebar>
@@ -56,19 +31,11 @@ export const SideNav = async ({ currentLang }: SideNavProps) => {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <Button variant="outline">
-                    {fullDictionary.common["sidenav.click_button"]}
-                  </Button>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              <NavLinkList
+                currentLanguage={currentLang}
+                dictionary={fullDictionary.common}
+                mainNav={siteConfig.mainNav}
+              />
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

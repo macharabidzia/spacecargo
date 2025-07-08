@@ -19,8 +19,9 @@ const TarrifsTable: React.FC<TarrifsTableProps> = ({ data }) => {
       data={data}
       pageSize={10}
       notFoundText={t("tariffs.noDataMessage")}
-      headerClassName="bg-space-blue-light"
-      bodyClassName="bg-white"
+      headerClassName="bg-space-blue-light dark:bg-space-blue"
+      cellClassName="dark:border-2"
+      bodyClassName="bg-white dark:bg-background border-2"
     />
   );
 };

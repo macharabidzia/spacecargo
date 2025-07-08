@@ -57,7 +57,6 @@ const Header = () => {
       <Card>
         <CardContent className="flex-col flex md:flex-row gap-4">
           <NavLinkList />
-
           <div className="flex flex-col flex-1 px-4 gap-4">
             <div className="flex lg:flex-row flex-col justify-between gap-4">
               <div className="flex gap-4 items-center">
@@ -70,13 +69,13 @@ const Header = () => {
                 </div>
               </div>
               <div className="flex gap-4 flex-wrap md:flex-row">
-                <Link href={"/dashboard/top-up"}>
+                <Link href={"?topUp=true"}>
                   <Button className="bg-space-blue-light/15 text-space-blue-light hover:bg-space-blue-light/30 cursor-pointer">
                     <Plus />
                     Top Up Balance
                   </Button>
                 </Link>
-                <Link href={"/dashboard/edit"}>
+                <Link href={"?edit=true"}>
                   <Button className="bg-space-blue-light cursor-pointer">
                     <Plus />
                     Before Button
