@@ -132,13 +132,7 @@ export function DataTable<TData, TValue>({
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
                 <div className="flex flex-col gap-4 items-center justify-center min-h-[300px] h-fit">
-                  <Image
-                    src={NotFoundSvg}
-                    alt="No data found"
-                    width={144}
-                    height={144}
-                    className="w-36 h-36"
-                  />
+                  <NotFoundSvg className="w-36 h-36" />
                   <h1 className="text-lg font-extralight text-foreground/70">
                     {notFoundText}
                   </h1>
@@ -148,7 +142,9 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
-      {table.getPageCount() > 1 && <Pagination totalPages={table.getTotalSize()} />}
+      {table.getPageCount() > 1 && (
+        <Pagination totalPages={table.getTotalSize()} />
+      )}
     </div>
   );
 }

@@ -65,7 +65,7 @@ export default function CourierTableClient({ parcels }: Props) {
           </div>
           {tabsData.map((tab) => (
             <TabsContent key={tab.value} value={tab.value}>
-              <DataTable data={parcels} columns={columns} />
+              <DataTable data={[]} columns={columns} />
             </TabsContent>
           ))}
         </Tabs>
