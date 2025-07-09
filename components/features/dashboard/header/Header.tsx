@@ -72,13 +72,13 @@ const Header = () => {
                 <Link href={"?topUp=true"}>
                   <Button className="bg-space-blue-light/15 text-space-blue-light hover:bg-space-blue-light/30 cursor-pointer">
                     <Plus />
-                    Top Up Balance
+                   წინასწარი დეკლარაცია
                   </Button>
                 </Link>
                 <Link href={"?edit=true"}>
                   <Button className="bg-space-blue-light cursor-pointer">
                     <Plus />
-                    Before Button
+                    ბალანსის შევსება
                   </Button>
                 </Link>
               </div>

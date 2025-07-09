@@ -138,5 +138,28 @@
     "pageNotFound": "Page Not Found",
     "pageNotFoundDescription": "The page you're looking for doesn't exist or has been moved.",
     "goHome": "Go Home"
+  },
+  "cancel": "Cancel",
+
+  "declaration": {
+    "name": "Declaration",
+    "shippingCode": "Shipping Code",
+    "totalUsd": "Total USD",
+    "categories": "Categories",
+    "quantity": "Quantity",
+    "websiteOfPurchase": "Website of Purchase",
+    "oneTimePassword": "One-Time Password",
+    "commentEng": "Comment (ENG)",
+    "attachedFile": "Attached File",
+    "shippingCodePlaceholder": "Enter shipping code",
+    "totalUsdPlaceholder": "Enter total USD",
+    "categoriesPlaceholder": "Select categories",
+    "quantityPlaceholder": "Enter quantity",
+    "websiteOfPurchasePlaceholder": "Enter website of purchase",
+    "oneTimePasswordPlaceholder": "Enter one-time password",
+    "commentEngPlaceholder": "Add comments",
+    "attachedFilePlaceholder": "No file attached",
+    "editTitle": "Edit Declaration",
+    "editDescription": "Update declaration details. ✨"
   }
 }

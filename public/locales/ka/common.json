@@ -138,5 +138,27 @@
     "pageNotFound": "გვერდი ვერ მოიძებნა",
     "pageNotFoundDescription": "გვერდი, რომელსაც ეძებთ, არ არსებობს ან გადატანილია.",
     "goHome": "მთავარ გვერდზე დაბრუნება"
+  },
+  "cancel": "გაუქმება",
+
+  "declaration": {
+    "name": "დეკლარაცია",
+    "totalUsd": "ჯამური USD",
+    "categories": "კატეგორიები",
+    "quantity": "რაოდენობა",
+    "websiteOfPurchase": "შესყიდვის ვებგვერდი",
+    "oneTimePassword": "ერთჯერადი პაროლი",
+    "commentEng": "კომენტარი (ENG)",
+    "attachedFile": "დანართი ფაილი",
+    "shippingCodePlaceholder": "შეიყვანეთ გადაზიდვის კოდი",
+    "totalUsdPlaceholder": "შეიყვანეთ ჯამური USD",
+    "categoriesPlaceholder": "აირჩიეთ კატეგორიები",
+    "quantityPlaceholder": "შეიყვანეთ რაოდენობა",
+    "websiteOfPurchasePlaceholder": "შეიყვანეთ შესყიდვის ვებგვერდი",
+    "oneTimePasswordPlaceholder": "შეიყვანეთ ერთჯერადი პაროლი",
+    "commentEngPlaceholder": "დაამატეთ კომენტარები",
+    "attachedFilePlaceholder": "ფაილი არ არის დართული",
+    "editTitle": "დეკლარაციის რედაქტირება",
+    "editDescription": "განაახლეთ დეკლარაციის დეტალები. ✨"
   }
 }
