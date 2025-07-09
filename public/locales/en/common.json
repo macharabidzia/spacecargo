@@ -133,5 +133,10 @@
     "addressLine1": "A.D.L. Space Cargo LLC,",
     "addressLine2": "Saburtalo str. building 30a / 3, Tbilisi, Georgia",
     "pageTitle": "Contact"
+  },
+  "notFound": {
+    "pageNotFound": "Page Not Found",
+    "pageNotFoundDescription": "The page you're looking for doesn't exist or has been moved.",
+    "goHome": "Go Home"
   }
 }

@@ -23,6 +23,7 @@ export default async function LocaleLayout(props: {
   const dictionary = await getDictionary(lang);
 
   return (
+    
     <I18nProvider lang={lang} dictionaries={dictionary}>
       <div className="flex flex-1 bg-background">
         <SidebarProvider

@@ -46,7 +46,14 @@ const Home = async ({ params }: HomePageProps) => {
   return (
     <>
       <Heading lang={lang}>
-        <ShippingCalculator lang={lang} />
+        <div
+          style={{
+            filter: "drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.25))",
+          }}
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-full md:w-11/12 lg:w-10/14 z-50 px-4 md:px-0 h-[200px]"
+        >
+          <ShippingCalculator lang={lang} />
+        </div>
       </Heading>
       <div className="sm:container">
         <div className="h-[310] md:h-auto"></div>

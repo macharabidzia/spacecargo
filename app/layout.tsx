@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { siteConfig } from "@/config/site";
 import { ReactNode } from "react";
+import { Toaster } from "@/components/ui/sonner";
 
 const notoSansGeorgian = Noto_Sans_Georgian({
   subsets: ["latin"],
@@ -25,12 +26,13 @@ export default async function RootLayout(props: {
 
   return (
     <html
-      className={`${notoSansGeorgian.variable} antialiased`}
       suppressHydrationWarning
+      className={`${notoSansGeorgian.variable} antialiased`}
     >
       <body className="text-foreground min-h-screen flex">
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
           {children}
+          <Toaster position="bottom-right" richColors className="z-[9999]" />
         </ThemeProvider>
       </body>
     </html>

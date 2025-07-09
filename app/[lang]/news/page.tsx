@@ -2,9 +2,19 @@ import React from "react";
 import NewsSection from "@/components/common/News";
 import { getDictionary } from "@/i18n/dictionaries";
 import Pagination from "@/components/common/Pagination";
+import { fetchNews } from "@/actions/news.actions";
+import ClientToastWrapper from "@/components/common/ClientToastWrapper";
 const News = async ({ params }: any) => {
   const { lang } = await params;
   const fullDictionary = await getDictionary(lang);
+  let items = null; // Initialize items as null
+  let errorMessage: string | null = null; // To hold error message for the toast
+
+  try {
+    items = await fetchNews();
+  } catch (error: any) {
+    errorMessage = error.message || "Failed to load news. Please try again.";
+  }
 
   const newsData = [
     {
@@ -62,8 +72,10 @@ const News = async ({ params }: any) => {
       image: "/icons/receipt-edit.svg",
     },
   ];
+
   return (
     <div className="container">
+      {errorMessage && <ClientToastWrapper message={errorMessage} />}
       <div className="mb-10 py-12">
         <h1 className="text-center text-4xl font-bold text-space-blue">
           სიახლეები

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { CommonDictionary } from "@/types/dictionary";
-import { useEffect, useMemo, useState } from "react";
+// Removed useEffect, useMemo, useState as they are no longer needed
 import { siteConfig } from "@/config";
 
 type NavLinkListProps = {
@@ -20,12 +20,14 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
   dictionary,
 }) => {
   const pathname = usePathname();
-  const menuItems = useMemo(() => {
-    // Correctly reference siteConfig.dashboardNav and siteConfig.mainNav
-    return pathname.includes("dashboard")
-      ? siteConfig.dashboardNav
-      : siteConfig.mainNav;
-  }, [pathname]);
+
+  // The logic for menuItems is now directly inside the render
+  // No need for useMemo here as pathname is stable across renders
+  // and the computation is trivial.
+  const menuItems = pathname.includes("dashboard")
+    ? siteConfig.dashboardNav
+    : siteConfig.mainNav;
+
   return (
     <div
       className={cn(
@@ -34,33 +36,19 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
       )}
     >
       {menuItems.map((item) => {
-        // Construct the full link path including language prefix.
-        // For the root href "/", generate "/en" or "/ka".
-        // For other hrefs, prefix with the language.
         const linkHref =
           item.href === "/"
             ? `/${currentLanguage}`
             : `/${currentLanguage}${item.href}`;
 
-        // Normalize the current pathname by removing a trailing slash if it's not the actual root "/"
-        // This helps in consistent comparison, e.g., "/ka/" becomes "/ka"
         const normalizedPathname =
           pathname.endsWith("/") && pathname !== "/"
             ? pathname.slice(0, -1)
             : pathname;
 
-        // Determine if the link is active
         const isActive =
-          // Case 1: Exact match for the normalized pathname and the constructed linkHref.
-          // This covers routes like "/en", "/ka", "/en/news", "/ka/about".
           normalizedPathname === linkHref ||
-          // Case 2: Special handling for the root route (item.href === "/")
-          // If the link is the root link (e.g., "/ka") and the normalized pathname is also the root for that language.
-          // This is a direct check for the language root, essential for correct activation.
           (item.href === "/" && normalizedPathname === `/${currentLanguage}`) ||
-          // Case 3: For non-root links, check if the normalized pathname starts with the link's href,
-          // followed by a slash to ensure a full segment match.
-          // This activates parent links for nested routes (e.g., "/ka/news" for "/ka/news/article-1").
           (item.href !== "/" && normalizedPathname.startsWith(`${linkHref}/`));
 
         return (
@@ -71,7 +59,7 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
               "hover:text-space-blue-light font-medium transition-colors duration-200 text-foreground/75",
               isActive
                 ? "text-space-blue-light dark:text-white/90"
-                : "active:text-white", // Consider removing this 'active:text-white' if it's meant for a click state only, or define it for active.
+                : "active:text-white",
               "py-2 text-lg w-full",
               "md:py-0 md:text-base md:w-auto"
             )}

@@ -35,45 +35,45 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
 
   const [weight, setWeight] = useState("7.8");
   const [volume, setVolume] = useState("95");
-  const [selectedCountry, setSelectedCountry] = useState("china");
+  const [selectedCountryValue, setSelectedCountryValue] = useState("china");
 
-  const getSelectedCountryDisplay = () => {
-    const country = countries.find((c) => c.value === selectedCountry);
-    if (country) {
-      return (
-        <>
-          <Image
-            width={30}
-            height={30}
-            alt={`${t(country.labelKey)} flag`}
-            src={country.flag}
-            className="mb-5 rounded-2xl"
-          />
-          <SelectValue className="font-semibold truncate">
-            {t(country.labelKey)}
-          </SelectValue>
-        </>
-      );
-    }
-    return (
-      <SelectValue
-        placeholder={t("form.countryPlaceholder")}
-        className="font-semibold truncate"
-      />
-    );
-  };
+  // Find the selected country object based on the current state
+  const selectedCountry = countries.find(
+    (c) => c.value === selectedCountryValue
+  );
 
   return (
     <div className="flex flex-col md:flex-row gap-4 items-stretch justify-between h-auto md:h-[60px] text-left">
       <div className="flex-1 p-4 border border-gray-300 rounded-lg bg-background flex flex-col justify-center min-w-0">
-        <p className="text-xs text-gray-500 ml-9">{t("form.country")}</p>
-        <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+        <p className="text-xs text-gray-500 ml-10">{t("form.country")}</p>
+        <Select
+          value={selectedCountryValue}
+          onValueChange={setSelectedCountryValue}
+        >
           <SelectTrigger
             style={{ boxShadow: "none" }}
             className="w-full h-auto flex items-center justify-between p-0 border-none focus:ring-0 focus:ring-offset-0"
           >
             <div className="flex items-center space-x-2">
-              {getSelectedCountryDisplay()}
+              {selectedCountry ? (
+                <>
+                  <Image
+                    width={30}
+                    height={30}
+                    alt={`${t(selectedCountry.labelKey)} flag`}
+                    src={selectedCountry.flag}
+                    className="rounded-full mb-5"
+                  />
+                  <SelectValue className="font-semibold truncate">
+                    {t(selectedCountry.labelKey)}
+                  </SelectValue>
+                </>
+              ) : (
+                <SelectValue
+                  placeholder={t("form.countryPlaceholder")}
+                  className="font-semibold truncate"
+                />
+              )}
             </div>
           </SelectTrigger>
           <SelectContent>
@@ -124,10 +124,10 @@ const ShippingDetailsForm: React.FC<ShippingDetailsFormProps> = () => {
           />
         </div>
       </div>
-        <Button className="bg-blue-500 text-white p-4 rounded-lg flex items-center justify-center space-x-2 w-full md:w-auto  mt-4 md:mt-0 h-auto">
-          <span>{t("form.calculate")}</span>
-          <span className="text-md">➤</span>
-        </Button>
+      <Button className="bg-blue-500 text-white p-4 rounded-lg flex items-center justify-center space-x-2 w-full md:w-auto mt-4 md:mt-0 h-auto">
+        <span>{t("form.calculate")}</span>
+        <span className="text-md">➤</span>
+      </Button>
     </div>
   );
 };
