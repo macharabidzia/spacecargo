@@ -1,4 +1,3 @@
-import { getProducts } from "@/actions/products.actions";
 import ParcelsTableClient from "@/components/features/dashboard/parcels/ParcelsTableClient";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";

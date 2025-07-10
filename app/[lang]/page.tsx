@@ -6,9 +6,6 @@ import Services from "@/components/features/home/Services";
 import News from "@/components/common/News";
 import InfiniteCarousel from "@/components/features/home/InfiniteCarousel";
 import { getDictionary } from "@/i18n/dictionaries";
-import CustomModal from "@/components/common/CustomModal";
-import { DialogClose, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import EmailConfirmationModal from "@/components/common/CustomModal";
 interface HomePageProps {
   params: Promise<{ lang: Lang }> | { lang: Lang };

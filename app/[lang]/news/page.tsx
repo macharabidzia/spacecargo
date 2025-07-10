@@ -4,7 +4,12 @@ import { getDictionary } from "@/i18n/dictionaries";
 import Pagination from "@/components/common/Pagination";
 import { fetchNews } from "@/actions/news.actions";
 import ClientToastWrapper from "@/components/common/ClientToastWrapper";
-const News = async ({ params }: any) => {
+
+type News = {
+  params: Promise<{ lang: Lang }>;
+};
+
+const News = async ({ params }: News) => {
   const { lang } = await params;
   const fullDictionary = await getDictionary(lang);
   let items = null; // Initialize items as null
@@ -12,7 +17,7 @@ const News = async ({ params }: any) => {
 
   try {
     items = await fetchNews();
-  } catch (error: any) {
+  } catch (error) {
     errorMessage = error.message || "Failed to load news. Please try again.";
   }
 
@@ -72,7 +77,7 @@ const News = async ({ params }: any) => {
       image: "/icons/receipt-edit.svg",
     },
   ];
-
+  console.log(items);
   return (
     <div className="container">
       {errorMessage && <ClientToastWrapper message={errorMessage} />}

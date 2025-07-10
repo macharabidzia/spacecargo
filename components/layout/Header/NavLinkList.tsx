@@ -9,13 +9,11 @@ import { CommonDictionary } from "@/types/dictionary";
 import { siteConfig } from "@/config";
 
 type NavLinkListProps = {
-  mainNav: any[];
   currentLanguage: "en" | "ka";
   dictionary: CommonDictionary;
 };
 
 const NavLinkList: React.FC<NavLinkListProps> = ({
-  mainNav,
   currentLanguage,
   dictionary,
 }) => {
@@ -24,9 +22,6 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
   // The logic for menuItems is now directly inside the render
   // No need for useMemo here as pathname is stable across renders
   // and the computation is trivial.
-  const menuItems = pathname.includes("dashboard")
-    ? siteConfig.dashboardNav
-    : siteConfig.mainNav;
 
   return (
     <div
@@ -35,7 +30,7 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
         "md:flex-row md:space-x-6 md:space-y-0 md:px-0"
       )}
     >
-      {menuItems.map((item) => {
+      {siteConfig.mainNav.map((item) => {
         const linkHref =
           item.href === "/"
             ? `/${currentLanguage}`

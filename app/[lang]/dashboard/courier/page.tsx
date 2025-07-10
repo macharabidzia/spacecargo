@@ -1,33 +1,8 @@
 "use client";
 import CourierTableClient from "@/components/features/dashboard/courier/CourierTableClient";
-import Form from "@/components/features/dashboard/Form";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { triggerStyles } from "@/constants/styles";
 import React from "react";
 
-const tabsData = [
-  {
-    value: "China",
-  },
-  {
-    value: "Usa",
-  },
-
-  {
-    value: "Dubai",
-  },
-  {
-    value: "Hong Kong",
-  },
-  {
-    value: "Turkey",
-  },
-  {
-    value: "Greek",
-  },
-];
 const data = [
   {
     id: "p1",

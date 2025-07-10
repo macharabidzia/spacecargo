@@ -17,8 +17,8 @@ export const siteConfig = {
       href: "/",
     },
     {
-      titleKey: "mainNav.aboutUs", // Use a key
-      href: "/about",
+      titleKey: "mainNav.shops", // Use a key
+      href: "/shops",
     },
     {
       titleKey: "mainNav.flights", // Use a key
@@ -32,6 +32,10 @@ export const siteConfig = {
       titleKey: "mainNav.contact", // Use a key
       href: "/contact",
     },
+    {
+      titleKey: "mainNav.aboutUs", // Use a key
+      href: "/about",
+    },
   ],
   dashboardNav: [
     // New array for dashboard-specific navigation
@@ -40,20 +44,8 @@ export const siteConfig = {
       href: "/dashboard",
     },
     {
-      titleKey: "dashboardNav.shipments", // Example key
-      href: "/dashboard/shipments",
-    },
-    {
-      titleKey: "dashboardNav.profile", // Example key
-      href: "/dashboard/profile",
-    },
-    {
-      titleKey: "dashboardNav.settings", // Example key
-      href: "/dashboard/settings",
-    },
-    {
-      titleKey: "dashboardNav.notifications", // Example key
-      href: "/dashboard/notifications",
+      titleKey: "dashboardNav.shops", // Example key
+      href: "/dashboard/shops",
     },
   ],
   contactEmail: "info@your-website.com",

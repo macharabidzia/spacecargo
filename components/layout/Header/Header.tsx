@@ -53,7 +53,6 @@ const Header: React.FC<HeaderInterface> = async ({
             </div>
           </Link>
           <NavLinkList
-            mainNav={siteConfig.mainNav}
             currentLanguage={currentLanguage}
             dictionary={dictionary}
           />

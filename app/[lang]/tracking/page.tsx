@@ -46,8 +46,12 @@ async function getTrackingData(trackingId: number) {
   };
 }
 
-const TrackingPage = async ({ params }: any) => {
-  const trackingData = await getTrackingData(params.id);
+type TrackingPage = {
+  params: Promise<{ lang: Lang }>;
+  id: Promise<string>;
+};
+const TrackingPage = async () => {
+  const trackingData = await getTrackingData(1);
   const tbilisiCoordinates = { lat: 41.715137, lng: 44.827095 };
   const markerLocation = { lat: 41.7092, lng: 44.795 };
 
@@ -150,27 +154,32 @@ const TrackingPage = async ({ params }: any) => {
             <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
               ტრეკინგის ისტორია
             </h3>
-            {trackingData.trackingHistory.map((event: any, index: number) => (
-              <div key={index} className="flex items-start">
-                <div className="flex flex-col items-center mr-3">
-                  <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
-                  {index < trackingData.trackingHistory.length - 1 && (
-                    <div className="w-0.5 h-6 bg-gray-300 mt-1"></div>
-                  )}
+            {trackingData.trackingHistory.map(
+              (
+                event: { status: string; timestamp: string; location: string },
+                index: number
+              ) => (
+                <div key={index} className="flex items-start">
+                  <div className="flex flex-col items-center mr-3">
+                    <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
+                    {index < trackingData.trackingHistory.length - 1 && (
+                      <div className="w-0.5 h-6 bg-gray-300 mt-1"></div>
+                    )}
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800 text-sm sm:text-base">
+                      {event.status} | {event.timestamp}
+                    </p>
+                    <Badge
+                      variant="secondary"
+                      className="bg-gray-100 text-gray-700 text-xs sm:text-sm mt-1"
+                    >
+                      {event.location}
+                    </Badge>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-medium text-gray-800 text-sm sm:text-base">
-                    {event.status} | {event.timestamp}
-                  </p>
-                  <Badge
-                    variant="secondary"
-                    className="bg-gray-100 text-gray-700 text-xs sm:text-sm mt-1"
-                  >
-                    {event.location}
-                  </Badge>
-                </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
         <div className="lg:flex-1 rounded-md lg:h-auto w-full h-[600px]">

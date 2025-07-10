@@ -8,7 +8,6 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   SortingState,
-  Table as ReactTableType, // Alias to avoid naming conflict
   useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -20,9 +19,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import NotFoundSvg from "@/public/icons/not_found.svg";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -65,7 +63,6 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  // Helper for mobile stacked cells label
   const labelFor = (col: ColumnDef<any, any>): string => {
     if (typeof col.header === "string") return col.header;
     if (typeof (col as any).accessorKey === "string")

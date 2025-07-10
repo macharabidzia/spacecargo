@@ -8,7 +8,6 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header/Header";
 import DashboardDrawers from "@/components/features/dashboard/drawers/DashboardDrawers";
 
-// This generateStaticParams now makes sense here, as this layout defines the [lang] param.
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
 }

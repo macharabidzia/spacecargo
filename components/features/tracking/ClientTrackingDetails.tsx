@@ -2,7 +2,11 @@
 import { Package, Truck, MapPin, CheckCircle } from "lucide-react";
 import { defineStepper } from "@/components/stepper";
 
-const ClientTrackingDetails = ({ currentActiveStepIndex }: any) => {
+const ClientTrackingDetails = ({
+  currentActiveStepIndex,
+}: {
+  currentActiveStepIndex: number;
+}) => {
   const steps = [
     {
       label: "ტრანზიტი",

@@ -35,16 +35,17 @@
 
   "mainNav.home": "Home",
   "mainNav.aboutUs": "About Us",
-  "mainNav.flights": "Flights",
+  "mainNav.flights": "Dashboard",
   "mainNav.news": "News",
   "mainNav.contact": "Contact",
+  "mainNav.shops": "Shops",
 
   "dashboardNav.overview": "Overview",
   "dashboardNav.shipments": "Shipments",
   "dashboardNav.profile": "Profile",
   "dashboardNav.settings": "Settings",
   "dashboardNav.notifications": "Notifications",
-
+  "dashboardNav.shops": "Shops",
   "site.description": "Space cargo description",
   "site.copyright": "© 2025 SpaceCargo. All rights reserved.",
 

@@ -46,8 +46,8 @@ export default function EditDeclarationDrawer({
   /** Build default values from config + optional initialData */
   const defaultValues = React.useMemo<DeclarationFormValues>(() => {
     return declarationFields.reduce((acc, f) => {
-      acc[f.name] =
-        (initialData?.[f.name as keyof DeclarationFormValues] as any) ??
+      (acc[f.name] as string) =
+        (initialData?.[f.name as keyof DeclarationFormValues] as string) ??
         f.value ??
         "";
       return acc;

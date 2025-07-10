@@ -36,23 +36,19 @@ export default function DashboardDrawers() {
     }
   }, [hasTopUp, hasEdit, pathname, router, searchParams]);
 
-  const cleanUrl = () => {
-    const p = new URLSearchParams(searchParams);
-    p.delete("topUp");
-    p.delete("edit");
-    router.replace(`${pathname}`, {
-      scroll: false,
-    });
-  };
-
   const requestClose = () => {
     setIsOpen(false);
   };
   useEffect(() => {
     if (!isOpen) {
-      cleanUrl();
+      const p = new URLSearchParams(searchParams);
+      p.delete("topUp");
+      p.delete("edit");
+      router.replace(`${pathname}`, {
+        scroll: false,
+      });
     }
-  }, [isOpen]);
+  }, [isOpen, router]);
   if (!activeDrawer) return null;
 
   const commonSheetProps = {

@@ -1,7 +1,6 @@
 import AuthTitle from "@/components/features/auth/AuthTitle";
 import { Card, CardHeader } from "@/components/ui/card";
 import { headers } from "next/headers";
-import Image from "next/image";
 import LogoIcon from '@/public/icons/logo.svg'
 type AuthLayoutProps = {
   children: React.ReactNode;
@@ -15,9 +14,7 @@ const AuthLayout = async ({ children }: AuthLayoutProps) => {
   const refererUrl = headersList.get("referer");
   const parsedRefererPath = refererUrl ? new URL(refererUrl).pathname : "/";
 
-  const finalPath = currentPath || parsedRefererPath;
 
-  const isRegisterLaw = finalPath.includes("register");
 
   return (
     <div className="container flex items-center justify-center">

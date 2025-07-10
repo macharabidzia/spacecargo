@@ -8,12 +8,19 @@ type Lang = "en" | "ka";
 
 interface NewsSectionProps {
   lang: Lang;
-  data: any[];
+  data: {
+    id: number;
+    imgSrc: string;
+    imgAlt: string;
+    title: string;
+    footerText: string;
+    color: string;
+    image: string;
+  }[];
 }
 
 export const NewsSection = async ({ lang, data }: NewsSectionProps) => {
   const fullDictionary = await getDictionary(lang);
-
 
   return (
     <section className="w-full ml-0">

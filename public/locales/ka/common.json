@@ -35,9 +35,10 @@
 
   "mainNav.home": "მთავარი",
   "mainNav.aboutUs": "ჩვენ შესახებ",
-  "mainNav.flights": "ფრენები",
+  "mainNav.flights": "ჩემი კაბინეტი",
   "mainNav.news": "სიახლეები",
   "mainNav.contact": "კონტაქტი",
+  "mainNav.shops": "მაღაზიები",
 
   "site.description": "კოსმოსური ტვირთის აღწერა",
   "site.copyright": "© 2025 SpaceCargo. ყველა უფლება დაცულია.",
@@ -63,6 +64,7 @@
   "dashboardNav.profile": "პროფილი",
   "dashboardNav.settings": "პარამეტრები",
   "dashboardNav.notifications": "შეტყობინებები",
+  "dashboardNav.shops": "მაღაზიები",
 
   "country.china": "ჩინეთი",
   "country.usa": "აშშ",

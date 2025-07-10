@@ -4,18 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
-  Box,
-  Calculator,
   Coins,
-  HomeIcon, // No longer needed directly here if NavLinkList uses it
   Percent,
   Plus,
-  Truck, // No longer needed directly here
   UserIcon,
   Wallet,
 } from "lucide-react";
 import React from "react";
-import { TopUpBalance } from "../TopUpBalance"; // Assuming TopUpBalance is a component
 import Link from "next/link"; // No longer needed for main nav links here
 
 import { NavLinkList } from "./NavLinkList"; // Import the new component

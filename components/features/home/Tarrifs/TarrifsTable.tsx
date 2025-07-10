@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable } from "@/components/common/DataTable";
+import { DataTable } from "@/components/common/DataTable/DataTable";
 import { useClientTranslation } from "@/i18n/i18n-provider";
 import buildTariffColumns, { TariffData } from "@/lib/table/tarrifs.columns";
 import React from "react";

@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 
 // Import your icon components here.
 // For example, if you're using Lucide React:
-import { Check, X } from 'lucide-react'; // Example icons (keep for reference if needed)
 
 interface CustomSwitchProps
   extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root> {

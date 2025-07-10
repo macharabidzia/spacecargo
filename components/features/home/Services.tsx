@@ -4,23 +4,6 @@ import React from "react";
 
 type Lang = "en" | "ka";
 
-interface ServicesDictionaryContent {
-  "services.mainTitle": string;
-  "services.description": string;
-  "services.flights.title": string;
-  "services.flights.text": string;
-  "services.sms.title": string;
-  "services.sms.text": string;
-  "services.consultation.title": string;
-  "services.consultation.text": string;
-  "services.courier.title": string;
-  "services.courier.text": string;
-  "services.paymentSystems.title": string;
-  "services.paymentSystems.text": string;
-  "services.dailyFlights.title": string;
-  "services.dailyFlights.text": string;
-}
-
 interface ServicesProps {
   lang: Lang;
   children?: React.ReactNode;
@@ -31,7 +14,7 @@ const Services = async ({ children, lang }: ServicesProps) => {
   const fullDictionary = await getDictionary(lang);
   const servicesDict: any = fullDictionary.home;
 
-  const list = [
+  const list: { title: string; text: string; url: string }[] = [
     {
       title: servicesDict["services.flights.title"],
       text: servicesDict["services.flights.text"],

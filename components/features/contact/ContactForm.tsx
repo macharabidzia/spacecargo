@@ -40,6 +40,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
   });
 
   const onSubmit = async (values: ContactFormValues) => {
+    console.log(values)
     // Handle form submission logic here
     try {
       // Simulate API call or actual submission logic

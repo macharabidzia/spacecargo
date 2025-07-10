@@ -2,13 +2,17 @@ import FlightsTable from "@/components/features/flights/FlightsTable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDictionary } from "@/i18n/dictionaries";
 import { TariffData } from "@/lib/table/tarrifs.columns";
+import { HomeDictionary } from "@/types/dictionary";
 import React from "react";
 
-const Flights = async ({ params }: any) => {
+type Flights = {
+  params: Promise<{ lang: Lang }>;
+};
+const Flights = async ({ params }: Flights) => {
   const { lang } = await params;
 
   const fullDictionary = await getDictionary(lang);
-  const dictionary: { home: any } = fullDictionary as any;
+  const dictionary: { home: HomeDictionary } = fullDictionary;
   const homeDictionary = dictionary.home;
   const countryIcons: { [key: string]: string } = {
     [homeDictionary["tariffs.labels.country"] === "Country" ? "USA" : "აშშ"]:

@@ -1,9 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDictionary } from "@/i18n/dictionaries";
 import React from "react";
-import { getProducts } from "@/actions/products.actions"; // Assuming this fetches your product data
-import { DataTable } from "@/components/common/DataTable";
-import buildTariffColumns, { TariffData } from "@/lib/table/tarrifs.columns";
+import { TariffData } from "@/lib/table/tarrifs.columns";
 import TarrifsTable from "./Tarrifs/TarrifsTable";
 
 type Lang = "en" | "ka";
@@ -35,9 +33,8 @@ interface TariffsProps {
 
 const Tariffs = async ({ children, className, lang }: TariffsProps) => {
   const fullDictionary = await getDictionary(lang);
-  const dictionary: { home: TariffsDictionaryContent } = fullDictionary as any;
+  const dictionary: { home: TariffsDictionaryContent } = fullDictionary;
   const homeDictionary = dictionary.home;
-  // Define country icons
   const countryIcons: { [key: string]: string } = {
     [homeDictionary["tariffs.labels.country"] === "Country" ? "USA" : "აშშ"]:
       "/icons/usa.svg",

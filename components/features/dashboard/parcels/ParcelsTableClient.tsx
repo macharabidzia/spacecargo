@@ -1,7 +1,7 @@
 // components/parcels/ParcelTableClient.tsx
 "use client";
 
-import { DataTable } from "@/components/common/DataTable";
+import { DataTable } from "@/components/common/DataTable/DataTable";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Parcel, buildParcelColumns } from "@/lib/table/parcels.columns";
@@ -12,12 +12,12 @@ interface Props {
 }
 
 export default function ParcelsTableClient({ parcels }: Props) {
-  const handleEdit = (parcel: Parcel) => {
+  const handleEdit = () => {
     // toast({ title: `Edit ${parcel.id}` });
     console.log("hand");
   };
 
-  const handleDelete = (parcel: Parcel) => {
+  const handleDelete = () => {
     // toast({ title: `Delete ${parcel.id}` });
   };
 

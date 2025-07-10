@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -43,12 +42,13 @@ const AddressForm = () => {
   });
   const fields = Object.keys(form.getValues());
   const { t } = useClientTranslation("common");
-  async function onSubmit(values: AddressFormValues) {
+  async function onSubmit() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       alert("Address information saved successfully!");
       form.reset();
     } catch (error) {
+      console.log(error)
       alert("Failed to save address. Please try again.");
     }
   }

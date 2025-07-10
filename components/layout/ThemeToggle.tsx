@@ -2,7 +2,6 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Moon, Sun } from "lucide-react";
@@ -24,15 +23,8 @@ export const ThemeToggle: React.FC = () => {
     );
   }
 
-  let CurrentIcon;
-  let nextThemeLabel = "";
-
   if (theme === "dark") {
-    CurrentIcon = MoonIcon;
-    nextThemeLabel = "light";
   } else {
-    CurrentIcon = SunIcon;
-    nextThemeLabel = "dark";
   }
 
   const handleToggle = () => {

@@ -1,4 +1,5 @@
 // lib/table/tariffs.columns.tsx
+import { CommonDictionary } from "@/types/dictionary";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image"; // For country flags
 // 1. Define the data interface for your tariff rows
@@ -12,24 +13,8 @@ export interface TariffData {
 
 // 2. Build the columns for the tariffs table
 export default function buildTariffColumns(
-  dictionary: any // Pass the dictionary for localized headers and labels
+  dictionary: CommonDictionary // Pass the dictionary for localized headers and labels
 ): ColumnDef<TariffData>[] {
-  const countryIcons: { [key: string]: string } = {
-    [dictionary["tariffs.labels.country.USA"]]: "/icons/usa.svg",
-    USA: "/icons/usa.svg",
-    [dictionary["tariffs.labels.country.China"]]: "/icons/china.svg",
-    China: "/icons/china.svg",
-    [dictionary["tariffs.labels.country.Dubai"]]: "/icons/uae.svg",
-    Dubai: "/icons/uae.svg",
-    [dictionary["tariffs.labels.country.UnitedKingdom"]]: "/icons/england.svg",
-    "United Kingdom": "/icons/england.svg",
-    [dictionary["tariffs.labels.country.Turkey"]]: "/icons/turkey.svg",
-    Turkey: "/icons/turkey.svg",
-    [dictionary["tariffs.labels.country.Greece"]]: "/icons/greece.svg",
-    Greece: "/icons/greece.svg",
-    [dictionary["tariffs.labels.country.HongKong"]]: "/icons/honk.svg",
-    "Hong Kong": "/icons/honk.svg",
-  };
   return [
     {
       accessorKey: "country",

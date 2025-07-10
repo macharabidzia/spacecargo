@@ -1,7 +1,7 @@
 // components/parcels/ParcelTableClient.tsx
 "use client";
 
-import { DataTable } from "@/components/common/DataTable";
+import { DataTable } from "@/components/common/DataTable/DataTable";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -20,13 +20,13 @@ const tabsData = [
     value: "საფოსტო მომსახურება",
   },
 ];
-export default function CourierTableClient({ parcels }: Props) {
-  const handleEdit = (parcel: Parcel) => {
+export default function CourierTableClient() {
+  const handleEdit = () => {
     // toast({ title: `Edit ${parcel.id}` });
     console.log("hand");
   };
 
-  const handleDelete = (parcel: Parcel) => {
+  const handleDelete = () => {
     // toast({ title: `Delete ${parcel.id}` });
   };
 

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-export async function GET(request: Request) {
+export async function GET() {
   try {
     throw new Error("Simulated internal server error!");
     // Dummy news data

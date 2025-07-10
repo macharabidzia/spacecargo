@@ -13,9 +13,8 @@ interface NavItem {
   icon: React.ElementType;
 }
 
-interface NavLinkListProps {}
 
-export function NavLinkList({}: NavLinkListProps) {
+export function NavLinkList() {
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);
   const currentLanguage = pathSegments[0] || "en";
