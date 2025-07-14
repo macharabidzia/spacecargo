@@ -122,7 +122,6 @@ const TrackingPage = async () => {
             <div className="p-4 sm:p-5">
               <ClientTrackingDetails
                 currentActiveStepIndex={trackingData.currentStepIndex}
-                trackingHistory={trackingData.trackingHistory}
               />
             </div>
           </div>
