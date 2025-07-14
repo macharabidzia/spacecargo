@@ -30,7 +30,6 @@ export const SideNav = async ({ currentLang }: SideNavProps) => {
               <NavLinkList
                 currentLanguage={currentLang}
                 dictionary={fullDictionary.common}
-                mainNav={siteConfig.mainNav}
               />
             </SidebarMenu>
           </SidebarGroupContent>

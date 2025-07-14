@@ -55,8 +55,8 @@ const NavLinkList: React.FC<NavLinkListProps> = ({
               isActive
                 ? "text-space-blue-light dark:text-white/90"
                 : "active:text-white",
-              "py-2 text-lg w-full",
-              "md:py-0 md:text-base md:w-auto"
+              "py-2 text-sm w-full",
+              "md:py-0 xl:text-base md:w-auto"
             )}
           >
             {dictionary[item.titleKey as keyof CommonDictionary]?.toUpperCase()}

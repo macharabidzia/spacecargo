@@ -43,5 +43,6 @@
   "tariffs.yes": "Yes",
   "tariffs.no": "No",
   "tariffs.importMethods.air": "Air",
-  "tariffs.importMethods.land": "Land"
+  "tariffs.importMethods.land": "Land",
+  "tariffs.importMethods.tracking": "Tracking"
 }

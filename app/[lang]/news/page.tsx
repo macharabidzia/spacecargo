@@ -18,7 +18,8 @@ const News = async ({ params }: News) => {
   try {
     items = await fetchNews();
   } catch (error) {
-    errorMessage = error.message || "Failed to load news. Please try again.";
+    if (error instanceof Error)
+      errorMessage = error.message || "Failed to load news. Please try again.";
   }
 
   const newsData = [
@@ -77,7 +78,6 @@ const News = async ({ params }: News) => {
       image: "/icons/receipt-edit.svg",
     },
   ];
-  console.log(items);
   return (
     <div className="container">
       {errorMessage && <ClientToastWrapper message={errorMessage} />}

@@ -7,11 +7,18 @@ import { SideNav } from "@/components/layout/SideNav";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header/Header";
 import DashboardDrawers from "@/components/features/dashboard/drawers/DashboardDrawers";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { Noto_Sans_Georgian } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
 }
-
+const notoSansGeorgian = Noto_Sans_Georgian({
+  subsets: ["latin"],
+  variable: "--font-noto-sans-georgian",
+  preload: true,
+});
 export default async function LocaleLayout(props: {
   children: React.ReactNode;
   params: { lang: "en" | "ka" };
@@ -22,26 +29,37 @@ export default async function LocaleLayout(props: {
   const dictionary = await getDictionary(lang);
 
   return (
-    <I18nProvider lang={lang} dictionaries={dictionary}>
-      <div className="flex flex-1 bg-background">
-        <SidebarProvider
-          defaultOpen={false}
-          className="flex-wrap content-start"
-        >
-          <MiniHeader currentLang={lang}>
-            <div className="md:hidden">
-              <SidebarTrigger></SidebarTrigger>
+    <html
+      suppressHydrationWarning
+      lang={lang}
+      className={`${notoSansGeorgian.variable} antialiased`}
+    >
+      <body className="text-foreground min-h-screen flex">
+        <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
+          <Toaster position="bottom-right" richColors className="z-[9999]" />
+          <I18nProvider lang={lang} dictionaries={dictionary}>
+            <div className="flex flex-1 bg-background">
+              <SidebarProvider
+                defaultOpen={false}
+                className="flex-wrap content-start"
+              >
+                <MiniHeader currentLang={lang}>
+                  <div className="md:hidden">
+                    <SidebarTrigger></SidebarTrigger>
+                  </div>
+                </MiniHeader>
+                <Header currentLanguage={lang} className="hidden lg:block" />
+                <SideNav currentLang={lang} />
+                <main className="flex-grow w-full mx-auto static">
+                  {children}
+                  <DashboardDrawers />
+                  <Footer dictionary={dictionary.common} />
+                </main>
+              </SidebarProvider>
             </div>
-          </MiniHeader>
-          <Header currentLanguage={lang} className="hidden lg:block" />
-          <SideNav currentLang={lang} />
-          <main className="flex-grow w-full mx-auto static">
-            {children}
-            <DashboardDrawers />
-            <Footer dictionary={dictionary.common} />
-          </main>
-        </SidebarProvider>
-      </div>
-    </I18nProvider>
+          </I18nProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

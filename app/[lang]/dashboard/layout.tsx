@@ -1,9 +1,16 @@
 import Header from "@/components/features/dashboard/header/Header";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: any;
+}) {
+  const { lang } = await params;
   return (
     <>
-      <Header />
+      <Header lang={lang} />
       {children}
     </>
   );

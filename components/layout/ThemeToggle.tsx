@@ -43,6 +43,7 @@ export const ThemeToggle: React.FC = () => {
       iconOff={<Sun className="w-3 h-3 text-yellow-300" />}
       className="data-[state=unchecked]:bg-space-blue-light w-13 h-5"
       id="airplane-mode"
+      aria-label="Toggle Theme"
     />
   );
 };

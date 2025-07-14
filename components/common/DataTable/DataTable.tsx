@@ -85,7 +85,7 @@ export function DataTable<TData, TValue>({
               {hg.headers.map((h) => (
                 <TableHead
                   key={h.id}
-                  className="p-4 text-white font-semibold justify-items-center"
+                  className="p-4 text-white justify-items-center font-extrabold"
                   onClick={h.column.getToggleSortingHandler()}
                 >
                   {h.isPlaceholder
@@ -114,7 +114,7 @@ export function DataTable<TData, TValue>({
                     key={cell.id}
                     data-label={labelFor(cell.column.columnDef)}
                     className={cn(
-                      "block px-0 py-1 text-gray-700 md:p-4 md:table-cell before:float-left before:font-medium before:content-[attr(data-label)] md:before:content-[''] md:justify-items-center justify-items-end",
+                      "flex justify-between px-0 py-1 text-gray-700 md:p-4 md:table-cell before:float-left before:font-medium before:content-[attr(data-label)] md:before:content-[''] md:justify-items-center",
                       typeof cellClassName === "function"
                         ? cellClassName(cell)
                         : cellClassName

@@ -4,18 +4,21 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import LogoIcon from "@/public/icons/logo.svg";
 import { CommonDictionary } from "@/types/dictionary";
-
 type FooterInterface = {
   dictionary: CommonDictionary;
 };
+import LinkedIn from "@/public/icons/in.svg";
+import Facebook from "@/public/icons/fb.svg";
+import Instagram from "@/public/icons/ig.svg";
+import Link from "next/link";
 
 const Footer = async ({ dictionary }: FooterInterface) => {
   return (
-    <section className="px-4 py-8 md:px-8 lg:px-16 xl:px-33">
+    <section className="px-4 pb-8 mt-12 md:px-8 lg:px-16 xl:px-33 bg-white dark:bg-background">
       <hr className="mb-8 bg-foreground" />
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-8 md:gap-4 lg:gap-8">
         <div className="flex justify-center md:justify-start mb-4 md:mb-0">
-          <LogoIcon className="h-[88px] w-full dark:fill-white" />
+          <LogoIcon className="h-[88px] w-full  dark:fill-white" />
         </div>
         <div className="mt-4 text-center md:text-left">
           <h1 className="font-semibold mb-4 text-lg">
@@ -100,28 +103,27 @@ const Footer = async ({ dictionary }: FooterInterface) => {
             new Date().getFullYear().toString()
           )}
         </div>
-        <div className="flex gap-4 justify-center mt-4 md:mt-0">
-          <Image
-            width={24}
-            height={24}
-            className="w-6 h-6"
-            src="/icons/in.svg"
-            alt="LinkedIn"
-          />
-          <Image
-            width={24}
-            height={24}
-            className="w-6 h-6"
-            src="/icons/fb.svg"
-            alt="Facebook"
-          />
-          <Image
-            width={24}
-            height={24}
-            className="w-6 h-6"
-            src="/icons/ig.svg"
-            alt="Instagram"
-          />
+        <div className="flex gap-4 justify-center mt-4 md:mt-0 flex-row items-center">
+          <Link
+            href="/"
+            className="p-2 border border-black rounded-3xl group hover:bg-black duration-300"
+          >
+            <Facebook className="fill-black w-6 h-6 group-hover:fill-white duration-300" />
+          </Link>
+
+          <Link
+            href="/"
+            className="p-2 border border-black rounded-3xl group hover:bg-black duration-300"
+          >
+            <Instagram className="fill-black w-6 h-6 group-hover:fill-white duration-300" />
+          </Link>
+
+          <Link
+            href="/"
+            className="p-2 border border-black rounded-3xl group hover:bg-black duration-300 ease-in-out"
+          >
+            <LinkedIn className="fill-black w-6 h-6 group-hover:fill-white duration-300" />
+          </Link>
         </div>
       </div>
     </section>

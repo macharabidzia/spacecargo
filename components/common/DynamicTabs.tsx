@@ -37,13 +37,13 @@ const DynamicTabs: React.FC<DynamicTabsProps> = ({
   return (
     <Tabs defaultValue={initialDefaultValue} className="w-full">
       <TabsList
-        className={`flex flex-row justify-between w-full bg-transparent ${
+        className={`flex flex-col h-fit md:flex-row justify-between w-full bg-transparent ${
           tabsListClassName || ""
         }`}
       >
         {tabsData.map((tab) => (
           <TabsTrigger
-            className={`${triggerStyles} data-[state=active]:bg-transparent ${
+            className={`${triggerStyles} pb-0 mb-6 md:pb-0 md:mb-0 data-[state=active]:bg-transparent ${
               tabsTriggerClassName || ""
             }`}
             key={tab.value}
@@ -53,7 +53,6 @@ const DynamicTabs: React.FC<DynamicTabsProps> = ({
           </TabsTrigger>
         ))}
       </TabsList>
-      <Separator />
       {headerContent && (
         <>
           <div className="py-4">{headerContent}</div>

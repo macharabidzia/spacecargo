@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { HomeIcon, Box, Truck, Calculator } from "lucide-react";
+import { useClientTranslation } from "@/i18n/i18n-provider";
 
 interface NavItem {
   name: string;
@@ -13,30 +14,29 @@ interface NavItem {
   icon: React.ElementType;
 }
 
-
 export function NavLinkList() {
   const pathname = usePathname();
   const pathSegments = pathname.split("/").filter(Boolean);
   const currentLanguage = pathSegments[0] || "en";
-
+  const { t } = useClientTranslation("common");
   const navItems: NavItem[] = [
     {
-      name: "Room",
+      name: "navLinkList.room",
       href: "/dashboard",
       icon: HomeIcon,
     },
     {
-      name: "My Parcels",
+      name: "navLinkList.myParcels",
       href: "/dashboard/parcels",
       icon: Box,
     },
     {
-      name: "Courier",
+      name: "navLinkList.courier",
       href: "/dashboard/courier",
       icon: Truck,
     },
     {
-      name: "Calculator",
+      name: "navLinkList.calculator",
       href: "/dashboard/calculator",
       icon: Calculator,
     },
@@ -68,14 +68,12 @@ export function NavLinkList() {
                 orientation="vertical"
                 className={`
                   h-full w-1
-                  ${
-                    isActive ? "bg-space-blue-light" : "bg-transparent"
-                  }
+                  ${isActive ? "bg-space-blue-light" : "bg-transparent"}
                   mr-2
                 `}
               />
               <item.icon className="size-5" />
-              <span className="ml-2">{item.name}</span>
+              <span className="ml-2">{t(item.name)}</span>
             </Button>
           </Link>
         );

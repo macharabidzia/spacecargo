@@ -110,6 +110,70 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(50px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "pulse-light": {
+          "0%, 100%": {
+            opacity: "1",
+            transform: "translate(-50%, -50%) scale(1)",
+          },
+          "50%": {
+            opacity: "0.8",
+            transform: "translate(-50%, -50%) scale(1.05)",
+          },
+        },
+        // For text fading in and out slightly
+        "pulse-fade": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.7" },
+        },
+        // For the parcel icon appearing and disappearing
+        "fade-in-out": {
+          "0%, 100%": {
+            opacity: "0",
+            transform: "translate(-50%, -50%) scale(0.8)",
+          },
+          "25%, 75%": {
+            opacity: "1",
+            transform: "translate(-50%, -50%) scale(1)",
+          },
+        },
+        // For the main rocket trail rising and fading
+        "trail-rise": {
+          "0%": { opacity: "0", transform: "translate(-50%, 0) scaleY(0)" },
+          "20%": {
+            opacity: "1",
+            transform: "translate(-50%, -100%) scaleY(1)",
+          },
+          "80%": {
+            opacity: "1",
+            transform: "translate(-50%, -100%) scaleY(1)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translate(-50%, -200%) scaleY(0)",
+          },
+        },
+        // For a secondary, slightly delayed rocket trail effect
+        "trail-rise-delay": {
+          "0%": { opacity: "0", transform: "translate(-50%, 0) scaleY(0)" },
+          "10%": { opacity: "0", transform: "translate(-50%, 0) scaleY(0)" }, // Delay start
+          "30%": {
+            opacity: "1",
+            transform: "translate(-50%, -100%) scaleY(1)",
+          },
+          "90%": {
+            opacity: "1",
+            transform: "translate(-50%, -100%) scaleY(1)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translate(-50%, -200%) scaleY(0)",
+          },
+        },
+        // For an optional progress bar animation (if used)
+        "loading-bar": {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
       },
       animation: {
         // Apply the keyframes with the desired duration, easing, and delay

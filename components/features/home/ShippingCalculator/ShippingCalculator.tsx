@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ShippingDetailsForm from "./ShippingDetailsForm";
 import { getDictionary } from "@/i18n/dictionaries";
 import { triggerStyles } from "@/constants/styles";
+import Link from "next/link";
 
 const ShippingCalculator = async ({
   lang,
@@ -30,6 +31,11 @@ const ShippingCalculator = async ({
           </TabsTrigger>
           <TabsTrigger value="land" className={triggerStyles}>
             {dictionary.home["tariffs.importMethods.land"]}
+          </TabsTrigger>
+          <TabsTrigger asChild value="" className={triggerStyles}>
+            <Link href={`${lang}/tracking`}>
+              {dictionary.home["tariffs.importMethods.tracking"]}
+            </Link>
           </TabsTrigger>
         </TabsList>
         <Separator className={`bg-white ${className && "bg-slate-300"}`} />

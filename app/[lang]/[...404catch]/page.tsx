@@ -12,7 +12,7 @@ export default async function NotFound({ params }: NotFound) {
   const { lang } = await params;
   const dict = (await getDictionary(lang)).common;
   return (
-    <div className="flex flex-col items-center justify-center min-h-full text-center bg-gray-50 w-full">
+    <div className="flex flex-col items-center justify-center min-h-full text-center bg-gray-50 w-full space-y-4">
       <h1 className="text-9xl font-extrabold text-gray-300">404</h1>
       <h2 className="text-4xl font-bold text-gray-800 mb-4">
         {dict.notFound.pageNotFound}

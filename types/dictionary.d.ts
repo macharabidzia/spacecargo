@@ -102,6 +102,7 @@ export type HomeDictionary = {
   "tariffs.no": string;
   "tariffs.importMethods.air": string;
   "tariffs.importMethods.land": string;
+  "tariffs.importMethods.tracking": string;
 };
 
 // AppDictionary correctly nests CommonDictionary and HomeDictionary

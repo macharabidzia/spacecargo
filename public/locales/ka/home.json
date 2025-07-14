@@ -43,5 +43,6 @@
   "tariffs.yes": "დიახ",
   "tariffs.no": "არა",
   "tariffs.importMethods.air": "საჰაერო",
-  "tariffs.importMethods.land": "სახმელეთო"
+  "tariffs.importMethods.land": "სახმელეთო",
+  "tariffs.importMethods.tracking": "თრექინგი"
 }

@@ -14,10 +14,10 @@ const Filters: React.FC<FiltersProps> = ({
   fruitOptions,
 }) => {
   return (
-    <div className="py-8 px-4 mb-4 flex flex-row items-center justify-between bg-background">
-      <div>
+    <div className="py-8 px-4 mb-4 bg-white dark:bg-background flex flex-row items-center justify-between flex-wrap">
+      <div className="mb-4 md:mb-0">
         <h1 className="text-gray-600 text-sm">მისაღებია</h1>
-        <p className="text-xl font-semibold">4 ამანათი</p>
+        <p className="text-xl font-semibold text-center">4 ამანათი</p>
       </div>
       <div className="relative flex items-center gap-4">
         <SearchIcon className="absolute left-3 h-4 w-4 text-gray-400" />

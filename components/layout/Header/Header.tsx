@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { siteConfig } from "@/config";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDictionary } from "@/i18n/dictionaries";

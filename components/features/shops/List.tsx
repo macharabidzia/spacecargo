@@ -100,8 +100,9 @@ const List = async () => {
       <Filters
         initialSelectedFruit={initialSelectedFruit}
         fruitOptions={fruitOptions}
+        
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr place-items-stretch pb-5 px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 auto-rows-fr place-items-stretch pb-5 lg:px-4">
         {items.map((item) => (
           <BrandCard
             key={item.id}

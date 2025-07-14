@@ -58,7 +58,7 @@ export async function GET() {
     // Basic error handling for the dummy data generation itself (unlikely to hit)
     return NextResponse.json(
       {
-        message: "Failed to generate dummy news data.",
+        message: "Errror Simulated.",
         details: (error as Error).message,
       },
       { status: 500 }

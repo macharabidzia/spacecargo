@@ -12,7 +12,7 @@ interface TarrifsTableProps {
 const TarrifsTable: React.FC<TarrifsTableProps> = ({ data }) => {
   const { t, i18n, lang } = useClientTranslation();
   const dictionary = i18n.getDataByLanguage(lang)?.home;
-  const tariffColumns = buildTariffColumns(dictionary);
+  const tariffColumns = buildTariffColumns(dictionary as any);
   return (
     <DataTable
       columns={tariffColumns}

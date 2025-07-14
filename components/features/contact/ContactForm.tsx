@@ -19,7 +19,7 @@ import { ContactFormSchema, ContactFormValues } from "@/schemas/contact.schema";
 import { Textarea } from "@/components/ui/textarea";
 
 interface ContactFormProps {
-  className?: string; // Removed onSwitchToRegister as it's not relevant here
+  className?: string;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
@@ -40,13 +40,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
   });
 
   const onSubmit = async (values: ContactFormValues) => {
-    console.log(values)
-    // Handle form submission logic here
     try {
-      // Simulate API call or actual submission logic
       await new Promise((resolve) => setTimeout(resolve, 1500));
       alert("Message sent successfully!");
-      form.reset(); // Reset form after successful submission
+      form.reset();
     } catch (error) {
       console.error("Failed to send message:", error);
       alert("Failed to send message. Please try again.");
@@ -70,7 +67,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
             name={fieldConfig.name}
             render={({ field }) => (
               <FormItem className={fieldConfig.colSpan}>
-                {/* Conditionally render FormLabel if labelKey is provided */}
                 {fieldConfig.labelKey && (
                   <FormLabel>{t(fieldConfig.labelKey)}</FormLabel>
                 )}

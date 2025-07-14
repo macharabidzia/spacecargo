@@ -23,7 +23,6 @@ const tabsData = [
 export default function CourierTableClient() {
   const handleEdit = () => {
     // toast({ title: `Edit ${parcel.id}` });
-    console.log("hand");
   };
 
   const handleDelete = () => {

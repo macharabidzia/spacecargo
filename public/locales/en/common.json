@@ -20,7 +20,7 @@
   "footer.about_us": "About Us",
   "footer.sites": "Web Sites",
 
-  "sidenav.application": "Application",
+  "sidenav.application": "Space Cargo",
   "sidenav.home": "Home",
   "sidenav.inbox": "Inbox",
   "sidenav.calendar": "Calendar",
@@ -162,5 +162,13 @@
     "attachedFilePlaceholder": "No file attached",
     "editTitle": "Edit Declaration",
     "editDescription": "Update declaration details. ✨"
-  }
+  },
+  "navLinkList.room": "Room",
+  "navLinkList.myParcels": "My Parcels",
+  "navLinkList.courier": "Courier",
+  "navLinkList.calculator": "Calculator",
+  "dashboardStats.transportation": "Transportation",
+  "dashboardStats.balance": "Balance",
+  "dashboardStats.debt": "Debt",
+  "dashboardStats.spaceCoins": "Space Coins"
 }

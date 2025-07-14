@@ -14,7 +14,7 @@ const Shops = async () => {
   ];
   return (
     <div className="container mt-10">
-      <Card>
+      <Card className="bg-background">
         <CardContent className="p-0 m-0">
           <DynamicTabs tabsData={roomTabsData}>
             <List />

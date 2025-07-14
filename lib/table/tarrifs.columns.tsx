@@ -28,9 +28,7 @@ export default function buildTariffColumns(
             className="w-5 h-5"
             src={row.original.countryIconSrc} // Use the src from the data
           />
-          <span className="text-lg text-foreground">
-            {row.original.country}
-          </span>
+          <span className="text-foreground">{row.original.country}</span>
         </div>
       ),
     },
@@ -38,25 +36,21 @@ export default function buildTariffColumns(
       accessorKey: "importMethod",
       header: dictionary["tariffs.tableHeaders.importMethod"], // Localized header
       cell: ({ row }) => (
-        <span className="text-lg text-foreground">
-          {row.original.importMethod}
-        </span>
+        <span className="text-foreground">{row.original.importMethod}</span>
       ),
     },
     {
       accessorKey: "pricePerKg",
       header: dictionary["tariffs.tableHeaders.pricePerKg"], // Localized header
       cell: ({ row }) => (
-        <span className="text-space-blue-light text-lg">
-          {row.original.pricePerKg}
-        </span>
+        <span className="text-space-blue-light">{row.original.pricePerKg}</span>
       ),
     },
     {
       accessorKey: "oversizeWeight",
       header: dictionary["tariffs.tableHeaders.oversizeWeight"], // Localized header
       cell: ({ row }) => (
-        <span className="text-lg text-foreground">
+        <span className="text-foreground">
           {row.original.oversizeWeight === dictionary["tariffs.yes"]
             ? dictionary["tariffs.yes"]
             : dictionary["tariffs.no"]}

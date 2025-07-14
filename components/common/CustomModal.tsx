@@ -17,7 +17,7 @@ export default function EmailConfirmationModal({
 }: EmailConfirmationModal) {
   return (
     <Dialog defaultOpen={isOpen}>
-      <DialogContent className="sm:min-w-[856px] py-0 my-0 space-y-10">
+      <DialogContent className="w-full lg:min-w-[856px] py-0 my-0 space-y-10">
         <DialogHeader>
           <DialogTitle className="text-3xl font-semibold text-space-blue mt-6">
             დაადასტურეთ თქვენი ელ-ფოსტის მისამართი

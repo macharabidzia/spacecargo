@@ -48,7 +48,6 @@ const AddressForm = () => {
       alert("Address information saved successfully!");
       form.reset();
     } catch (error) {
-      console.log(error)
       alert("Failed to save address. Please try again.");
     }
   }

@@ -12,6 +12,7 @@ import {
   MessageCircle,
   Share2,
 } from "lucide-react";
+import Link from "next/link";
 
 const Contact = async ({ params }: { params: { lang: "en" | "ka" } }) => {
   const { lang } = await params;
@@ -25,15 +26,15 @@ const Contact = async ({ params }: { params: { lang: "en" | "ka" } }) => {
       <Card className="shadow-lg p-2 ">
         <CardContent className="p-0">
           <div className="flex flex-col md:flex-row">
-            <div className="bg-space-blue-light dark:bg-space-blue md:rounded-md text-white p-8 flex flex-col justify-between relative overflow-hidden flex-1">
+            <div className="bg-space-blue dark:bg-space-blue md:rounded-md text-white p-8 flex flex-col justify-between relative overflow-hidden flex-1">
               <h2 className="text-2xl font-bold mb-2">
                 {fullDictionary.contact["contactInformationTitle"]}
               </h2>
-              <p className="mb-36 text-blue-100">
+              <p className="mb-36 text-white">
                 {fullDictionary.contact["contactInformationSubtitle"]}
               </p>
 
-              <div className="flex flex-col gap-y-12 mb-auto text-lg">
+              <div className="flex flex-col gap-y-12 mb-auto text-lg text-white">
                 <div className="flex items-center">
                   <Phone size={24} className="mr-3" />
                   <span>+995 (032) 2 12 09 90</span>
@@ -52,29 +53,28 @@ const Contact = async ({ params }: { params: { lang: "en" | "ka" } }) => {
                 </div>
               </div>
 
-              {/* Using more generic/alternative icons for social media */}
               <div className="flex space-x-6 mt-36">
-                <a
+                <Link
                   href="#"
                   aria-label="Social Link 1" // Update aria-label as per actual link
                   className="p-2 rounded-full border border-white hover:bg-white hover:text-space-blue-light transition-colors"
                 >
                   <Globe size={24} /> {/* Generic globe or website icon */}
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   aria-label="Social Link 2" // Update aria-label as per actual link
                   className="p-2 rounded-full border border-white hover:bg-white hover:text-space-blue-light transition-colors"
                 >
                   <MessageCircle size={24} /> {/* Generic message/chat icon */}
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   aria-label="Social Link 3" // Update aria-label as per actual link
                   className="p-2 rounded-full border border-white hover:bg-white hover:text-space-blue-light transition-colors"
                 >
                   <Share2 size={24} /> {/* Generic share icon */}
-                </a>
+                </Link>
               </div>
 
               <div className="absolute bottom-4 right-4 pointer-events-none">

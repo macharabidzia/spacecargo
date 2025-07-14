@@ -3,44 +3,39 @@ import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-  Coins,
-  Percent,
-  Plus,
-  UserIcon,
-  Wallet,
-} from "lucide-react";
+import { Coins, Percent, Plus, UserIcon, Wallet } from "lucide-react";
 import React from "react";
 import Link from "next/link"; // No longer needed for main nav links here
 
 import { NavLinkList } from "./NavLinkList"; // Import the new component
-
-const Header = () => {
+import { getDictionary } from "@/i18n/dictionaries";
+const Header = async ({ lang }: any) => {
+  const dictionary = (await getDictionary(lang)).common;
   const services = [
     {
       value: 0,
-      name: "Transportation",
+      name: "dashboardStats.transportation",
       icon: Percent,
       color: "bg-space-blue-light/15",
       text: "text-space-blue-light",
     },
     {
       value: 0,
-      name: "Balance",
+      name: "dashboardStats.balance",
       icon: Wallet,
       color: "bg-space-red/15",
       text: "text-space-red",
     },
     {
       value: 0,
-      name: "Debt",
+      name: "dashboardStats.debt",
       icon: Wallet,
       color: "bg-space-green/15",
       text: "text-space-green",
     },
     {
       value: 0,
-      name: "Space Coins",
+      name: "dashboardStats.spaceCoins",
       icon: Coins,
       color: "bg-space-orange/15",
       text: "text-space-orange",
@@ -67,7 +62,7 @@ const Header = () => {
                 <Link href={"?topUp=true"}>
                   <Button className="bg-space-blue-light/15 text-space-blue-light hover:bg-space-blue-light/30 cursor-pointer">
                     <Plus />
-                   წინასწარი დეკლარაცია
+                    წინასწარი დეკლარაცია
                   </Button>
                 </Link>
                 <Link href={"?edit=true"}>
@@ -88,7 +83,9 @@ const Header = () => {
                     <item.icon className={`${item.text} opacity-100`} />
                   </Avatar>
                   <div>
-                    <small className={`text-${item.color}`}>{item.name}</small>
+                    <small className={`text-${item.color}`}>
+                      {dictionary[item.name]}
+                    </small>
                     <h3>108.00₾</h3>
                   </div>
                 </div>

@@ -13,14 +13,14 @@
   "footer.sites.contact": "კონტაქტი",
   "footer.subscribe": "გამოწერა",
   "footer.subscribe_text": "მიიღეთ უახლესი ამბები და შეთავაზებები.",
-  "footer.email_placeholder": "შეიყვანეთ თქვენი ელ-ფოსტა",
+  "footer.email_placeholder": "შეიყვანეთ ელ-ფოსტა",
   "footer.copyright": "© 2025 SpaceCargo. ყველა უფლება დაცულია.",
   "footer.home": "მთავარი",
   "footer.services": "სერვისები",
   "footer.about_us": "ჩვენ შესახებ",
   "footer.sites": "ვებ საიტები",
 
-  "sidenav.application": "აპლიკაცია",
+  "sidenav.application": "Space კარგო",
   "sidenav.home": "მთავარი",
   "sidenav.inbox": "შემოსულები",
   "sidenav.calendar": "კალენდარი",
@@ -162,5 +162,13 @@
     "attachedFilePlaceholder": "ფაილი არ არის დართული",
     "editTitle": "დეკლარაციის რედაქტირება",
     "editDescription": "განაახლეთ დეკლარაციის დეტალები. ✨"
-  }
+  },
+  "navLinkList.room": "ოთახი",
+  "navLinkList.myParcels": "ჩემი ამანათები",
+  "navLinkList.courier": "კურიერი",
+  "navLinkList.calculator": "კალკულატორი",
+  "dashboardStats.transportation": "ტრანსპორტირება",
+  "dashboardStats.balance": "ბალანსი",
+  "dashboardStats.debt": "ვალი",
+  "dashboardStats.spaceCoins": "Space ქოინები"
 }
