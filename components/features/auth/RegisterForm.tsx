@@ -48,7 +48,7 @@ export function RegisterForm({ fields, type, dictionary }: RegisterFormProps) {
     mode: "onBlur",
   });
 
-  const handleInternalSubmit = (values: RegisterFormValues) => {
+  const handleInternalSubmit = () => {
     alert(t("auth.registerSuccessMessage"));
     form.reset();
   };

@@ -7,9 +7,28 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-const StepperContext = React.createContext<Stepper.ConfigProps | null>(null);
+// Move these type definitions outside the 'namespace Stepper'
+export type StepperVariant = "horizontal" | "vertical" | "circle";
+export type StepperLabelOrientation = "horizontal" | "vertical";
 
-const useStepperProvider = (): Stepper.ConfigProps => {
+export type StepperConfigProps = {
+  variant?: StepperVariant;
+  labelOrientation?: StepperLabelOrientation;
+  tracking?: boolean;
+};
+
+export type CircleStepIndicatorProps = {
+  currentStep: number;
+  totalSteps: number;
+  size?: number;
+  strokeWidth?: number;
+};
+
+// Update this to use StepperConfigProps instead of Stepper.ConfigProps
+const StepperContext = React.createContext<StepperConfigProps | null>(null);
+
+// Update this to use StepperConfigProps
+const useStepperProvider = (): StepperConfigProps => {
   const context = React.useContext(StepperContext);
   if (!context) {
     throw new Error("useStepper must be used within a StepperProvider.");
@@ -17,9 +36,40 @@ const useStepperProvider = (): Stepper.ConfigProps => {
   return context;
 };
 
+// Update this DefineProps type to use the directly exported types
+export type StepperDefineProps<Steps extends Stepperize.Step[]> = Omit<
+  Stepperize.StepperReturn<Steps>,
+  "Scoped"
+> & {
+  Stepper: {
+    Provider: (
+      props: Omit<Stepperize.ScopedProps<Steps>, "children"> &
+        Omit<React.ComponentProps<"div">, "children"> &
+        StepperConfigProps & { // Use StepperConfigProps here
+          children:
+            | React.ReactNode
+            | ((props: {
+                methods: Stepperize.Stepper<Steps>;
+              }) => React.ReactNode);
+        }
+    ) => React.ReactElement;
+    Navigation: (props: React.ComponentProps<"nav">) => React.ReactElement;
+    Step: (
+      props: React.ComponentProps<"button"> & {
+        of: Stepperize.Get.Id<Steps>;
+        icon?: React.ReactNode;
+      }
+    ) => React.ReactElement;
+    Title: (props: AsChildProps<"h4">) => React.ReactElement;
+    Description: (props: AsChildProps<"p">) => React.ReactElement;
+    Panel: (props: AsChildProps<"div">) => React.ReactElement;
+    Controls: (props: AsChildProps<"div">) => React.ReactElement;
+  };
+};
+
 const defineStepper = <const Steps extends Stepperize.Step[]>(
   ...steps: Steps
-): Stepper.DefineProps<Steps> => {
+): StepperDefineProps<Steps> => { // Use StepperDefineProps here
   const { Scoped, useStepper, ...rest } = Stepperize.defineStepper(...steps);
 
   const StepperContainer = ({
@@ -37,7 +87,7 @@ const defineStepper = <const Steps extends Stepperize.Step[]>(
       <div
         date-component="stepper"
         className={cn("w-full", className)}
-        {...props} 
+        {...props}
       >
         {typeof children === "function" ? children({ methods }) : children}
       </div>
@@ -54,21 +104,15 @@ const defineStepper = <const Steps extends Stepperize.Step[]>(
         tracking = false,
         children,
         className,
-        // ✨ THE FIX IS HERE ✨
-        // Destructure initialStep and initialMetadata explicitly
         initialStep,
         initialMetadata,
-        // Collect all other props into `restProps`
-        ...restProps // This now contains only the props safe to pass to a DOM element
+        ...restProps
       }) => {
         return (
           <StepperContext.Provider
             value={{ variant, labelOrientation, tracking }}
           >
-            <Scoped
-              initialStep={initialStep} // Pass initialStep to Scoped component
-              initialMetadata={initialMetadata} // Pass initialMetadata to Scoped component
-            >
+            <Scoped initialStep={initialStep} initialMetadata={initialMetadata}>
               <StepperContainer className={className} {...restProps}>
                 {children}
               </StepperContainer>
@@ -331,7 +375,7 @@ const CircleStepIndicator = ({
   totalSteps,
   size = 80,
   strokeWidth = 6,
-}: Stepper.CircleStepIndicatorProps) => {
+}: CircleStepIndicatorProps) => { // Use CircleStepIndicatorProps here
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
   const fillPercentage = (currentStep / totalSteps) * 100;
@@ -482,55 +526,6 @@ const getStepState = (currentIndex: number, stepIndex: number) => {
   }
   return "inactive";
 };
-
-// Define the Stepper namespace and its types
-namespace Stepper {
-  export type StepperVariant = "horizontal" | "vertical" | "circle";
-  export type StepperLabelOrientation = "horizontal" | "vertical";
-
-  export type ConfigProps = {
-    variant?: StepperVariant;
-    labelOrientation?: StepperLabelOrientation;
-    tracking?: boolean;
-  };
-
-  export type DefineProps<Steps extends Stepperize.Step[]> = Omit<
-    Stepperize.StepperReturn<Steps>,
-    "Scoped"
-  > & {
-    Stepper: {
-      Provider: (
-        props: Omit<Stepperize.ScopedProps<Steps>, "children"> &
-          Omit<React.ComponentProps<"div">, "children"> & // Removed initialStep/Metadata from this Omit
-          Stepper.ConfigProps & {
-            children:
-              | React.ReactNode
-              | ((props: {
-                  methods: Stepperize.Stepper<Steps>;
-                }) => React.ReactNode);
-          }
-      ) => React.ReactElement;
-      Navigation: (props: React.ComponentProps<"nav">) => React.ReactElement;
-      Step: (
-        props: React.ComponentProps<"button"> & {
-          of: Stepperize.Get.Id<Steps>;
-          icon?: React.ReactNode;
-        }
-      ) => React.ReactElement;
-      Title: (props: AsChildProps<"h4">) => React.ReactElement;
-      Description: (props: AsChildProps<"p">) => React.ReactElement;
-      Panel: (props: AsChildProps<"div">) => React.ReactElement;
-      Controls: (props: AsChildProps<"div">) => React.ReactElement;
-    };
-  };
-
-  export type CircleStepIndicatorProps = {
-    currentStep: number;
-    totalSteps: number;
-    size?: number;
-    strokeWidth?: number;
-  };
-}
 
 type AsChildProps<T extends React.ElementType> = React.ComponentProps<T> & {
   asChild?: boolean;

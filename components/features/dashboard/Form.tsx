@@ -16,7 +16,6 @@ import { Input } from "@/components/ui/input";
 import { addressFormSchema } from "@/schemas/form.schema";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
-  BatteryWarning,
   FileWarning,
   MessageCircleWarning,
   PawPrint,
@@ -40,7 +39,7 @@ const AddressForm = () => {
     },
     mode: "onBlur",
   });
-  const fields = Object.keys(form.getValues());
+  const fields = Object.keys(form.getValues()) as (keyof AddressFormValues)[];
   const { t } = useClientTranslation("common");
   async function onSubmit() {
     try {
@@ -48,7 +47,9 @@ const AddressForm = () => {
       alert("Address information saved successfully!");
       form.reset();
     } catch (error) {
-      alert("Failed to save address. Please try again.");
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     }
   }
 
@@ -75,7 +76,7 @@ const AddressForm = () => {
             </span>
           </CardContent>
         </Card>
-        {fields.map((fieldItem: any) => (
+        {fields.map((fieldItem) => (
           <FormField
             key={fieldItem}
             control={form.control}

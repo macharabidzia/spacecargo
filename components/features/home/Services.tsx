@@ -1,4 +1,5 @@
 import { getDictionary } from "@/i18n/dictionaries";
+import { HomeDictionary } from "@/types/dictionary";
 import Image from "next/image";
 import React from "react";
 
@@ -12,7 +13,7 @@ interface ServicesProps {
 
 const Services = async ({ children, lang }: ServicesProps) => {
   const fullDictionary = await getDictionary(lang);
-  const servicesDict: any = fullDictionary.home;
+  const servicesDict: HomeDictionary = fullDictionary.home;
 
   const list: { title: string; text: string; url: string }[] = [
     {

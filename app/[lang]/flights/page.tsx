@@ -335,7 +335,7 @@ const Flights = async ({ params }: Flights) => {
       <p className="text-center py-4 text-gray-500">ყველა რეისი ერთ სივრცეში</p>
       <Tabs defaultValue="usa">
         <TabsList className="w-full h-16 border-2 p-0">
-          {countries.map((country: any) => (
+          {countries.map((country: string) => (
             <TabsTrigger
               key={country}
               className="text-black  data-[state=active]:text-white border-2 border-red-200 h-full data-[state=active]:bg-space-blue-light data-[state=active]:shadow-none"

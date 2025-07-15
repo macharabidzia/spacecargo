@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/sidebar";
 import { getDictionary } from "@/i18n/dictionaries";
 import NavLinkList from "./Header/NavLinkList";
-import { siteConfig } from "@/config";
 
 interface SideNavProps {
   currentLang: Lang;

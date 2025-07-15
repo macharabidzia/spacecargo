@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import BrandCard from "./BrandCard"; // Adjust the import path if BrandCard is in a different directory
 import Pagination from "@/components/common/Pagination";
 import Filters from "./Filters";
@@ -100,7 +100,7 @@ const List = async () => {
       <Filters
         initialSelectedFruit={initialSelectedFruit}
         fruitOptions={fruitOptions}
-        
+
       />
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 auto-rows-fr place-items-stretch pb-5 lg:px-4">
         {items.map((item) => (
@@ -114,7 +114,9 @@ const List = async () => {
           />
         ))}
       </div>
-      <Pagination totalPages={10} />
+      <Suspense>
+        <Pagination totalPages={10} />
+      </Suspense>
     </>
   );
 };

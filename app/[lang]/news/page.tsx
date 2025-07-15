@@ -21,7 +21,7 @@ const News = async ({ params }: News) => {
     if (error instanceof Error)
       errorMessage = error.message || "Failed to load news. Please try again.";
   }
-
+  console.log(items)
   const newsData = [
     {
       id: 1,

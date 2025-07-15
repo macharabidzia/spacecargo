@@ -9,7 +9,11 @@ import Link from "next/link"; // No longer needed for main nav links here
 
 import { NavLinkList } from "./NavLinkList"; // Import the new component
 import { getDictionary } from "@/i18n/dictionaries";
-const Header = async ({ lang }: any) => {
+
+type Header = {
+  lang: Lang
+}
+const Header = async ({ lang }: Header) => {
   const dictionary = (await getDictionary(lang)).common;
   const services = [
     {

@@ -6,12 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { triggerStyles } from "@/constants/styles";
-import { Parcel, buildParcelColumns } from "@/lib/table/parcels.columns";
+import { buildParcelColumns } from "@/lib/table/parcels.columns";
 import { SearchIcon } from "lucide-react";
 
-interface Props {
-  parcels: Parcel[];
-}
+
 const tabsData = [
   {
     value: "კურიერი",

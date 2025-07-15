@@ -3,7 +3,6 @@
 
 import { DataTable } from "@/components/common/DataTable/DataTable";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { Parcel, buildParcelColumns } from "@/lib/table/parcels.columns";
 import { SearchIcon } from "lucide-react";
 

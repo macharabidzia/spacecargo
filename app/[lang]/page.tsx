@@ -1,6 +1,6 @@
 import Heading from "@/components/features/home/Heading";
 import ShippingCalculator from "@/components/features/home/ShippingCalculator/ShippingCalculator";
-import React, { Suspense } from "react";
+import React from "react";
 import Tarrifs from "@/components/features/home/Tariffs";
 import Services from "@/components/features/home/Services";
 import News from "@/components/common/News";
@@ -8,7 +8,7 @@ import InfiniteCarousel from "@/components/features/home/InfiniteCarousel";
 import { getDictionary } from "@/i18n/dictionaries";
 import EmailConfirmationModal from "@/components/common/CustomModal";
 interface HomePageProps {
-  params: Promise<{ lang: Lang }> | { lang: Lang };
+  params: Promise<{ lang: Lang }>
 }
 
 const Home = async ({ params }: HomePageProps) => {
@@ -59,9 +59,7 @@ const Home = async ({ params }: HomePageProps) => {
       </Heading>
       <div className="sm:container">
         <div className="h-[310] md:h-auto"></div>
-        <Suspense fallback={<div className="w-40 h-40">LOADING</div>}>
-          <Tarrifs lang={lang} />
-        </Suspense>
+        <Tarrifs lang={lang} />
         <Services lang={lang} />
       </div>
       <InfiniteCarousel />

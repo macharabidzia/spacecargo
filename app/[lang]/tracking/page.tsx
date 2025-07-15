@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { MailCheck, Search } from "lucide-react";
+import { Suspense } from "react";
 
 async function getTrackingData(trackingId: number) {
   return {
@@ -120,9 +121,12 @@ const TrackingPage = async () => {
               </div>
             </div>
             <div className="p-4 sm:p-5">
-              <ClientTrackingDetails
-                currentActiveStepIndex={trackingData.currentStepIndex}
-              />
+              <Suspense>
+                <ClientTrackingDetails
+                  currentActiveStepIndex={trackingData.currentStepIndex}
+                />
+              </Suspense>
+
             </div>
           </div>
 

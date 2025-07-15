@@ -2,11 +2,14 @@
 
 import * as React from "react";
 import {
+  AccessorKeyColumnDef,
   ColumnDef,
+  DisplayColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  GroupColumnDef,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
@@ -30,7 +33,7 @@ interface DataTableProps<TData, TValue> {
   onDelete?: (row: TData) => void;
   notFoundText?: string;
   rowClassName?: string | ((row: TData) => string);
-  cellClassName?: string | ((cell: any) => string);
+  cellClassName?: string | ((cell: unknown) => string);
   headerClassName?: string;
   bodyClassName?: string;
 }
@@ -63,14 +66,26 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const labelFor = (col: ColumnDef<any, any>): string => {
-    if (typeof col.header === "string") return col.header;
-    if (typeof (col as any).accessorKey === "string")
-      return (col as any).accessorKey;
-    if (col.id) return String(col.id);
+
+  const labelFor = <TData, TValue>(col: ColumnDef<TData, TValue>): string => {
+    if (typeof col.header === "string") {
+      return col.header;
+    }
+
+    if ((col as AccessorKeyColumnDef<TData, TValue>).accessorKey !== undefined) {
+      return String((col as AccessorKeyColumnDef<TData, TValue>).accessorKey);
+    }
+
+    if ((col as DisplayColumnDef<TData, TValue>).id !== undefined) {
+      return String((col as DisplayColumnDef<TData, TValue>).id);
+    }
+
+    if ((col as GroupColumnDef<TData, TValue>).id !== undefined) {
+      return String((col as GroupColumnDef<TData, TValue>).id);
+    }
+
     return "";
   };
-
   return (
     <div className="rounded-lg overflow-hidden">
       <Table className="rounded-lg">
@@ -140,7 +155,10 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
       {table.getPageCount() > 1 && (
-        <Pagination totalPages={table.getTotalSize()} />
+        <React.Suspense>
+          <Pagination totalPages={table.getTotalSize()} />
+        </React.Suspense>
+
       )}
     </div>
   );

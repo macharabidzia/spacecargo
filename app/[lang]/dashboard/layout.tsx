@@ -5,7 +5,7 @@ export default async function Layout({
   params,
 }: {
   children: React.ReactNode;
-  params: any;
+  params: { lang: Lang };
 }) {
   const { lang } = await params;
   return (

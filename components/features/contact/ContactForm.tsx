@@ -39,7 +39,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
     mode: "onBlur",
   });
 
-  const onSubmit = async (values: ContactFormValues) => {
+  const onSubmit = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       alert("Message sent successfully!");

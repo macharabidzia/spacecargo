@@ -1,4 +1,5 @@
 "use client";
+import { CommonDictionary } from "@/types/dictionary";
 
 import { DataTable } from "@/components/common/DataTable/DataTable";
 import { useClientTranslation } from "@/i18n/i18n-provider";
@@ -11,8 +12,15 @@ interface TarrifsTableProps {
 
 const TarrifsTable: React.FC<TarrifsTableProps> = ({ data }) => {
   const { t, i18n, lang } = useClientTranslation();
-  const dictionary = i18n.getDataByLanguage(lang)?.home;
-  const tariffColumns = buildTariffColumns(dictionary as any);
+  const dictionary = i18n.getDataByLanguage(lang);
+
+  if (!dictionary) {
+    return null;
+  }
+
+  const tariffColumns = buildTariffColumns(
+    dictionary.home as unknown as CommonDictionary
+  );
   return (
     <DataTable
       columns={tariffColumns}

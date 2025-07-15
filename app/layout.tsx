@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
-import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -12,8 +11,7 @@ export const metadata: Metadata = {
 };
 export default async function RootLayout(props: {
   children: React.ReactNode;
-  drawer: ReactNode;
-  params: { lang: Lang };
+  params: Promise<{ lang: Lang }>;
 }) {
   const { children } = props;
   return children;

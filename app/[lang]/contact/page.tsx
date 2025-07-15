@@ -14,7 +14,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const Contact = async ({ params }: { params: { lang: "en" | "ka" } }) => {
+type ContactProps = {
+  params: Promise<{ lang: Lang }>
+}
+const Contact = async ({ params }: ContactProps) => {
   const { lang } = await params;
   const fullDictionary = (await getDictionary(lang)).common;
 

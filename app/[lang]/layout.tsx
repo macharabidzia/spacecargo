@@ -10,6 +10,7 @@ import DashboardDrawers from "@/components/features/dashboard/drawers/DashboardD
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Noto_Sans_Georgian } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -21,7 +22,7 @@ const notoSansGeorgian = Noto_Sans_Georgian({
 });
 export default async function LocaleLayout(props: {
   children: React.ReactNode;
-  params: { lang: "en" | "ka" };
+  params: Promise<{ lang: Lang }>;
 }) {
   const { children, params } = props;
   const { lang } = await params;
@@ -52,7 +53,9 @@ export default async function LocaleLayout(props: {
                 <SideNav currentLang={lang} />
                 <main className="flex-grow w-full mx-auto static">
                   {children}
-                  <DashboardDrawers />
+                  <Suspense>
+                    <DashboardDrawers />
+                  </Suspense>
                   <Footer dictionary={dictionary.common} />
                 </main>
               </SidebarProvider>

@@ -12,7 +12,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-export function TopUpBalance({ children }: any) {
+type TopUpBalance = {
+  children: React.ReactElement
+}
+export function TopUpBalance({ children }: TopUpBalance) {
   return (
     <Sheet defaultOpen>
       <SheetTrigger asChild>{children}</SheetTrigger>

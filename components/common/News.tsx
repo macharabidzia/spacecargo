@@ -6,17 +6,10 @@ import { getDictionary } from "@/i18n/dictionaries";
 
 type Lang = "en" | "ka";
 
+
 interface NewsSectionProps {
   lang: Lang;
-  data: {
-    id: number;
-    imgSrc: string;
-    imgAlt: string;
-    title: string;
-    footerText: string;
-    color: string;
-    image: string;
-  }[];
+  data: NewsItem[];
 }
 
 export const NewsSection = async ({ lang, data }: NewsSectionProps) => {
@@ -25,7 +18,7 @@ export const NewsSection = async ({ lang, data }: NewsSectionProps) => {
   return (
     <section className="w-full ml-0">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-12 justify-items-center">
-        {data.map((item: any) => (
+        {data.map((item: NewsItem) => (
           <Card
             key={item.id}
             className="w-full relative max-w-sm rounded-lg border bg-card text-card-foreground shadow-lg overflow-visible"
