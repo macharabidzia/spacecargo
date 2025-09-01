@@ -11,7 +11,6 @@ type FooterInterface = {
   dictionary: CommonDictionary;
   lang: Lang
 };
-const fbUrl = 'https://www.facebook.com/spacecargo.ge/?locale=ka_GE';
 const Footer = async ({ dictionary }: FooterInterface) => {
   return (
     <footer className="bg-muted/40 border-t border-border px-4 md:px-8 lg:px-16 xl:px-32 pt-16 pb-10 mt-16 dark:bg-gray-900 dark:border-gray-700">
