@@ -7,10 +7,9 @@ type Calculator = {
 const Calculator = async () => {
   return (
     <div className="container">
-      <Card className="dark:opacity-80 p-0 bg-transparent">
-        <CardContent className="p-0 m-0 dark:bg-transparent dark:opacity-80">
+      <Card className="p-0 bg-transparent">
+        <CardContent className="p-0 m-0 dark:bg-transparent">
           <ShippingCalculator
-            className="bg-white"
             canEdit={true}
           />
         </CardContent>

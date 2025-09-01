@@ -34,7 +34,7 @@ const Header: React.FC<HeaderInterface> = async ({
   const isLoggedIn = !!authToken;
   let dashboardInfo;
   if(isLoggedIn){
-    dashboardInfo = await fetchUserDashboard();;
+    dashboardInfo = await fetchUserDashboard();
   }
 
 

@@ -25,7 +25,7 @@ const FlightsTable: React.FC<FlightsTableProps> = ({ data }) => {
       table={table}
       notFoundText={t("tariffs.noDataMessage")}
       headerClassName="bg-space-blue-light dark:bg-space-blue-light/50"
-      bodyClassName="bg-white dark:bg-gray-900 dark:text-white"
+      bodyClassName="bg-white dark:bg-gray-800 dark:text-white"
       isHydrated={true}
     />
   );
