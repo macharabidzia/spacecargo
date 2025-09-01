@@ -1,4 +1,3 @@
-"use client";
 import ServiceCard from "@/components/features/about/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
