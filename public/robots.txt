@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /controler/uploads/
+Disallow: /_next/
+Sitemap: https://www.google.com/search?q=https://www.spacecargo.ge/sitemap.xml
