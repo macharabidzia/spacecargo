@@ -2,6 +2,13 @@ import { getCashbackTransactions } from "@/actions/cashback.actions";
 import CashbackTableClient from "@/components/features/cashback/CashbackTableClient";
 import { Card, CardContent } from "@/components/ui/card";
 const DEFAULT_PAGE_SIZE = 5;
+export const metadata = {
+  robots: {
+    title:"Cashbacks Page",
+    index: false,
+    follow: true,
+  },
+};
 const CashbacksPage = async ({
   searchParams,
 }: {

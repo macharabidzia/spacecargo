@@ -37,6 +37,26 @@ type FlightsProps = {
   searchParams: Promise<{ page?: string; perPage?: string }>;
 };
 
+export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({ params }: { params: { lang: Lang } }) {
+  const { lang } = params;
+  const dictionary = (await getDictionary(lang)).common;
+
+  return {
+    title: dictionary["flights_title"],
+    description: dictionary["flights_subtitle"],
+    openGraph: {
+      title: dictionary["flights_title"],
+      description: dictionary["flights_subtitle"],
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
+
 const DEFAULT_PAGE_SIZE = 5;
 
 const Flights = async ({ params, searchParams }: FlightsProps) => {
@@ -54,6 +74,8 @@ const Flights = async ({ params, searchParams }: FlightsProps) => {
 
   const dictionary = (await getDictionary(lang)).common;
   const allFlights: Flight[] = await getFlights();
+
+  console.log(allFlights)
   const countries = Object.keys(countryConfig) as CountryKey[];
 
   const flightsByCountry: Record<CountryKey, Flight[]> = {} as Record<CountryKey, Flight[]>;
@@ -118,7 +140,7 @@ const Flights = async ({ params, searchParams }: FlightsProps) => {
 
         {countries.map((key) => (
           <TabsContent key={key} value={key}>
-            <FlightsTable data={paginatedFlightsByCountry[key] || []} />
+            <FlightsTable data={allFlights} />
             <div className="mt-4">
               <Pagination currentPage={page} totalPages={totalPagesByCountry[key]} />
             </div>

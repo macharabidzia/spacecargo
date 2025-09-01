@@ -1,9 +1,14 @@
-"use server"
 
 import ParcelsTabs from "@/components/features/dashboard/parcels/ParcelsTabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { siteConfig } from "@/config";
 import React from "react";
+export const metadata = {
+    robots: {
+        index: false,
+        follow: true,
+    },
+};
 const ParcelsLayout = async ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="container">

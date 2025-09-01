@@ -23,7 +23,13 @@ type Voucher = {
 type IVoucherPage = {
   params: Promise<{ id: number; lang: Lang }>;
 };
-
+export const metadata = {
+  title: "Voucher Page",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 const VoucherPage = async ({ params }: IVoucherPage) => {
   const { id, lang } = await params;
   const bonues: Voucher[] = await getBonusPrizes();

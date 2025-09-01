@@ -121,7 +121,7 @@ export default function NotificationsTableClient({
 
       <div className="px-4 flex flex-row items-center justify-between bg-space-muted rounded-xl py-4">
         <div>
-          <small className="text-muted-foreground">{t("tableHeader.message")}</small>
+          <small className="text-muted-foreground">{t("tableHeader.notifications")}</small>
           <h1 className="font-semibold text-2xl mb-6">
             <span className="text-space-blue-muted">{recordsNumber}</span> {t("tableHeader.message")}
           </h1>

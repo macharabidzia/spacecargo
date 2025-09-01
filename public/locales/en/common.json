@@ -523,6 +523,7 @@
   "tableHeader.lastName": "Last Name",
   "tableHeader.phone": "Phone",
   "tableHeader.pin": "PIN",
+  "tableHeader.notifications":"Notifications",
   "auth.description": "Please login, or if you don’t have an account, register to use our services.",
   "auth.noAccount": "Don't have an account?",
   "auth.registerButton": "Register",

@@ -11,7 +11,7 @@ interface ServicesProps {
   className?: string;
 }
 
-const Services = async ({ children, lang }: ServicesProps) => {
+const Services = async ({ children, lang, className }: ServicesProps) => {
   const fullDictionary = await getDictionary(lang);
   const servicesDict: HomeDictionary = fullDictionary.home;
 
@@ -49,17 +49,20 @@ const Services = async ({ children, lang }: ServicesProps) => {
   ];
 
   return (
-    <section className="mt-12 space-y-12">
-      <h1 className="text-center text-4xl font-semibold mb-12">
+    <section className={`mt-12 space-y-12 ${className || ""}`}>
+      <h1 className="text-center text-4xl font-semibold mb-12 text-gray-900 dark:text-gray-100">
         {servicesDict["services.mainTitle"]}
       </h1>
-      <p className="text-center mt-2 mb-8 max-w-2xl mx-auto text-gray-400">
+      <p className="text-center mt-2 mb-8 max-w-2xl mx-auto text-gray-500 dark:text-gray-400">
         {servicesDict["services.description"]}
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto space-y-12 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto">
         {list.map((service, index) => (
-          <div key={index} className="flex flex-col items-center">
+          <div
+            key={index}
+            className="flex flex-col items-center p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md dark:shadow-none transition-colors"
+          >
             <Image
               width={80}
               height={80}
@@ -67,10 +70,12 @@ const Services = async ({ children, lang }: ServicesProps) => {
               alt={service.title}
               className="w-20 h-20 mb-4 object-contain"
             />
-            <h2 className="text-xl font-semibold text-center mb-2 capitalize">
+            <h2 className="text-xl font-semibold text-center mb-2 capitalize text-gray-900 dark:text-gray-100">
               {service.title}
             </h2>
-            <p className="text-center text-sm">{service.text}</p>
+            <p className="text-center text-sm text-gray-700 dark:text-gray-300">
+              {service.text}
+            </p>
           </div>
         ))}
       </div>

@@ -7,7 +7,13 @@ type SettingsLayout = {
   children: React.ReactNode;
   params: Promise<{ lang: Lang }>;
 };
-
+export const metadata = {
+  title: "Settings Page",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 const SettingsLayout = async ({ children, params }: SettingsLayout) => {
   const { lang } = await params;
   const dictionary = (await getDictionary(lang)).common;

@@ -13,7 +13,6 @@ const TermsPage = async () => {
     value: key,
     href: value,
   }));
-console.log(tabsData)
   return (
     <div className="container mt-10">
       <Card>

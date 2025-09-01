@@ -1,5 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card"
-
+export const metadata = {
+    robots: {
+        index: false,
+        follow: true,
+    },
+};
 const CourierLayout = async ({
     children
 }: {

@@ -85,7 +85,7 @@ const Tariffs = async ({ children, className, lang }: TariffsProps) => {
   const internalTariffData = getTariffData(homeDictionary);
 
   return (
-    <section className={`space-y-16 ${className || ""}`}>
+    <section className={`space-y-6 ${className || ""}`}>
       <h1 className="text-4xl font-bold text-center text-foreground mb-12">
         {homeDictionary["tariffs.title"]}
       </h1>

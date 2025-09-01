@@ -133,6 +133,7 @@ export default function ShippingCalculatorForm({
             onClick={() => setShowPackages(!showPackages)}
             variant="outline"
             className="h-auto flex-1 p-4 rounded-lg flex items-center gap-2 whitespace-nowrap"
+            disableAnimation
           >
             <span>{t("form.packages")}</span>
             <ChevronDown
@@ -146,6 +147,7 @@ export default function ShippingCalculatorForm({
           <Button
             type="button"
             className="bg-blue-500 hover:bg-space-blue-light/90 text-white dark:hover:text-space-blue p-4 rounded-lg h-auto flex-1"
+            disableAnimation
           >
             <div className="flex flex-row gap-1 text-center items-center">
               <span className="font-semibold">{t("form.totalCost")}</span>

@@ -6,7 +6,13 @@ import LogoIcon from '@/public/icons/logo.svg'
 type AuthLayoutProps = {
   children: React.ReactNode;
 };
-
+export const metadata = {
+  title: "Auth Page",
+  robots: {
+    index: false, 
+    follow: true, 
+  },
+};
 const AuthLayout = async ({ children }: AuthLayoutProps) => {
   return (
     <div className="container flex items-center justify-center">

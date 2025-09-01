@@ -6,12 +6,27 @@ import { Card, CardContent } from "@/components/ui/card";
 type IShops = {
   searchParams: Promise<{ page: string, perPage: string }>
 }
+
+import { Metadata } from "next";
+
+export async function generateMetadata({ searchParams }: { searchParams: { page?: string } }): Promise<Metadata> {
+  const page = searchParams.page || "1";
+  return {
+    title: `Shops - Page ${page} | SpaceCargo`,
+    description: "Browse all shops available in SpaceCargo",
+    openGraph: {
+      title: `Shops - Page ${page} | SpaceCargo`,
+      description: "Browse all shops available in SpaceCargo",
+      url: `https://spacecargo-qpe5.vercel.app/en?page=${page}`,
+    },
+  };
+}
+
 const Shops = async ({ searchParams }: IShops) => {
   const params = await searchParams;
   const page = typeof params.page === 'string' ? parseInt(params.page, 10) : 1;
   const perPage = typeof params?.perPage === 'string' ? parseInt(params.perPage) : 5;
   const result = await getShops(page, perPage)
-  console.log(result)
   const totalPages = Math.ceil((result?.data.length || 0) / perPage);
   return (
     <div className="container py-20">

@@ -12,12 +12,19 @@ type Voucher = {
     Main_iamge_url: string;
     Point: string;
 };
-
+export const metadata = {
+    title: "Vouchers Page",
+    robots: {
+        index: false,
+        follow: true,
+    },
+};
 const voucherColors = ['#3b82f6', '#22c55e', '#ef4444', '#a855f7'];
 export const dynamic = 'force-dynamic'
 type IVocuhersProps = {
     params: Promise<{ lang: Lang }>
 }
+
 const VouchersPage = async ({ params }: IVocuhersProps) => {
     const { lang } = await params;
     const bonuses: Voucher[] = await getBonusPrizes();

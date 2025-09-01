@@ -1,6 +1,12 @@
 import { GlobalDialog } from "@/components/common/modals/GlobalDialog";
 import Header from "@/components/features/dashboard/header/Header";
-
+export const metadata = {
+  robots: {
+    title:"Dashboard Page",
+    index: false,
+    follow: true,
+  },
+};
 export default async function Layout({
   children,
   params,

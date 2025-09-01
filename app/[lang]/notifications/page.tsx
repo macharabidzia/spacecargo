@@ -2,6 +2,12 @@ import { getUserNotifications } from "@/actions/user.actions";
 import NotificationsTableClient from "@/components/features/notifications/NotificationsTableClient";
 import { Card, CardContent } from "@/components/ui/card";
 const DEFAULT_PAGE_SIZE = 5;
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 const NotificationsPage = async ({
   searchParams,
 }: {
