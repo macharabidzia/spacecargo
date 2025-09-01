@@ -17,6 +17,7 @@ import GenericDrawers from "@/components/features/dashboard/drawers/GenericDrawe
 import AddAuthorizedPersonDrawer from "@/components/features/dashboard/drawers/AddAuthorizedPersonDrawer";
 import EditParcelDrawer from "@/components/features/dashboard/drawers/EditParcelDrawer";
 import httpClient from "@/lib/httpClient";
+import RouteLoader from "@/components/common/RouterLoader";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -72,6 +73,7 @@ export default async function LocaleLayout(props: {
           />
           <I18nProvider lang={lang} dictionaries={dictionary}>
             <div className="flex flex-1 bg-background">
+              <RouteLoader/>
               <SidebarProvider
                 defaultOpen={false}
                 className="flex-wrap content-start"

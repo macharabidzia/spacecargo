@@ -130,12 +130,12 @@ export default function NotificationsTableClient({
           <Button
             variant="default"
             onClick={handleMarkAllRead}
-            className="px-4 py-2 bg-space-blue-light hover:bg-space-blue-light/90 text-white rounded-md "
+            className="px-4 py-2 bg-space-blue-light hover:bg-space-blue-light/90 text-white rounded-md"
           >
             {t("notifications.markAllReadButton")}
           </Button>
           <Button
-            variant="outline"
+            variant="default"
             onClick={handleDeleteAll}
             className="px-4 py-2 bg-space-blue-muted text-white hover:bg-space-blue-muted/90 rounded-md "
           >

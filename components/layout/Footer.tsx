@@ -11,8 +11,8 @@ type FooterInterface = {
   dictionary: CommonDictionary;
   lang: Lang
 };
-
-const Footer = async ({ dictionary}: FooterInterface) => {
+const fbUrl = 'https://www.facebook.com/spacecargo.ge/?locale=ka_GE';
+const Footer = async ({ dictionary }: FooterInterface) => {
   return (
     <footer className="bg-muted/40 border-t border-border px-4 md:px-8 lg:px-16 xl:px-32 pt-16 pb-10 mt-16 dark:bg-gray-900 dark:border-gray-700">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -117,7 +117,7 @@ const Footer = async ({ dictionary}: FooterInterface) => {
 
         {/* Social Icons */}
         <div className="flex gap-4 justify-center">
-          {[{ Icon: Facebook, href: "/" }, { Icon: Instagram, href: "/" }, { Icon: LinkedIn, href: "/" }].map(({ Icon, href }, i) => (
+          {[{ Icon: Facebook, href: "https://www.facebook.com/spacecargo.ge" }, { Icon: Instagram, href: "https://www.instagram.com/space.cargo/" }, { Icon: LinkedIn, href: "https://www.linkedin.com/company/spacecargo/" }].map(({ Icon, href }, i) => (
             <Link
               key={i}
               href={href}

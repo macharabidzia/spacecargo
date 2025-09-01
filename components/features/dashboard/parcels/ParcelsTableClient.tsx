@@ -89,10 +89,10 @@ export default function ParcelsTableClient({
       <ConfirmDialog
         open={showConfirm}
         setOpen={setShowConfirm}
-        title="Delete this item?"
-        description="This action cannot be undone."
-        confirmLabel="Delete"
-        cancelLabel="Cancel"
+        title={t("notifications.deleteConfirmTitle")}
+        description={t("notifications.deleteConfirmDescription")}
+        confirmLabel={t("notifications.deleteConfirmLabel")}
+        cancelLabel={t("notifications.deleteCancelLabel")}
         onConfirm={confirmDelete}
       />
 

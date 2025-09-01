@@ -90,7 +90,7 @@ const Flights = async ({ params, searchParams }: FlightsProps) => {
       </div>
 
       <Tabs defaultValue={countries[0]}>
-        <TabsList className="w-full h-16 gap-1 border-2 border-gray-200 dark:border-gray-700 p-0 bg-transparent">
+        <TabsList className="w-full h-auto gap-1 border-2 border-slate-200 dark:border-slate-700 p-0 bg-transparent flex-wrap">
           {countries.map((key) => {
             const countryName = lang === "en" ? countryConfig[key].en : countryConfig[key].ka;
             const icon = countryConfig[key].icon;
@@ -98,10 +98,10 @@ const Flights = async ({ params, searchParams }: FlightsProps) => {
               <TabsTrigger
                 key={key}
                 value={key}
-                className="flex items-center gap-2 px-3 h-full border-2 border-gray-200 dark:border-gray-700 
+                className="flex items-center gap-2 px-12 h-full border-2 border-gray-200 dark:border-gray-700 
                            bg-slate-200 dark:bg-gray-800 
                            text-black dark:text-gray-200
-                           data-[state=active]:text-white data-[state=active]:bg-space-blue-light dark:data-[state=active]:bg-space-blue-light/50"
+                           data-[state=active]:text-white data-[state=active]:bg-space-blue-light dark:data-[state=active]:bg-space-blue-light/50 min-h-16"
               >
                 <Image
                   src={icon}
