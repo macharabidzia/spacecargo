@@ -21,7 +21,6 @@ const Header: React.FC<HeaderInterface> = async ({
   className,
   currentLanguage,
 }) => {
-  const logoSizeClass = "w-[88px] h-[88px]";
 
   const fullDictionary: AppDictionary = await getDictionary(currentLanguage);
   const dictionary: CommonDictionary = fullDictionary.common;

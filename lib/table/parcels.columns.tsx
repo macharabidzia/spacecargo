@@ -25,7 +25,7 @@ function makeActionsColumn<T extends { id?: string; invoiceUrl?: string; canEdit
   handlers: {
     onEdit?: (row: T) => void;
     onDelete?: (row: T) => void;
-    onInvoiceClick?: (id: string) => void;
+    onInvoiceClick?: (id: string | null) => void;
   },
   t: (key: string) => string
 ): ColumnDef<T> {
@@ -90,10 +90,10 @@ export function buildParcelColumns(
   handlers: {
     onEdit?: (parcel: Parcel) => void;
     onDelete?: (parcel: Parcel) => void;
-    onInvoiceClick?: any;
+    onInvoiceClick?: (id: string | null) => void;
   } = {},
   t: (key: string) => string,
-  options: { showInvoice?: boolean; showSelectColumn?: boolean, onInvoiceClick?: any } = { showSelectColumn: false }
+  options: { showInvoice?: boolean; showSelectColumn?: boolean } = { showSelectColumn: false }
 ): ColumnDef<Parcel>[] {
   const sortIcon = (direction: string | false | undefined) => {
     if (direction === "asc") return <span className="ml-2 text-xs">▲</span>;

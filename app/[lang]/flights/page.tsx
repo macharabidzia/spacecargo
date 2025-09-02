@@ -39,8 +39,8 @@ type FlightsProps = {
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }: { params: { lang: Lang } }) {
-  const { lang } = params;
+export async function generateMetadata({ params }: { params: Promise<{ lang: Lang }> }) {
+  const { lang } = await params;
   const dictionary = (await getDictionary(lang)).common;
 
   return {
@@ -62,6 +62,7 @@ const DEFAULT_PAGE_SIZE = 5;
 const Flights = async ({ params, searchParams }: FlightsProps) => {
   const { lang } = await params;
   const awaitedSearchParams = await searchParams;
+  
   const page =
     typeof awaitedSearchParams.page === "string"
       ? parseInt(awaitedSearchParams.page, 10)

@@ -46,7 +46,7 @@ export default function ParcelsTableClient({
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedParcelId, setSelectedParcelId] = useState<string | null>(null);
   const [openInvoiceId, setOpenInvoiceId] = useState<string | null>(null);
-  const { data, execute: executePayParcels, isPending } = useServerAction(payParcels)
+  const { execute: executePayParcels, } = useServerAction(payParcels)
   const { execute: executePayAllParcels } = useServerAction(payAllParcels)
 
   const router = useRouter();

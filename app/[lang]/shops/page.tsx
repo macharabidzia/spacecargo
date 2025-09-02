@@ -9,8 +9,8 @@ type IShops = {
 
 import { Metadata } from "next";
 
-export async function generateMetadata({ searchParams }: { searchParams: { page?: string } }): Promise<Metadata> {
-  const page = searchParams.page || "1";
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ page?: string }> }): Promise<Metadata> {
+  const { page } = (await searchParams) || "1";
   return {
     title: `Shops - Page ${page} | SpaceCargo`,
     description: "Browse all shops available in SpaceCargo",
