@@ -1,4 +1,4 @@
 module.exports = {
-    siteUrl: 'https://spacecargo.vercel.app/en',
+    siteUrl: 'https://spacecargo.vercel.app',
     generateRobotsTxt: true,
 };
