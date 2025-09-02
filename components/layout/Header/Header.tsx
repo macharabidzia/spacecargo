@@ -33,7 +33,7 @@ const Header: React.FC<HeaderInterface> = async ({
   const authToken = cookieStore.get("spacecargo_session")?.value;
   const isLoggedIn = !!authToken;
   let dashboardInfo;
-  if(isLoggedIn){
+  if (isLoggedIn) {
     dashboardInfo = await fetchUserDashboard();
   }
 
@@ -58,9 +58,7 @@ const Header: React.FC<HeaderInterface> = async ({
               "text-blue-600 dark:text-blue-400"
             )}
           >
-            <div className={cn("flex", logoSizeClass)}>
-              <LogoIcon className="h-fit w-full fill-blue-600 dark:fill-white" />
-            </div>
+            <LogoIcon className="w-[88px] h-[88px] fill-blue-600 dark:fill-white" />
           </Link>
           <div className="hidden md:block">
             <NavLinkList currentLanguage={currentLanguage} dictionary={dictionary} />
