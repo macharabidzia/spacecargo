@@ -17,7 +17,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     openGraph: {
       title: `Shops - Page ${page} | SpaceCargo`,
       description: "Browse all shops available in SpaceCargo",
-      url: `https://spacecargo-qpe5.vercel.app/en?page=${page}`,
+      url: `https://spacecargo.vercel.app/en?page=${page}`,
     },
   };
 }
