@@ -11,8 +11,19 @@ import Link from "next/link";
 import { getNews } from "@/actions/news.actions";
 import { cache } from "react";
 import type { Metadata } from "next";
+import { NewsResponse } from "@/types/news";
 
 const cachedGetNews = cache(getNews);
+
+// ✅ safeFetch utility
+async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
+  try {
+    return await fn();
+  } catch (e) {
+    console.error("safeFetch error:", e);
+    return fallback;
+  }
+}
 
 interface HomePageProps {
   params: Promise<{ lang: Lang }>;
@@ -20,7 +31,8 @@ interface HomePageProps {
 
 export const metadata: Metadata = {
   title: "SpaceCargo - Fast & Reliable Shipping",
-  description: "Calculate shipping, explore tariffs, read news, and enjoy our services. Your trusted partner for deliveries worldwide.",
+  description:
+    "Calculate shipping, explore tariffs, read news, and enjoy our services. Your trusted partner for deliveries worldwide.",
   openGraph: {
     title: "SpaceCargo - Fast & Reliable Shipping",
     description: "Calculate shipping instantly and explore our services.",
@@ -41,13 +53,26 @@ export const metadata: Metadata = {
     canonical: "https://spacecargo.ge",
   },
 };
-
+const emptyNews: NewsResponse = {
+  current_page: 1,
+  data: [],
+  first_page_url: "",
+  from: 0,
+  last_page: 1,
+  last_page_url: "",
+  links: [],
+  next_page_url: null,
+  path: "",
+  per_page: 10,
+  prev_page_url: null,
+  to: 0,
+  total: 0,
+};
 const Home = async ({ params }: HomePageProps) => {
   const { lang } = await params;
-
   const [fullDictionary, newsResult] = await Promise.all([
     getDictionary(lang),
-    cachedGetNews({ chanel: "desktop", news_number: 3, page: 1 }),
+    cachedGetNews({ chanel: "desktop", news_number: 3, page: 1 }).catch(() => emptyNews),
   ]);
 
   const newsData = newsResult.data;
