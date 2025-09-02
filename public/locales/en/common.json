@@ -601,5 +601,7 @@
   "brand": "SPACE CARGO",
   "voucherLabel": "Voucher",
   "authorizedPersons.addButton": "Add",
-  "authorizedPerson.validation.invalidPin":"Invalid P/N"
+  "authorizedPerson.validation.invalidPin":"Invalid P/N",
+  "button.payParcels": "Pay {{count}} Parcels",
+  "button.payAllParcels": "Pay All Parcels"
 }

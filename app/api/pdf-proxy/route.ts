@@ -10,12 +10,12 @@ export async function GET(request: Request) {
       { status: 400 }
     );
   }
-
   const token = await getToken()
   try {
     const response = await fetch(url, {
-      credentials: "include", headers: {
-        "Authorization": `Bearer ${token}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Cookie: `spacecargo_session=${token}`
       },
     });
     if (!response.ok) {

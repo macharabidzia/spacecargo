@@ -19,13 +19,13 @@ import {
   Truck,
   File,
 } from "lucide-react";
-import Link from "next/link";
 
 /** Actions column factory */
-function makeActionsColumn<T>(
+function makeActionsColumn<T extends { id?: string; invoiceUrl?: string; canEdit?: boolean; canDelete?: boolean }>(
   handlers: {
     onEdit?: (row: T) => void;
     onDelete?: (row: T) => void;
+    onInvoiceClick?: (id: string) => void;
   },
   t: (key: string) => string
 ): ColumnDef<T> {
@@ -39,12 +39,11 @@ function makeActionsColumn<T>(
     enableSorting: false,
     enableHiding: false,
     cell: ({ row }) => {
-      const original = row.original as T & {
-        canEdit?: boolean;
-        canDelete?: boolean;
-      };
+      const original = row.original;
+
       const showEdit = handlers.onEdit && original.canEdit !== false;
       const showDelete = handlers.onDelete && original.canDelete !== false;
+      const showInvoice = handlers.onInvoiceClick && original.invoiceUrl;
 
       return (
         <div className="flex items-center justify-center gap-2">
@@ -54,7 +53,6 @@ function makeActionsColumn<T>(
               size="icon"
               className="h-8 w-8 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition"
               onClick={() => handlers.onEdit!(original)}
-              aria-label={t("actions.edit")}
               title={t("actions.edit")}
             >
               <Edit className="h-4 w-4" />
@@ -66,10 +64,20 @@ function makeActionsColumn<T>(
               size="icon"
               className="h-8 w-8 rounded-full text-red-600 hover:bg-red-50 dark:hover:bg-red-900 transition"
               onClick={() => handlers.onDelete!(original)}
-              aria-label={t("actions.delete")}
               title={t("actions.delete")}
             >
               <Trash2 className="h-4 w-4" />
+            </Button>
+          )}
+          {showInvoice && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition"
+              onClick={() => handlers.onInvoiceClick!(original.id!)}
+              title={t("actions.invoice")}
+            >
+              <File className="h-4 w-4" />
             </Button>
           )}
         </div>
@@ -82,9 +90,10 @@ export function buildParcelColumns(
   handlers: {
     onEdit?: (parcel: Parcel) => void;
     onDelete?: (parcel: Parcel) => void;
+    onInvoiceClick?: any;
   } = {},
   t: (key: string) => string,
-  options: { showInvoice?: boolean; showSelectColumn?: boolean } = { showSelectColumn: false }
+  options: { showInvoice?: boolean; showSelectColumn?: boolean, onInvoiceClick?: any } = { showSelectColumn: false }
 ): ColumnDef<Parcel>[] {
   const sortIcon = (direction: string | false | undefined) => {
     if (direction === "asc") return <span className="ml-2 text-xs">▲</span>;
@@ -94,7 +103,6 @@ export function buildParcelColumns(
 
   const columns: ColumnDef<Parcel>[] = [];
 
-  // --- Select column (optional)
   if (options?.showSelectColumn) {
     columns.push({
       id: "select",
@@ -126,7 +134,6 @@ export function buildParcelColumns(
     });
   }
 
-  // --- Standard columns (kept exactly like your original)
   columns.push(
     {
       accessorKey: "tdsCode",
@@ -262,41 +269,9 @@ export function buildParcelColumns(
         </div>
       ),
     },
-    // Optional invoice column inserted below if requested
   );
 
-  // --- Optional invoice column
-  if (options?.showInvoice) {
-    columns.push({
-      accessorKey: "invoiceUrl",
-      header: ({ column }) => (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="flex items-center p-0 text-sm font-medium text-gray-700 hover:bg-transparent dark:text-gray-300"
-        >
-          <File className="mr-1 h-4 w-4 text-gray-500 dark:text-gray-400" />
-          {t("tableHeader.invoice")}
-          {sortIcon(column.getIsSorted())}
-        </Button>
-      ),
-      cell: ({ row }) => {
-        const invoiceUrl = row.original.invoiceUrl;
-        return invoiceUrl ? (
-          <Link
-            href={"/dashboard/parcels/invoice/" + row.original.id}
-            target="_blank"
-            className="flex items-center gap-1 text-blue-600 hover:underline justify-center text-center"
-          >
-            <File className="h-4 w-4" />
-            Invoice
-          </Link>
-        ) : (
-          <span className="w-full text-center mx-auto">-</span>
-        );
-      },
-    });
-  }
+
 
   // --- Other columns appended
   columns.push(

@@ -62,5 +62,7 @@ export const API_ENDPOINTS = {
   POST_SUBSCRIBE: "/common/add_rss",
   POST_USER_AUTHORIZED_PERSON_CANCEL: "/user/authorized_person_cancel",
   GET_INVOICE_PDF: "invoice/get_pdf",
-  GET_FLIGHTS:"/common/get_flights"
+  GET_FLIGHTS: "/common/get_flights",
+  POST_PAY_PARCELS: "/invoice/pay_parcels",
+  POST_PAY_ALL_PARCELS: '/invoice/pay_all_parcels'
 };

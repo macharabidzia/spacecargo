@@ -23,17 +23,21 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ currentLang }) => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const singleNews = useGlobalDataStore((s) => s.singleNews);
 
-  const handleLanguageChange = async (newLang: string) => {
-    const basePaths = pathname.split("/").filter(Boolean);
-    const title = singleNews ? (newLang === "en" ? singleNews[0].Title_EN : newLang === "ka" ? singleNews[0].Title_GE : "") : ""
-    basePaths[2] = title;
-    const newPath =
-      basePaths.length > 0 && i18n.locales.includes(basePaths[0])
-        ? `/${newLang}/${basePaths.slice(1).join("/")}`
-        : `/${newLang}${pathname === "/" ? "" : pathname} ${title}`;
-    setIsDropdownOpen(false);
-    router.push(newPath);
-  };
+const handleLanguageChange = (newLang: string) => {
+  const segments = pathname.split("/").filter(Boolean);
+  if (i18n.locales.includes(segments[0])) {
+    segments[0] = newLang;
+  } else {
+    segments.unshift(newLang);
+  }
+  if (singleNews && pathname.includes("/news/")) {
+    const titleIndex = segments.findIndex((s) => s === segments[segments.length - 1]);
+    segments[titleIndex] = newLang === "en" ? singleNews[0].Title_EN : singleNews[0].Title_GE;
+  }
+  const newPath = "/" + segments.join("/");
+  setIsDropdownOpen(false);
+  router.push(newPath);
+};
 
   const getLanguageName = (langCode: string) => {
     switch (langCode) {

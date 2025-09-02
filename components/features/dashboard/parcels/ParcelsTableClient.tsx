@@ -3,7 +3,7 @@
 import { DataTable } from "@/components/common/DataTable/DataTable";
 import Pagination from "@/components/common/Pagination";
 import ColumnToggleDropdown from "@/components/common/DataTable/ColumnToggleDropdown";
-import { deleteParcels } from "@/actions/parcel.actions";
+import { deleteParcels, payAllParcels, payParcels } from "@/actions/parcel.actions";
 import { useServerAction } from "@/hooks/useServerAction";
 import { useGenericTable } from "@/hooks/use-table";
 import { useTableSearch } from "@/hooks/parcels/use-table-search";
@@ -15,6 +15,8 @@ import { useState } from "react";
 import { ConfirmDialog } from "@/components/common/modals/ConfirmModal";
 import { useRouter } from "next/navigation";
 import IconInput from "@/components/common/IconInput";
+import InvoiceModal from "./InvoiceModal";
+import { Button } from "@/components/ui/button";
 
 interface Props {
   parcels: Parcel[];
@@ -43,6 +45,10 @@ export default function ParcelsTableClient({
   const { execute: execDeleteParcels } = useServerAction(deleteParcels);
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedParcelId, setSelectedParcelId] = useState<string | null>(null);
+  const [openInvoiceId, setOpenInvoiceId] = useState<string | null>(null);
+  const { data, execute: executePayParcels, isPending } = useServerAction(payParcels)
+  const { execute: executePayAllParcels } = useServerAction(payAllParcels)
+
   const router = useRouter();
   const handleEdit = (parcel: Parcel) => {
     router.push(`?editParcel=true&id=${parcel.id}`);
@@ -65,15 +71,17 @@ export default function ParcelsTableClient({
     currentPage,
     pageSize,
     tableId,
+    enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     columnBuilder: () =>
       buildParcelColumns(
         {
           onEdit: canEdit ? handleEdit : undefined,
           onDelete: canDelete ? handleDelete : undefined,
+          onInvoiceClick: setOpenInvoiceId
         },
         t,
-        { showInvoice, showSelectColumn: enableRowSelection }
+        { showInvoice, showSelectColumn: enableRowSelection, }
       ),
   });
 
@@ -81,7 +89,16 @@ export default function ParcelsTableClient({
     paramName: "tds_code",
     debounceTime: 500,
   });
-
+  const selectedRowIds = table
+    ? table.getSelectedRowModel().rows.map((row) => row.original.id)
+    : [];
+  const handleClick = () => {
+    if (selectedRowIds.length === 0) {
+      executePayAllParcels()
+      return;
+    }
+    executePayParcels(selectedRowIds)
+  }
   const totalPages = Math.ceil(recordsNumber / pageSize);
 
   return (
@@ -95,7 +112,7 @@ export default function ParcelsTableClient({
         cancelLabel={t("notifications.deleteCancelLabel")}
         onConfirm={confirmDelete}
       />
-
+      <InvoiceModal id={openInvoiceId} setOpenInvoiceId={setOpenInvoiceId} />
       <div className="py-4 flex flex-row items-center justify-between px-6 my-4">
         <div className="flex flex-row items-center gap-2">
           <h1 className="dark:text-gray-300 text-gray-600 ">{t("tabsData.receivable")}:</h1>
@@ -121,8 +138,16 @@ focus:dark:border-blue-500"
           {isHydrated && <ColumnToggleDropdown table={table} />}
         </div>
       </div>
-
-      <DataTable table={table} isHydrated={isHydrated} />
+      {enableRowSelection && (
+        <Button
+          onClick={handleClick}
+          className="flex justify-self-end p-5 min-w-[145px] m-6 mt-0 bg-space-blue-muted hover:bg-space-blue-muted/85"
+        >
+          {selectedRowIds.length > 0
+            ? t("button.payParcels", { count: selectedRowIds.length })
+            : t("button.payAllParcels")}
+        </Button>
+      )}  <DataTable table={table} isHydrated={isHydrated} />
       <Pagination totalPages={totalPages} currentPage={currentPage} />
     </>
   );

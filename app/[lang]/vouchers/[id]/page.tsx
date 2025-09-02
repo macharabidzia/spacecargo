@@ -70,6 +70,7 @@ const VoucherPage = async ({ params }: IVoucherPage) => {
         <CardFooter className="bg-muted p-6 m-4 rounded-lg flex lg:flex-row justify-between items-center lg:gap-0 gap-5 flex-col">
           <div className="flex flex-col md:flex-row gap-5 lg:gap-10 items-center justify-center lg:justify-start pb-4 lg:pb-0 lg:border-r border-border border-b lg:border-b-0 flex-1">
             <Button
+              disableAnimation
               variant="outline"
               className="h-12 bg-background text-foreground"
             >
@@ -77,6 +78,7 @@ const VoucherPage = async ({ params }: IVoucherPage) => {
             </Button>
             <SwitchCameraIcon className="text-muted-foreground" />
             <Button
+              disableAnimation
               variant="outline"
               className="h-12 bg-background text-foreground"
             >
@@ -86,7 +88,7 @@ const VoucherPage = async ({ params }: IVoucherPage) => {
 
           {/* Right side */}
           <div className="flex justify-between flex-row gap-5 flex-1 lg:justify-end items-center">
-            <Button className="bg-primary text-primary-foreground h-12">
+            <Button className="bg-primary text-primary-foreground h-12" disableAnimation>
               თქვენი სფეის ქულები:{" "}
               <span className="font-light">{user.bonusPoint}</span>
             </Button>

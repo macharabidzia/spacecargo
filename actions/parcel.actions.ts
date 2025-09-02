@@ -52,6 +52,13 @@ export async function editParcel(data: FormData): Promise<ParcelApiResponse> {
     return postApiData<ParcelApiResponse>(httpClient, API_ENDPOINTS.EDIT_PARCEL, data, {
     });
 }
+export async function payParcels(parcelIds: string[]): Promise<ParcelApiResponse> {
+    const data = parcelIds.length > 0 ? {parcelIds:parcelIds} : {}
+    return postApiData<ParcelApiResponse>(httpClient, API_ENDPOINTS.POST_PAY_PARCELS,data,{});
+}
+export async function payAllParcels(): Promise<ParcelApiResponse> {
+    return postApiData<ParcelApiResponse>(httpClient, API_ENDPOINTS.POST_PAY_ALL_PARCELS,{});
+}
 export async function getParcel(id: string): Promise<Parcel> {
     return postApiData<Parcel>(httpClient, API_ENDPOINTS.GET_PARCEL_DETAILS, { parcelId: id }, {
     });

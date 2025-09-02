@@ -600,5 +600,7 @@
   "brand": "SPACE CARGO",
   "voucherLabel": "ვაუჩერი",
   "authorizedPersons.addButton": "დამატება",
-  "authorizedPerson.validation.invalidPin": "არასწორი პირადი ნომერი"
+  "authorizedPerson.validation.invalidPin": "არასწორი პირადი ნომერი",
+  "button.payParcels": "{{count}} ამანათის გადახდა",
+  "button.payAllParcels": "გადახდა ყველა ამანათის"
 }
