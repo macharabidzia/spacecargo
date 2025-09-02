@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://spacecargo-78nd.vercel.app
+
+# Sitemaps
+Sitemap: https://spacecargo-78nd.vercel.app/sitemap.xml
