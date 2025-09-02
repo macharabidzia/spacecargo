@@ -15,16 +15,6 @@ import { NewsResponse } from "@/types/news";
 
 const cachedGetNews = cache(getNews);
 
-// ✅ safeFetch utility
-async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
-  try {
-    return await fn();
-  } catch (e) {
-    console.error("safeFetch error:", e);
-    return fallback;
-  }
-}
-
 interface HomePageProps {
   params: Promise<{ lang: Lang }>;
 }
