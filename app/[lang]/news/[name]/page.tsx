@@ -87,24 +87,24 @@ const SingleNews = async ({ params }: ISingleNews) => {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "NewsArticle",
-                    headline: title,
-                    image: [imageUrl],
-                    datePublished: publishedTime,
-                    dateModified: modifiedTime,
-                    author: {
+                    "headline": title,
+                    "image": [imageUrl],
+                    "datePublished": publishedTime,
+                    "dateModified": modifiedTime,
+                    "author": {
                         "@type": "Organization",
-                        name: "SpaceCargo",
+                        "name": "SpaceCargo",
                     },
-                    publisher: {
+                    "publisher": {
                         "@type": "Organization",
-                        name: "SpaceCargo",
-                        logo: {
+                        "name": "SpaceCargo",
+                        "logo": {
                             "@type": "ImageObject",
-                            url: "https://spacecargo.vercel.app/logo.png",
+                            "url": "https://spacecargo.vercel.app/logo.png",
                         },
                     },
-                    description,
-                    mainEntityOfPage: {
+                    "description": description,
+                    "mainEntityOfPage": {
                         "@type": "WebPage",
                         "@id": `https://spacecargo.vercel.app/${lang}/news/${encodeURIComponent(title)}`,
                     },
