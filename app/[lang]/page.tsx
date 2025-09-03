@@ -9,11 +9,9 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getNews } from "@/actions/news.actions";
-import { cache } from "react";
 import type { Metadata } from "next";
 import { NewsResponse } from "@/types/news";
 
-const cachedGetNews = cache(getNews);
 
 interface HomePageProps {
   params: Promise<{ lang: Lang }>;
@@ -62,7 +60,7 @@ const Home = async ({ params }: HomePageProps) => {
   const { lang } = await params;
   const [fullDictionary, newsResult] = await Promise.all([
     getDictionary(lang),
-    cachedGetNews({ chanel: "desktop", news_number: 3, page: 1 }).catch(() => emptyNews),
+    getNews({ chanel: "desktop", news_number: 3, page: 1 }).catch(() => emptyNews),
   ]);
 
   const newsData = newsResult.data;
