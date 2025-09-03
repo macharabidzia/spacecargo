@@ -1,13 +1,9 @@
 "use client";
 
+import { ActionButton } from "@/components/common/ActionButton";
 import { Button } from "@/components/ui/button";
-import { ColumnDef } from "@tanstack/react-table";
+import { ColumnDef, Column } from "@tanstack/react-table";
 import { CalendarDays, Eye, EyeOff, Trash2 } from "lucide-react";
-
-const truncateText = (text: string, maxLength: number): string => {
-  if (!text) return "";
-  return text.length <= maxLength ? text : `${text.slice(0, maxLength)}...`;
-};
 
 export interface Notification {
   id: number;
@@ -23,122 +19,128 @@ interface NotificationColumnOptions {
   onDelete?: (notification: Notification) => void;
 }
 
+/** Centered Header with sorting and icon support */
+const CenteredHeader = <TData, TValue>(
+  titleKey: string,
+  column: Column<TData, TValue>,
+  t: (key: string) => string,
+  Icon: React.ReactNode,
+  className?: string
+) => (
+  <Button
+    variant="ghost"
+    disableAnimation
+    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+    className={`flex items-center justify-center gap-2 p-0 text-sm font-medium text-gray-700 hover:bg-transparent dark:text-gray-300 ${className} px-4 cursor-pointer`}
+  >
+    {Icon}
+    {t(titleKey)}
+    {column.getIsSorted() === "asc" && <span className="ml-1 text-xs">▲</span>}
+    {column.getIsSorted() === "desc" && <span className="ml-1 text-xs">▼</span>}
+  </Button>
+);
+
+const CenteredCell = (content: React.ReactNode) => (
+  <div className="flex items-center flex-1 w-full justify-center px-4 py-2 text-sm text-gray-800 dark:text-gray-200 border-r border-gray-200">
+    {content}
+  </div>
+);
+
+const truncateText = (text: string, maxLength: number): string =>
+  !text ? "" : text.length <= maxLength ? text : `${text.slice(0, maxLength)}...`;
+
 export function buildNotificationColumns({
   t,
   onMarkRead,
   onDelete,
 }: NotificationColumnOptions): ColumnDef<Notification>[] {
-  return [
-    {
-      accessorKey: "title",
-      header: () => (
-        <div className="text-left font-semibold text-gray-700 dark:text-gray-300 px-4 py-2">
-          {t("tableHeader.title")}
-        </div>
-      ),
-      cell: ({ row }) => (
-        <div className="text-sm font-semibold text-gray-900 dark:text-gray-100 px-4 py-3">
-          {truncateText(row.original.title, 40)}
-        </div>
-      ),
-    },
-    {
-      accessorKey: "text",
-      header: () => (
-        <div className="text-left font-semibold text-gray-700 dark:text-gray-300 px-4 py-2">
-          {t("tableHeader.message")}
-        </div>
-      ),
-      cell: ({ row }) => (
-        <div
-          className="text-sm text-gray-800 dark:text-gray-200 px-4 py-3 break-words"
+  const columns: ColumnDef<Notification>[] = [];
+
+  // Title
+  columns.push({
+    accessorKey: "title",
+    header: ({ column }) => CenteredHeader("tableHeader.title", column, t, null),
+    cell: ({ row }) => CenteredCell(truncateText(row.original.title, 40)),
+  });
+
+  // Message
+  columns.push({
+    accessorKey: "text",
+    header: ({ column }) => CenteredHeader("tableHeader.message", column, t, null),
+    cell: ({ row }) =>
+      CenteredCell(
+        <span
           dangerouslySetInnerHTML={{
             __html: truncateText(row.original.text, 80),
           }}
         />
       ),
-    },
-    {
-      accessorKey: "date",
-      header: () => (
-        <div className="flex items-center gap-1 font-semibold text-gray-700 dark:text-gray-300 px-4 py-2">
-          <CalendarDays className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-          {t("tableHeader.date")}
-        </div>
-      ),
-      cell: ({ row }) => {
-        const formattedDate = new Date(row.original.date).toLocaleString();
-        return (
-          <div className="text-sm text-gray-900 dark:text-gray-100 px-4 py-3">
-            {formattedDate}
-          </div>
-        );
-      },
-    },
-    {
-      accessorKey: "isRead",
-      header: () => (
-        <div className="flex items-center gap-1 font-semibold text-gray-700 dark:text-gray-300 px-4 py-2 justify-center">
-          <Eye className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-          {t("tableHeader.status")}
-        </div>
-      ),
-      cell: ({ row }) => {
-        const isRead = row.original.isRead;
-        return (
-          <div className="flex items-center justify-center text-sm px-4 py-3">
-            {isRead ? (
-              <Eye className="h-5 w-5 text-green-600 dark:text-green-400" />
-            ) : (
-              <EyeOff className="h-5 w-5 text-red-600 dark:text-red-400" />
-            )}
-          </div>
-        );
-      },
-    },
-    {
-      id: "actions",
-      header: () => (
-        <div className="text-center font-semibold text-gray-700 dark:text-gray-300 px-4 py-2">
-          {t("tableHeader.actions")}
-        </div>
-      ),
-      enableSorting: false,
-      cell: ({ row }) => {
-        const notification = row.original;
+  });
 
-        return (
-          <div className="flex justify-center gap-3 px-4 py-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 transition rounded-md"
-              onClick={() => onMarkRead?.(notification)}
-              title={
-                notification.isRead
-                  ? t("actions.markUnread")
-                  : t("actions.markRead")
-              }
-            >
-              {notification.isRead ? (
-                <EyeOff className="h-4 w-4" />
-              ) : (
-                <Eye className="h-4 w-4" />
-              )}
-            </Button>
+  // Date
+  columns.push({
+    accessorKey: "date",
+    header: ({ column }) =>
+      CenteredHeader(
+        "tableHeader.date",
+        column,
+        t,
+        <CalendarDays className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+      ),
+    cell: ({ row }) => CenteredCell(new Date(row.original.date).toLocaleString()),
+  });
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900 transition rounded-md"
-              onClick={() => onDelete?.(notification)}
-              title={t("actions.delete")}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        );
-      },
+  // Status
+  columns.push({
+    accessorKey: "isRead",
+    header: ({ column }) =>
+      CenteredHeader(
+        "tableHeader.status",
+        column,
+        t,
+        <Eye className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+      ),
+    cell: ({ row }) =>
+      CenteredCell(
+        row.original.isRead ? (
+          <Eye className="h-5 w-5 text-green-600 dark:text-green-400" />
+        ) : (
+          <EyeOff className="h-5 w-5 text-red-600 dark:text-red-400" />
+        )
+      ),
+  });
+
+  // Actions
+  columns.push({
+    id: "actions",
+    header: ({ column }) => CenteredHeader("tableHeader.actions", column, t, null),
+    enableSorting: false,
+    cell: ({ row }) => {
+      const notification = row.original;
+      return (
+        <div className="flex justify-center gap-3 px-4 py-3">
+          {onMarkRead && (
+            <ActionButton
+              icon={notification.isRead ? EyeOff : Eye}
+              label={!notification.isRead ? t("actions.markRead") : ""}
+              item={notification}
+              onClick={(n) => onMarkRead?.(n)}
+              colorClass="text-blue-600 dark:text-blue-400"
+            />
+          )}
+          {onDelete && (
+            <ActionButton
+              icon={Trash2}
+              label={t("actions.delete")}
+              item={notification}
+              onClick={(n) => onDelete?.(n)}
+              colorClass="text-red-600 dark:text-red-400"
+            />
+          )}
+        </div>
+      );
     },
-  ];
+  });
+
+  return columns;
 }

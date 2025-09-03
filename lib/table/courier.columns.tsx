@@ -5,7 +5,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Courier } from "@/types/courier";
-import { Column, ColumnDef, Row } from "@tanstack/react-table";
+import { ColumnDef, Column, Row } from "@tanstack/react-table";
 import {
   Tag,
   MapPin,
@@ -14,21 +14,43 @@ import {
   Scale,
   DollarSign,
   CalendarDays,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 
-const truncateText = (text: string, maxLength: number): string => {
-  if (!text) return "";
-  if (text.length <= maxLength) {
-    return text;
-  }
-  return text.substring(0, maxLength) + "...";
-};
+/** Centered Header like Parcel table */
+const CenteredHeader = <TData, TValue>(
+  titleKey: string,
+  column: Column<TData, TValue>,
+  t: (key: string) => string,
+  Icon: React.ReactNode,
+  className?: string
+) => (
+  <Button
+    variant="ghost"
+    disableAnimation
+    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+    className={`flex items-center justify-center gap-2 p-0 text-sm font-medium text-gray-700 hover:bg-transparent dark:text-gray-300 ${className} px-4 cursor-pointer`}
+  >
+    {Icon}
+    
+    {t('tableHeader.'+titleKey)}
+    {column.getIsSorted() === "asc" && <ChevronUp className="h-4 w-4" />}
+    {column.getIsSorted() === "desc" && <ChevronDown className="h-4 w-4" />}
+  </Button>
+);
+
+/** Centered Cell like Parcel table */
+const CenteredCell = (content: React.ReactNode, className?: string) => (
+  <div className={`flex items-center flex-1 w-full justify-center px-4 py-2 text-sm text-gray-800 dark:text-gray-200 border-r border-gray-200 ${className}`}>
+    {content}
+  </div>
+);
 
 export function buildCourierTable(
   t: (key: string) => string,
   options: { showSelectColumn?: boolean } = { showSelectColumn: true }
 ): ColumnDef<Courier>[] {
-  const MAX_HEADER_LENGTH = 15;
   const columns: ColumnDef<Courier>[] = [];
 
   if (options.showSelectColumn) {
@@ -74,101 +96,53 @@ export function buildCourierTable(
       enableHiding: false,
     });
   }
-  const makeHeader = (
-    column: Column<Courier>,
-    icon: React.ReactElement<{ className?: string }>,
-    key: string
-  ) => {
-    const headerText = t(key);
-    const displayHeaderText = truncateText(headerText, MAX_HEADER_LENGTH);
-    return (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="flex items-center p-0 text-sm font-medium text-gray-700 hover:bg-transparent dark:text-gray-300 dark:hover:text-white transition-all duration-300 ease-in-out"
-        title={headerText}
-      >
-        {React.cloneElement(icon, {
-          className:
-            "mr-1 h-4 w-4 text-gray-500 dark:text-gray-400 transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:text-white",
-        })}
-        {displayHeaderText}
-        {{
-          asc: <span className="ml-2 text-xs">▲</span>,
-          desc: <span className="ml-2 text-xs">▼</span>,
-        }[column.getIsSorted() as string] ?? null}
-      </Button>
-    );
-  };
-
-  const makeCell = (
-    row: Row<Courier>,
-    icon: React.ReactElement<{ className?: string }>,
-    content: React.ReactNode
-  ) => (
-    <div className="flex items-center text-sm text-gray-800 dark:text-gray-300">
-      {React.cloneElement(icon, {
-        className:
-          "mr-1 h-4 w-4 text-gray-400 dark:text-gray-500 transition-transform duration-300 ease-in-out group-hover:scale-110",
-      })}
-      {content}
-    </div>
-  );
 
   columns.push(
     {
       accessorKey: "tdsCode",
       header: ({ column }) =>
-        makeHeader(column, <Tag />, "tableHeader.tdsCode"),
+        CenteredHeader(column.id, column, t, <Tag className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(row, <Tag />, row.original.tdsCode || t("tableCell.na")),
+        CenteredCell(row.original.tdsCode || t("tableCell.na")),
     },
     {
       accessorKey: "cityDesc",
       header: ({ column }) =>
-        makeHeader(column, <MapPin />, "tableHeader.city"),
+        CenteredHeader(column.id, column, t, <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(row, <MapPin />, row.original.cityDesc || t("tableCell.na")),
+        CenteredCell(row.original.cityDesc || t("tableCell.na")),
     },
     {
       accessorKey: "districtDesc",
       header: ({ column }) =>
-        makeHeader(column, <MapPin />, "tableHeader.region"),
+        CenteredHeader(column.id, column, t, <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(
-          row,
-          <MapPin />,
-          row.original.districtDesc || t("tableCell.na")
-        ),
+        CenteredCell(row.original.districtDesc || t("tableCell.na")),
     },
     {
       accessorKey: "package",
       header: ({ column }) =>
-        makeHeader(column, <Package />, "tableHeader.package"),
+        CenteredHeader(column.id, column, t, <Package className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(
-          row,
-          <Package />,
+        CenteredCell(
           t(`courier.package.${row.original.package?.toLowerCase()}`) ||
-            row.original.package ||
-            t("tableCell.na")
+          row.original.package ||
+          t("tableCell.na")
         ),
     },
     {
       accessorKey: "address",
       header: ({ column }) =>
-        makeHeader(column, <MapPin />, "tableHeader.address"),
+        CenteredHeader(column.id, column, t, <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(row, <MapPin />, row.original.address || t("tableCell.na")),
+        CenteredCell(row.original.address || t("tableCell.na")),
     },
     {
       accessorKey: "invoiceUrl",
       header: ({ column }) =>
-        makeHeader(column, <FileText />, "tableHeader.invoice"),
+        CenteredHeader(column.id, column, t, <FileText className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(
-          row,
-          <FileText />,
+        CenteredCell(
           row.original.invoiceUrl ? (
             <a
               href={row.original.invoiceUrl}
@@ -186,11 +160,9 @@ export function buildCourierTable(
     {
       accessorKey: "totalWeight",
       header: ({ column }) =>
-        makeHeader(column, <Scale />, "tableHeader.weight"),
+        CenteredHeader(column.id, column, t, <Scale className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(
-          row,
-          <Scale />,
+        CenteredCell(
           typeof row.original.totalWeight === "number"
             ? `${row.original.totalWeight} ${t("unit.kg")}`
             : t("tableCell.na")
@@ -199,11 +171,9 @@ export function buildCourierTable(
     {
       accessorKey: "totalCost",
       header: ({ column }) =>
-        makeHeader(column, <DollarSign />, "tableHeader.totalCost"),
+        CenteredHeader(column.id, column, t, <DollarSign className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(
-          row,
-          <DollarSign />,
+        CenteredCell(
           typeof row.original.totalCost === "number"
             ? `${row.original.totalCost} ${t("unit.usd")}`
             : t("tableCell.na")
@@ -212,11 +182,9 @@ export function buildCourierTable(
     {
       accessorKey: "inpDate",
       header: ({ column }) =>
-        makeHeader(column, <CalendarDays />, "tableHeader.registrationDate"),
+        CenteredHeader(column.id, column, t, <CalendarDays className="h-4 w-4 text-gray-500 dark:text-gray-400" />),
       cell: ({ row }) =>
-        makeCell(
-          row,
-          <CalendarDays />,
+        CenteredCell(
           row.original.inpDate
             ? new Date(row.original.inpDate).toLocaleDateString()
             : t("tableCell.na")
@@ -225,9 +193,9 @@ export function buildCourierTable(
     {
       accessorKey: "comment",
       header: ({ column }) =>
-        makeHeader(column, <FileText />, "tableHeader.comment"),
+        CenteredHeader(column.id, column, t, <FileText className="h-4 w-4 text-gray-500 dark:text-gray-400" />,),
       cell: ({ row }) =>
-        makeCell(row, <FileText />, row.original.comment || t("tableCell.na")),
+        CenteredCell(row.original.comment || t("tableCell.na"),'border-none'),
     }
   );
 

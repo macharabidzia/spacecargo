@@ -17,12 +17,13 @@ import {
   Scale,
   Truck,
   File,
-  Calendar,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
 
 import { Parcel } from "@/types/parcel";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { ActionButton } from "@/components/common/ActionButton";
 
 /** Centered Header with sorting and icon support */
 const CenteredHeader = <TData, TValue>(
@@ -78,37 +79,32 @@ function makeActionsColumn<T extends { id?: string; invoiceUrl?: string; canEdit
       return (
         <div className="flex items-center justify-center gap-2">
           {showEdit && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition"
-              onClick={() => handlers.onEdit!(original)}
-              title={t("actions.edit")}
-            >
-              <Edit className="h-4 w-4" />
-            </Button>
+            <ActionButton
+              icon={Edit}
+              label="Edit parcel"
+              item={row.original}
+              onClick={(parcel) => handlers.onEdit?.(parcel)}
+            />
           )}
+
           {showDelete && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 rounded-full text-red-600 hover:bg-red-50 dark:hover:bg-red-900 transition"
-              onClick={() => handlers.onDelete!(original)}
-              title={t("actions.delete")}
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
+            <ActionButton
+              icon={Trash2}
+              label="Delete parcel"
+              item={row.original}
+              onClick={(parcel) => handlers.onDelete?.(parcel)}
+              colorClass="text-red-600 dark:text-red-400"
+            />
           )}
+
           {showInvoice && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 rounded-full text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 transition"
-              onClick={() => handlers.onInvoiceClick!(original.id!)}
-              title={t("actions.invoice")}
-            >
-              <File className="h-4 w-4" />
-            </Button>
+            <ActionButton
+              icon={Trash2}
+              label="Delete parcel"
+              item={row.original}
+              onClick={() => handlers.onInvoiceClick?.(original.id!)}
+              colorClass="text-red-600 dark:text-red-400"
+            />
           )}
         </div>
       );
@@ -126,8 +122,6 @@ export function buildParcelColumns(
   options: { showInvoice?: boolean; showSelectColumn?: boolean } = { showSelectColumn: false }
 ): ColumnDef<Parcel>[] {
   const columns: ColumnDef<Parcel>[] = [];
-
-  // Optional select/checkbox column
   if (options.showSelectColumn) {
     columns.push({
       id: "select",

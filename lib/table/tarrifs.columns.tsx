@@ -3,7 +3,9 @@
 import { Column, ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { BadgeCheckIcon, ChevronDown, ChevronUp } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export interface TariffData {
   country: string;
@@ -99,8 +101,26 @@ export default function buildTariffColumns(
         CenteredHeader("tableHeader.oversizeWeight", column, t),
       cell: ({ row }) =>
         CenteredCell(
-          <span className="text-sm font-medium text-foreground dark:text-gray-200">
-            {row.original.oversizeWeight ? t("yes") : t("no")}
+          <span className="flex items-center gap-2 text-sm font-medium">
+            {row.original.oversizeWeight ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Badge
+                    variant="secondary"
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 text-white shadow-md transform transition-transform duration-200 "
+                  >
+                    <BadgeCheckIcon className="w-4 h-4" />
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="bg-gray-800 text-white shadow-md">
+                  Oversize package
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-300 text-gray-700 dark:bg-gray-700 dark:text-gray-200">
+                <span className="text-xs font-medium">N/A</span>
+              </div>
+            )}
           </span>
         ),
     },

@@ -59,6 +59,7 @@ export async function logout(_formData?: FormData): Promise<void> {
   redirect("/");
 }
 export async function register(data: BaseRegisterValues): Promise<ApiResponseMessage<VerificationResponse>> {
+
   const response = await postApiData<ApiResponseMessage<VerificationResponse>>(httpClient, API_ENDPOINTS.POST_REGISTER_USER, data);
   if (response.type === "success") {
     const { temporary_token } = response.message;
@@ -99,7 +100,7 @@ export async function resendRegistrationEmail(data: { user_id: number }): Promis
   });
 }
 
-export async function completeRegistration(data:LegalProfileValues | PhysicalProfileValues): Promise<ApiResponse> {
+export async function completeRegistration(data: LegalProfileValues | PhysicalProfileValues): Promise<ApiResponse> {
   const cookie = await cookies();
   const token = cookie.get('X-Temporary-Token')?.value || null;
   let v = {}

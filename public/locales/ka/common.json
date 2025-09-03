@@ -602,5 +602,11 @@
   "authorizedPersons.addButton": "დამატება",
   "authorizedPerson.validation.invalidPin": "არასწორი პირადი ნომერი",
   "button.payParcels": "{{count}} ამანათის გადახდა",
-  "button.payAllParcels": "გადახდა ყველა ამანათის"
+  "button.payAllParcels": "გადახდა ყველა ამანათის",
+  "tableHeader.invoiceUrl": "ინვოისი",
+  "tableHeader.totalWeight": "სულ წონა",
+  "tableHeader.inpDate": "რეგისტრაციის თარიღი",
+  "tableHeader.districtDesc": "რაიონის აღწერა",
+  "tableHeader.cityDesc": "ქალაქის აღწერა",
+  "actions.markRead": "წაკითხულად მონიშვნა"
 }

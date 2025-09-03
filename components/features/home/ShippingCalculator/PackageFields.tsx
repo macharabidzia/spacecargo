@@ -48,9 +48,9 @@ export function PackageFields() {
                                     size="icon"
                                     onClick={() => remove(index)}
                                     aria-label={`Remove package ${index + 1}`}
-                                    className="text-space-blue hover:bg-red-50 hover:text-space-blue/90 bg-background h-14 w-14"
+                                    className="text-space-blue-muted cursor-pointer bg-background h-14 w-14"
                                 >
-                                    <Trash2 className="text-white" size={24} />
+                                    <Trash2 className="text-gray-600 dark:text-white" size={24} />
                                 </Button>
                             </div>
                         )}

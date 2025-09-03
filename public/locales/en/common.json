@@ -523,7 +523,7 @@
   "tableHeader.lastName": "Last Name",
   "tableHeader.phone": "Phone",
   "tableHeader.pin": "PIN",
-  "tableHeader.notifications":"Notifications",
+  "tableHeader.notifications": "Notifications",
   "auth.description": "Please login, or if you don’t have an account, register to use our services.",
   "auth.noAccount": "Don't have an account?",
   "auth.registerButton": "Register",
@@ -601,7 +601,13 @@
   "brand": "SPACE CARGO",
   "voucherLabel": "Voucher",
   "authorizedPersons.addButton": "Add",
-  "authorizedPerson.validation.invalidPin":"Invalid P/N",
+  "authorizedPerson.validation.invalidPin": "Invalid P/N",
   "button.payParcels": "Pay {{count}} Parcels",
-  "button.payAllParcels": "Pay All Parcels"
+  "button.payAllParcels": "Pay All Parcels",
+  "tableHeader.invoiceUrl": "Invoice",
+  "tableHeader.totalWeight": "Total Weight",
+  "tableHeader.inpDate": "Registration Date",
+  "tableHeader.districtDesc": "District Description",
+  "tableHeader.cityDesc": "City Description",
+  "actions.markRead": "Mark Read"
 }
