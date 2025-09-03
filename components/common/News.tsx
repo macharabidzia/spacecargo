@@ -25,12 +25,13 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
               <div className="absolute -top-10 -left-6 w-full h-full max-h-65 overflow-hidden rounded-lg shadow-xl">
                 {item.Image_Url ? (
                   <Image
-                    fill
                     src={item.Image_Url}
                     alt={getTitleLang(item)}
-                    className="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-120"
+                    width={462}  // target display width
+                    height={260} // target display height
+                    className="object-cover transition-transform duration-500 ease-in-out hover:scale-120"
+                    priority={index === 0}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={index === 0} // First image gets high priority
                     fetchPriority={index === 0 ? "high" : "auto"}
                     unoptimized={item.Image_Url.startsWith("..")}
                   />
