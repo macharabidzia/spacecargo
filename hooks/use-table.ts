@@ -116,6 +116,7 @@ export const useGenericTable = <TData extends object>({
     columns,
     state: {
       sorting,
+
       columnVisibility,
       pagination: {
         pageIndex: currentPage - 1,
@@ -140,7 +141,6 @@ export const useGenericTable = <TData extends object>({
     getFilteredRowModel: getFilteredRowModel(),
     enableRowSelection,
     manualPagination: true,
-    manualSorting: true,
   });
 
   return { table, sorting, columnVisibility, rowSelection, isHydrated };

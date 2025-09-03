@@ -2,8 +2,7 @@
 
 import { ColumnDef, Column } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp, Plane } from "lucide-react";
-import React from "react";
+import { Calendar, ChevronDown, ChevronUp, Plane } from "lucide-react";
 
 export interface FlightData {
   Flights_Number: string;
@@ -20,9 +19,9 @@ const CenteredHeader = (
     variant="ghost"
     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
     className="flex items-center justify-center gap-2 w-full py-2 px-3 text-sm font-semibold
-      text-white dark:text-gray-200
-      hover:bg-white/10 dark:hover:bg-white/20
-      transition-colors rounded-md"
+ text-white dark:text-gray-200
+ hover:bg-white/10 dark:hover:bg-white/20
+      transition-colors rounded-md"
   >
     {Icon}
     {t(titleKey)}
@@ -36,7 +35,7 @@ const CenteredHeader = (
 );
 
 const CenteredCell = (content: React.ReactNode) => (
-  <div className="flex items-center justify-center px-3 py-2">{content}</div>
+  <div className="flex items-center justify-center">{content}</div>
 );
 
 export default function buildFlightColumns(
@@ -49,12 +48,13 @@ export default function buildFlightColumns(
       cell: () =>
         CenteredCell(
           <div className="p-4 bg-space-blue-light/15 rounded-full">
-            <Plane className="h-7 w-7 text-space-blue-muted" />
+            <Plane className="h-6 w-6 text-space-blue-muted" />
           </div>
         ),
     },
     {
       accessorKey: "Flights_Number",
+
       header: ({ column }) =>
         CenteredHeader("tableHeader.flightNumber", column, t, <Plane className="h-4 w-4 text-white" />),
       cell: ({ row }) =>
@@ -67,7 +67,7 @@ export default function buildFlightColumns(
     {
       accessorKey: "Come_Date",
       header: ({ column }) =>
-        CenteredHeader("tableHeader.comeDate", column, t),
+        CenteredHeader("tableHeader.comeDate", column, t, <Calendar className="h-4 w-4 text-white" />),
       cell: ({ row }) =>
         CenteredCell(
           <span className="text-sm font-semibold text-space-blue-light dark:text-gray-200">

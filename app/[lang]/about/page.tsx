@@ -48,7 +48,7 @@ const About = async ({ params }: IAbout) => {
         <CardContent className="px-8 py-2">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch gap-12">
             <div className="flex-1 text-center md:text-left py-0">
-              <Button variant="outline" className="mb-8 dark:bg-accent dark:text-white text-black">
+              <Button variant="outline" disableAnimation className="mb-8 dark:bg-accent dark:text-white text-black">
                 {dictionary["about.button"]}
               </Button>
               <h2 className="text-4xl md:text-5xl font-normal my-8 leading-tight">{dictionary["about.title"]}</h2>

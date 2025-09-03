@@ -87,6 +87,11 @@ export default function buildTariffColumns(
             {row.original.pricePerKg}
           </span>
         ),
+      sortingFn: (rowA, rowB) => {
+        const a = parseFloat(rowA.original.pricePerKg as unknown as string);
+        const b = parseFloat(rowB.original.pricePerKg as unknown as string);
+        return a - b;
+      },
     },
     {
       accessorKey: "oversizeWeight",

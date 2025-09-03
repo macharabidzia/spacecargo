@@ -87,7 +87,7 @@ export function DataTable<TData>({
               <TableRow
                 key={row.id}
                 className={cn(
-                  "block mb-4 p-4 border border-gray-200 rounded-lg md:table-row md:mb-0 md:p-0 md:border-b md:border-none",
+                  "block mb-4 p-4 border-gray-200 rounded-lg md:table-row md:mb-0 md:p-0 md:border-b",
                   typeof rowClassName === "function"
                     ? rowClassName(row.original)
                     : rowClassName
@@ -114,7 +114,7 @@ export function DataTable<TData>({
               </TableRow>
             ))
           ) : (
-            <TableRow>
+            <TableRow className="border-b-2 border-black">
               <TableCell colSpan={colSpanValue} className="h-24 text-center">
                 <div className="flex flex-col gap-4 items-center justify-center min-h-[300px] h-fit">
                   {isLoading && !isHydrated ? (

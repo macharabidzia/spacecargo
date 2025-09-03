@@ -14,7 +14,6 @@ import Script from 'next/script';
 type ISingleNews = {
     params: Promise<{ lang: Lang, name: string }>;
 };
-
 export async function generateMetadata({ params }: ISingleNews): Promise<Metadata> {
     const { name, lang } = await params;
     const dt = await getSingleNews({ news_name: name, chanel: 'desktop' });
@@ -26,7 +25,6 @@ export async function generateMetadata({ params }: ISingleNews): Promise<Metadat
             description: 'The requested news article could not be found.',
         };
     }
-
     const getTitle = () => (lang === 'en' ? newsItem.page_title_EN || newsItem.Title_EN : newsItem.page_title_GE || newsItem.Title_GE);
     const getDescription = () => (lang === 'en' ? newsItem.meta_desc_EN : newsItem.meta_desc_GE);
     const getImageAlt = () => (lang === 'en' ? newsItem.image_alt_EN : newsItem.image_alt_GE);

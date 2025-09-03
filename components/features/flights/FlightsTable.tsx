@@ -1,9 +1,10 @@
 "use client";
 
-import { useReactTable, getCoreRowModel } from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, getSortedRowModel, SortingState } from "@tanstack/react-table";
 import { DataTable } from "@/components/common/DataTable/DataTable";
 import { useClientTranslation } from "@/i18n/i18n-provider";
 import buildFlightColumns, { FlightData } from "@/lib/table/flights.columns";
+import { useState } from "react";
 
 interface FlightsTableProps {
   data: FlightData[];
@@ -11,13 +12,18 @@ interface FlightsTableProps {
 
 const FlightsTable: React.FC<FlightsTableProps> = ({ data }) => {
   const { t } = useClientTranslation();
-
   const columns = buildFlightColumns(t);
+
+  // Explicitly type sorting state
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable<FlightData>({
     data,
     columns,
+    state: { sorting },
+    onSortingChange: setSorting, // local sorting state
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
