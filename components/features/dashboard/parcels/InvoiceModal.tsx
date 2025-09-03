@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import PdfViewerWrapper from "@/components/common/PdfViewerWrapper";
 
 interface InvoiceModalProps {
-  id: string | null;
+  id: string | null | number;
   setOpenInvoiceId: (id: string | null) => void;
 }
 
@@ -44,3 +44,4 @@ const InvoiceModal: React.FC<InvoiceModalProps> = ({ id, setOpenInvoiceId }) => 
 };
 
 export default InvoiceModal;
+

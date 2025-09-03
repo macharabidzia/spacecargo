@@ -2,29 +2,34 @@
 import ColumnToggleDropdown from "@/components/common/DataTable/ColumnToggleDropdown";
 import { DataTable } from "@/components/common/DataTable/DataTable";
 import { useGenericTable } from "@/hooks/use-table";
-import { buildCourierTable } from "@/lib/table/courier.columns";
 import { GenericTableClientProps } from "@/types";
 import CourierForm from "./CourierForm";
-import { Courier } from "@/types/courier";
+import { CourierMinimal } from "@/types/courier";
+import { buildAddCourierTable } from "@/lib/table/add_courier.columns";
+import { useState } from "react";
 
 const AddCourierSection = ({
   data,
   pageSize,
   currentPage,
   tableId,
-}: GenericTableClientProps<Courier>) => {
-  const { table, isHydrated } = useGenericTable<Courier>({
+}: GenericTableClientProps<CourierMinimal>) => {
+  const [, setRowSelection] = useState<Record<string, boolean>>({});
+
+  const { table, isHydrated } = useGenericTable<CourierMinimal>({
     data,
     currentPage,
     pageSize,
     tableId,
-    columnBuilder: ({}, t) => buildCourierTable(t),
+    enableRowSelection: true,
+    onRowSelectionChange: setRowSelection,
+    columnBuilder: ({ }, t) => buildAddCourierTable(t),
   });
 
   const selectedParcelIds = isHydrated
     ? table
-        .getFilteredSelectedRowModel()
-        .rows.map((row) => row.original.id.toString())
+      .getFilteredSelectedRowModel()
+      .rows.map((row) => row.original.id.toString())
     : [];
   return (
     <div className="space-y-6">

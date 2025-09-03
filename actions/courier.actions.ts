@@ -5,7 +5,7 @@ import httpClient from "@/lib/httpClient";
 import { PostSchema } from "@/schemas/post.schema";
 import { AuthroizedPersonFormValues } from "@/schemas/settings.schema";
 import { ApiResponse, Transaction } from "@/types/api";
-import { Courier, CourierApiResponse, CourierData, CourierFormValues } from "@/types/courier";
+import { Courier, CourierApiResponse, CourierData, CourierFormValues, CourierMinimalApiResponse } from "@/types/courier";
 import { ParcelApiResponse } from "@/types/parcel";
 import { IPostAddCourierInfoData } from "@/types/post";
 
@@ -14,9 +14,9 @@ export async function getRequests(page: number, perPage: number, tds_code: strin
     return fetchApiData<Courier[]>(httpClient, urlWithParams, {
     });
 }
-export async function getCourierParcels(page: number, perPage: number, tds_code: string): Promise<CourierApiResponse> {
+export async function getCourierParcels(page: number, perPage: number, tds_code: string): Promise<CourierMinimalApiResponse> {
     const urlWithParams = `${API_ENDPOINTS.GET_COURIER_PARCELS}?page=${page}&perPage=${perPage}&tdsCode=${encodeURIComponent(tds_code)}`;
-    return fetchApiData<CourierApiResponse>(httpClient, urlWithParams, {
+    return fetchApiData<CourierMinimalApiResponse>(httpClient, urlWithParams, {
     });
 }
 export async function createAuthorizedPerson(data: AuthroizedPersonFormValues): Promise<ApiResponse> {

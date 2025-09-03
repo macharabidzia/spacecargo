@@ -1,13 +1,18 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { DataTable } from "@/components/common/DataTable/DataTable";
 import Pagination from "@/components/common/Pagination";
+import ColumnToggleDropdown from "@/components/common/DataTable/ColumnToggleDropdown";
 import { useTableSearch } from "@/hooks/parcels/use-table-search";
-import { buildCourierTable } from "@/lib/table/courier.columns";
-import { useClientTranslation } from "@/i18n/i18n-provider";
 import { useGenericTable } from "@/hooks/use-table";
+import { useClientTranslation } from "@/i18n/i18n-provider";
+import { buildCourierTable } from "@/lib/table/courier.columns";
 import { CourierTableHeader } from "./CourierTableHeader";
 import { Courier } from "@/types/courier";
+import InvoiceModal from "../parcels/InvoiceModal";
+
 interface Props {
   data: Courier[];
   recordsNumber: number;
@@ -15,6 +20,9 @@ interface Props {
   currentPage: number;
   tableId: string;
   paramName: string;
+  canEdit?: boolean;
+  canDelete?: boolean;
+  showInvoice?: boolean;
 }
 
 export default function CourierTableClient({
@@ -24,23 +32,40 @@ export default function CourierTableClient({
   currentPage,
   tableId,
   paramName,
+  canDelete = false,
 }: Props) {
   const { t } = useClientTranslation("common");
+  const router = useRouter();
+  const [openInvoiceId, setOpenInvoiceId] = useState<string | number | null>(null);
+
+
+
+  const handleDelete = (courier: Courier) => {
+    console.log("Delete courier", courier.id);
+  };
+
   const { table, isHydrated } = useGenericTable<Courier>({
-    data: data,
+    data,
     currentPage,
     pageSize,
     tableId,
 
-    columnBuilder: ({ }, t) => buildCourierTable(t, { showSelectColumn: false }),
+    columnBuilder: () =>
+      buildCourierTable(
+        t,
+        {
+          onDelete: canDelete ? handleDelete : undefined,
+          onInvoiceClick: setOpenInvoiceId
+        },
+      ),
   });
-  const { searchValue, setSearchValue } = useTableSearch({
-    paramName: paramName,
-  });
+
+  const { searchValue, setSearchValue } = useTableSearch({ paramName });
   const totalPages = Math.ceil(recordsNumber / pageSize);
+
   return (
     <div className="flex flex-col">
-      <div className="justify-end flex w-full">
+      <div className="flex w-full mb-4 justify-end">
         <CourierTableHeader
           t={t}
           searchValue={searchValue}
@@ -49,7 +74,9 @@ export default function CourierTableClient({
           table={table}
         />
       </div>
+      <InvoiceModal id={openInvoiceId} setOpenInvoiceId={setOpenInvoiceId} />
       <DataTable table={table} isHydrated={isHydrated} />
+
       <Pagination totalPages={totalPages} currentPage={currentPage} />
     </div>
   );

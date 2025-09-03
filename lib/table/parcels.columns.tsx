@@ -22,7 +22,6 @@ import {
 } from "lucide-react";
 
 import { Parcel } from "@/types/parcel";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ActionButton } from "@/components/common/ActionButton";
 
 /** Centered Header with sorting and icon support */
@@ -99,11 +98,10 @@ function makeActionsColumn<T extends { id?: string; invoiceUrl?: string; canEdit
 
           {showInvoice && (
             <ActionButton
-              icon={Trash2}
-              label="Delete parcel"
+              icon={File}
+              label="See Invoice"
               item={row.original}
               onClick={() => handlers.onInvoiceClick?.(original.id!)}
-              colorClass="text-red-600 dark:text-red-400"
             />
           )}
         </div>

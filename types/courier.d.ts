@@ -7,7 +7,7 @@ export interface Courier {
   comment: string | null;
   deliveryDate: string | null;
   districtDesc: string | null;
-  id: number;
+  id: string;
   inpDate: string;
   invoiceUrl: string;
   package: string;
@@ -35,6 +35,13 @@ export interface CourierFormValues {
   receiverFullName: string;
   receiverPhone: string;
 }
+export interface CourierMinimal {
+  id: string;
+  tdsCode: string;
+  declaredAmount: string;
+  deliveryDesc: string;
+  weight: string;
+}
 
 export type CourierCity = {
   id: number;
@@ -50,14 +57,22 @@ export type CourierDistrict = {
 export type CourierApiResponse = {
   currentPage: number;
   parcels: Courier[];
+
+  notification?: Notification;
+  perPage: number;
+  recordsNumber: number;
+}
+export type CourierMinimalApiResponse = {
+  currentPage: number;
+  parcels: CourierMinimal[];
   notification?: Notification;
   perPage: number;
   recordsNumber: number;
 }
 export interface Notification {
-    notification_title: string;
-    notification_desc: string;
-    should_show_notification: boolean;
+  notification_title: string;
+  notification_desc: string;
+  should_show_notification: boolean;
 }
 export type CourierPackage = {
   name: string;

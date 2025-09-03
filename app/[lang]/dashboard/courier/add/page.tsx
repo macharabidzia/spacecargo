@@ -18,12 +18,14 @@ const Add = async ({
   const tdsCode = typeof params.tds_code === "string" ? params.tds_code : "";
   const result = await getCourierParcels(page, perPage, tdsCode);
   const TABLE_UNIQUE_ID = "couriersTableAdd";
+
+  console.log(result)
   return (
     <>
       <div className="p-4">
         <GoBackButton />
       </div>
-      <NotificationClientHandler title={result?.notification?.notification_title } message={result?.notification?.notification_desc}/>
+      <NotificationClientHandler title={result?.notification?.notification_title} message={result?.notification?.notification_desc} />
       <AddCourierSection
         tableId={TABLE_UNIQUE_ID}
         data={result.parcels}
