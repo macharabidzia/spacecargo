@@ -12,10 +12,11 @@ interface NewsSectionProps {
 export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
   const getTitleLang = (item: NewsItem) =>
     lang === "en" ? item.Title_EN : item.Title_GE;
+
   return (
     <section className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-12 justify-items-center">
-        {newsData.map((item: NewsItem) => (
+        {newsData.map((item: NewsItem, index: number) => (
           <Card
             key={item.id}
             className="w-full relative max-w-sm rounded-lg border bg-card text-card-foreground shadow-lg overflow-visible"
@@ -26,10 +27,11 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
                   <Image
                     fill
                     src={item.Image_Url}
-                    alt={lang === "en" ? item.Title_EN : item.Title_GE}
+                    alt={getTitleLang(item)}
                     className="h-full w-full object-cover transition-transform duration-500 ease-in-out hover:scale-120"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority
+                    priority={index === 0} // First image gets high priority
+                    fetchPriority={index === 0 ? "high" : "auto"}
                     unoptimized={item.Image_Url.startsWith("..")}
                   />
                 ) : (
@@ -38,9 +40,8 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
                   </div>
                 )}
               </div>
-              <div
-                className={`bg-blue-500 h-16 w-16 absolute -left-6 bottom-6 flex justify-center items-center rounded-lg`}
-              >
+
+              <div className="bg-blue-500 h-16 w-16 absolute -left-6 bottom-6 flex justify-center items-center rounded-lg">
                 <Image
                   alt="label"
                   width={24}
@@ -51,6 +52,7 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
                 />
               </div>
             </CardContent>
+
             <CardFooter className="ml-10">
               <Link
                 className="font-semibold underline hover:no-underline"
