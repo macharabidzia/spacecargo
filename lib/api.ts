@@ -19,12 +19,10 @@ export async function fetchApiData<T>(
   } catch (error: unknown) {
     const axiosError = error as AxiosError;
     const errorData = axiosError.response?.data as ApiErrorResponse;
-    // Remove session cookie on error
-    throw new Error(
-      errorData?.message ||
-        axiosError.message ||
-        `Failed to fetch from ${endpoint}`
-    );
+    return Promise.reject({
+      status: axiosError.response?.status || 500,
+      message: errorData?.message || axiosError.message,
+    });
   }
 }
 
@@ -40,13 +38,9 @@ export async function postApiData<T>(
   } catch (error: unknown) {
     const axiosError = error as AxiosError;
     const errorData = axiosError.response?.data as ApiErrorResponse;
-
-    // Remove session cookie on error
-
-    throw new Error(
-      errorData?.message ||
-        axiosError.message ||
-        `Failed to post to ${endpoint}`
-    );
+    return Promise.reject({
+      status: axiosError.response?.status || 500,
+      message: errorData?.message || axiosError.message,
+    });
   }
 }
