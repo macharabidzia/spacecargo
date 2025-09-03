@@ -27,9 +27,8 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
                   <Image
                     src={item.Image_Url}
                     alt={getTitleLang(item)}
-                    width={462}  // target display width
-                    height={260} // target display height
-                    className="object-cover transition-transform duration-500 ease-in-out hover:scale-120"
+                    fill
+                    className="object-cover transition-transform duration-500 ease-in-out hover:scale-120 h-full w-full"
                     priority={index === 0}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     fetchPriority={index === 0 ? "high" : "auto"}
