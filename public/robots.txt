@@ -2,6 +2,38 @@
 User-agent: *
 Allow: /
 
+# *
+User-agent: *
+Disallow: /dashboard/*
+
+# *
+User-agent: *
+Disallow: /settings/*
+
+# *
+User-agent: *
+Disallow: /auth/*
+
+# *
+User-agent: *
+Disallow: /notifications/*
+
+# *
+User-agent: *
+Disallow: /shops/*
+
+# *
+User-agent: *
+Disallow: /cashbacks/*
+
+# *
+User-agent: *
+Disallow: /vouchers/*
+
+# *
+User-agent: *
+Disallow: /terms/*
+
 # Host
 Host: https://spacecargo.vercel.app
 
