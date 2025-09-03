@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: NewsProps): Promise<Metadata>
   const { lang } = await params;
   const fullDictionary = await getDictionary(lang);
 
-  const title = fullDictionary.common["mainNav.news"]|| "სიახლეები";
-  const description =  "იხილეთ უახლესი ამბები და სიახლეები.";
+  const title = fullDictionary.common["mainNav.news"] || "სიახლეები";
+  const description = "იხილეთ უახლესი ამბები და სიახლეები.";
   const canonicalUrl = `http://localhost:3000/${lang}/news`;
 
   return {
