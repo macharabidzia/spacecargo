@@ -23,11 +23,7 @@ export const metadata: Metadata = {
 
   description: siteConfig.description,
 };
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-};
+
 export default async function RootLayout(props: {
   children: React.ReactNode;
   params: Promise<{ lang: Lang }>;
