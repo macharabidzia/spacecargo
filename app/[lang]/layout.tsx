@@ -60,7 +60,7 @@ export default async function LocaleLayout(props: {
       className={`${notoSansGeorgian.variable} antialiased`}
     >
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
       </head>
       <body className="text-foreground min-h-screen flex">
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
