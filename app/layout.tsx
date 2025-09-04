@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { ViewTransitionProvider } from "@/components/common/ViewTransitionProvider";
@@ -20,12 +20,13 @@ export const metadata: Metadata = {
       },
     ],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
+
   description: siteConfig.description,
+};
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 export default async function RootLayout(props: {
   children: React.ReactNode;
