@@ -20,9 +20,7 @@ import httpClient from "@/lib/httpClient";
 import RouteLoader from "@/components/common/RouterLoader";
 import { Viewport } from "next";
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
+  viewportFit: "cover",
 };
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));

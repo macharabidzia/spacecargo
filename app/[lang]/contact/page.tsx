@@ -17,12 +17,6 @@ type ContactProps = {
   params: Promise<{ lang: Lang }>;
 };
 
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-};
-
 export async function generateMetadata({ params }: ContactProps) {
   const { lang } = await params;
   const dict = (await getDictionary(lang)).common;
@@ -51,23 +45,22 @@ const Contact = async ({ params }: ContactProps) => {
   const fullDictionary = (await getDictionary(lang)).common;
 
   return (
-    <div className="w-full overflow-x-hidden py-6 px-4 md:px-8 lg:px-12">
+    <div className="container py-6">
       <h1 className="text-4xl mt-8 text-center text-space-blue dark:text-white mb-12 font-bold">
         {fullDictionary.contact["pageTitle"]}
       </h1>
       <Card className="shadow-lg p-2">
         <CardContent className="p-0">
-          <div className="flex flex-col md:flex-row gap-4 md:gap-0">
-            {/* Left panel */}
-            <div className="bg-space-blue dark:bg-space-blue md:rounded-md text-white p-6 md:p-8 flex flex-col justify-between relative overflow-hidden flex-1 min-w-0">
+          <div className="flex flex-col md:flex-row">
+            <div className="bg-space-blue dark:bg-space-blue md:rounded-md text-white p-8 flex flex-col justify-between relative overflow-hidden flex-1">
               <h2 className="text-2xl font-bold mb-2">
                 {fullDictionary.contact["contactInformationTitle"]}
               </h2>
-              <p className="mb-8 md:mb-36 text-white">
+              <p className="mb-36 text-white">
                 {fullDictionary.contact["contactInformationSubtitle"]}
               </p>
 
-              <div className="flex flex-col gap-y-6 md:gap-y-12 mb-auto text-lg text-white">
+              <div className="flex flex-col gap-y-12 mb-auto text-lg text-white">
                 <div className="flex items-center">
                   <Phone size={24} className="mr-3" />
                   <span>+995 (032) 2 12 09 90</span>
@@ -86,7 +79,7 @@ const Contact = async ({ params }: ContactProps) => {
                 </div>
               </div>
 
-              <div className="flex space-x-4 md:space-x-6 mt-6 md:mt-36">
+              <div className="flex space-x-6 mt-36">
                 <Link
                   href="#"
                   aria-label="Website"
@@ -110,7 +103,7 @@ const Contact = async ({ params }: ContactProps) => {
                 </Link>
               </div>
 
-              <div className="absolute bottom-4 right-4 pointer-events-none max-w-[40%] md:max-w-[100px]">
+              <div className="absolute bottom-4 right-4 pointer-events-none">
                 <Image
                   src="/icons/letter_send.svg"
                   alt="Paper plane illustration"
@@ -123,8 +116,7 @@ const Contact = async ({ params }: ContactProps) => {
               </div>
             </div>
 
-            {/* Right panel */}
-            <div className="p-6 md:p-8 rounded-b-md md:rounded-r-md md:rounded-bl-none flex-1 min-w-0">
+            <div className="p-8 rounded-b-md md:rounded-r-md md:rounded-bl-none flex-1">
               <ContactForm />
             </div>
           </div>
