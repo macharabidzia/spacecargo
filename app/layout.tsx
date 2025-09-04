@@ -1,8 +1,13 @@
-import type { Metadata} from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { ViewTransitionProvider } from "@/components/common/ViewTransitionProvider";
-
+export const viewport: Viewport = {
+  viewportFit: "cover",
+  initialScale: 1,
+  width: "device-width",
+  maximumScale: 1,
+};
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
