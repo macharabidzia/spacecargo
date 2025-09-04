@@ -73,7 +73,7 @@ export default async function LocaleLayout(props: {
           />
           <I18nProvider lang={lang} dictionaries={dictionary}>
             <div className="flex flex-1 bg-background">
-              <RouteLoader/>
+              <RouteLoader />
               <SidebarProvider
                 defaultOpen={false}
                 className="flex-wrap content-start"
@@ -88,6 +88,7 @@ export default async function LocaleLayout(props: {
                 <main className="flex-grow w-full mx-auto static">
                   {children}
                   <Footer dictionary={dictionary.common} lang={lang} />
+
                 </main>
               </SidebarProvider>
               <Suspense>

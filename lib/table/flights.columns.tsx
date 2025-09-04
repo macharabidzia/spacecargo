@@ -17,10 +17,12 @@ const CenteredHeader = (
 ) => (
   <Button
     variant="ghost"
+    disableAnimation
     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
     className="flex items-center justify-center gap-2 w-full py-2 px-3 text-sm font-semibold
  text-white dark:text-gray-200
- hover:bg-white/10 dark:hover:bg-white/20
+      hover:bg-transparent
+      cursor-pointer
       transition-colors rounded-md"
   >
     {Icon}

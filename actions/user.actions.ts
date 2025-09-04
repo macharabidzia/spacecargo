@@ -14,7 +14,6 @@ import {
   UserData,
 } from "@/types/user";
 import { revalidatePath } from "next/cache";
-import { logout } from "./auth.actions";
 export async function fetchUserDashboard(): Promise<UserDashboardData> {
   return fetchApiData<UserDashboardData>(
     httpClient,

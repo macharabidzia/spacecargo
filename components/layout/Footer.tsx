@@ -90,6 +90,8 @@ const Footer = async ({ dictionary }: FooterInterface) => {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-muted-foreground dark:text-gray-400">
         {/* App Icons */}
         <div className="flex gap-4 justify-center">
+          <Link target="_blank" href="https://apps.apple.com/gb/app/spacecargo-app/id6738513244">
+
           <Image
             width={80}
             height={80}
@@ -97,13 +99,18 @@ const Footer = async ({ dictionary }: FooterInterface) => {
             alt="Apple App Store"
             className="object-contain"
           />
-          <Image
-            width={80}
-            height={80}
-            src="/icons/google.svg"
-            alt="Google Play Store"
-            className="object-contain"
-          />
+          </Link>
+          
+          <Link target="_blank" href="https://play.google.com/store/apps/details?id=ge.spacecargo.spacecargo">
+
+            <Image
+              width={80}
+              height={80}
+              src="/icons/google.svg"
+              alt="Google Play Store"
+              className="object-contain"
+            />
+          </Link>
         </div>
 
         {/* Copyright */}
@@ -120,10 +127,11 @@ const Footer = async ({ dictionary }: FooterInterface) => {
             <Link
               key={i}
               href={href}
-              className="p-2 border border-border rounded-full group hover:bg-black dark:hover:bg-white transition"
-              aria-label={`Follow us on social media`}
+              target="_blank"
+              aria-label="Share"
+              className="p-2 rounded-full border border-white dark:fill-white hover:bg-white hover:text-space-blue-light hover:fill-space-blue-light transition-colors"
             >
-              <Icon className="h-5 w-5 fill-black dark:fill-white group-hover:fill-white dark:group-hover:fill-black" />
+              <Icon className="h-5 w-5" />
             </Link>
           ))}
         </div>

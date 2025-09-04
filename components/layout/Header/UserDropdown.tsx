@@ -89,7 +89,7 @@ export default async function UserDropdown({ dictionary, currentLanguage }: IUse
                     </DropdownMenuItem>
                     <form action={logout} className="w-full">
                         <button type="submit" className="w-full text-left">
-                            <DropdownMenuItem className=" bg-space-blue-muted focus:bg-space-blue-muted/90 focus:text-white text-white">
+                            <DropdownMenuItem className=" bg-space-blue-muted focus:bg-space-blue-muted/90 focus:text-white text-white cursor-pointer">
                                 <div className="flex flex-row items-center flex-1">
                                     <LogOut className="mr-2 h-4 w-4 text-white" />
                                     <span>{dictionary["header.log_out"]}</span>

@@ -52,9 +52,11 @@ export async function login(
     return { success: false, message: error.message || "An unexpected error occurred." };
   }
 }
-export async function logout() {
-  await fetch("/api/logout", { method: "POST" });
-  redirect('/')
+
+export async function logout(_formData?: FormData): Promise<void> {
+  const cookiesStore = await cookies();
+  cookiesStore.delete('spacecargo_session')
+  redirect("/");
 }
 export async function register(data: BaseRegisterValues): Promise<ApiResponseMessage<VerificationResponse>> {
 

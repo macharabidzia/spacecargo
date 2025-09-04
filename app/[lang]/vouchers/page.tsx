@@ -37,7 +37,8 @@ const VouchersPage = async ({ params }: IVocuhersProps) => {
                 <CardHeader>
                     <div className='flex flex-row justify-between items-center'>
                         <div>
-                            <p className="text-gray-500 dark:text-white  mb-3">{userInfo.firstNameGe}<br /> <span className='text-gray-500'>{dictionary['you.have']}</span></p>
+                            <p className="text-space-blue dark:text-white text-sm mb-3">{userInfo.firstNameGe + ' ' + userInfo.lastNameEn}<br /></p>
+                            <span className='text-gray-500 text-xs'>{dictionary['you.have']}</span>
                             <div className='flex flex-row gap-2 items-center'>
                                 <span className="font-bold text-3xl text-space-blue-light">{user.bonusPoint.toFixed(2)}</span>
                                 <h1 className="text-xl font-bold">{dictionary['dashboardStats.spaceCoins']}</h1>

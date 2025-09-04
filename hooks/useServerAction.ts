@@ -1,7 +1,8 @@
+"use client"
 import { useState, useCallback, startTransition } from "react";
-import { toast } from "sonner";
 import { ApiResponse, ApiResponseError, ApiResponseSuccess } from "@/types/api";
 import { showToast } from "@/components/common/SuccessToast";
+import { useGlobalDataStore } from "@/store/GlobalDataStore";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
@@ -28,10 +29,12 @@ export function useServerAction<TArgs extends any[], TResult>(
 ) {
   const [isPending, setIsPending] = useState(false);
   const [data, setData] = useState<TResult | null>(null);
-
+  const startLoading = useGlobalDataStore(state => state.startLoading)
+  const stopLoading = useGlobalDataStore(state => state.stopLoading)
   const execute = useCallback(
     async (...args: TArgs): Promise<TResult> => {
       setIsPending(true);
+      startLoading()
       let response: TResult;
       try {
         response = await actionFn(...args);
@@ -93,6 +96,7 @@ export function useServerAction<TArgs extends any[], TResult>(
       } finally {
         startTransition(() => {
           setIsPending(false);
+          stopLoading()
         });
       }
     },

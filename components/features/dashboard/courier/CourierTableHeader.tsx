@@ -40,7 +40,7 @@ export const CourierTableHeader = ({
         <div className="flex flex-row justify-between py-4 px-2">
 
             <div className="flex items-center flex-wrap gap-4">
-                <Button onClick={handleClick} className="bg-space-blue-light text-white  hover:bg-space-blue-light/90" variant="outline" type="button">
+                <Button onClick={handleClick} className="bg-space-blue-light text-white hover:bg-space-blue-light/90 cursor-pointer" variant="outline" type="button">
                     <Plus className="mr-2 h-4 w-4" />
                            {t('form.add')}
                 </Button>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
+import { ViewTransitionProvider } from "@/components/common/ViewTransitionProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -26,5 +27,8 @@ export default async function RootLayout(props: {
   params: Promise<{ lang: Lang }>;
 }) {
   const { children } = props;
-  return children;
+  return <>
+    {children}
+    <ViewTransitionProvider />
+  </>;
 }

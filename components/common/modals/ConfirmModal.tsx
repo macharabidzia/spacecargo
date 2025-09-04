@@ -38,10 +38,11 @@ export function ConfirmDialog({
                     <DialogDescription>{description}</DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="pt-4">
-                    <Button variant="ghost" onClick={() => setOpen(false)}>
+                    <Button variant="ghost" className="cursor-pointer" onClick={() => setOpen(false)}>
                         {cancelLabel}
                     </Button>
                     <Button
+                        className="cursor-pointer"
                         variant="destructive"
                         onClick={() => {
                             onConfirm();
