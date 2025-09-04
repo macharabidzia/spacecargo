@@ -18,7 +18,6 @@ import AddAuthorizedPersonDrawer from "@/components/features/dashboard/drawers/A
 import EditParcelDrawer from "@/components/features/dashboard/drawers/EditParcelDrawer";
 import httpClient from "@/lib/httpClient";
 import RouteLoader from "@/components/common/RouterLoader";
-import { Viewport } from "next";
 
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));

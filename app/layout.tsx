@@ -4,9 +4,8 @@ import { siteConfig } from "@/config/site";
 import { ViewTransitionProvider } from "@/components/common/ViewTransitionProvider";
 
 export const viewport: Viewport = {
-  initialScale: 1,
-  width: "device-width",
-  maximumScale: 1,
+  viewportFit: "cover",
+
 };
 export const metadata: Metadata = {
   title: {
