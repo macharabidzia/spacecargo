@@ -609,5 +609,6 @@
   "tableHeader.inpDate": "Registration Date",
   "tableHeader.districtDesc": "District Description",
   "tableHeader.cityDesc": "City Description",
-  "actions.markRead": "Mark Read"
+  "actions.markRead": "Mark Read",
+  "tableHeader.isRead":"Read Status"  
 }

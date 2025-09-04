@@ -608,5 +608,6 @@
   "tableHeader.inpDate": "რეგისტრაციის თარიღი",
   "tableHeader.districtDesc": "რაიონის აღწერა",
   "tableHeader.cityDesc": "ქალაქის აღწერა",
-  "actions.markRead": "წაკითხულად მონიშვნა"
+  "actions.markRead": "წაკითხულად მონიშვნა",
+  "tableHeader.isRead": "წაკითხული"
 }
