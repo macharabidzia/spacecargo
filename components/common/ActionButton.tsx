@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { LucideIcon } from "lucide-react";
 
-interface ActionButtonProps<T = any> {
+interface ActionButtonProps<T = unknown> {
     icon: LucideIcon;
     label?: string;
     onClick: (item: T) => void;
@@ -32,7 +32,8 @@ export function ActionButton<T>({
                 <Button
                     variant={variant}
                     size={size}
-                    className={`h-8 w-8 rounded-full ${colorClass} hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer`}
+                    className={`h-8 w-8 rounded-full ${colorClass} hover:bg-gray-100 dark:hover:bg-gray-700 transition cursor-pointer
+                    `}
                     onClick={() => onClick(item)}
                     disabled={disabled}
                     title={label}

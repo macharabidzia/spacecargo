@@ -2,9 +2,8 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef, Column } from "@tanstack/react-table";
-import { Tag, MapPin, Package, FileText, Scale, DollarSign, CalendarDays, ChevronUp, ChevronDown } from "lucide-react";
+import { Tag, MapPin, Package, FileText, ChevronUp, ChevronDown } from "lucide-react";
 import { Courier } from "@/types/courier";
 import { ActionButton } from "@/components/common/ActionButton";
 
@@ -64,7 +63,7 @@ function makeActionsColumn<T extends { id?: string; canEdit?: boolean; canDelete
         <div className="flex items-center justify-center gap-2">
           {showEdit && (
             <ActionButton
-              icon={Tag} 
+              icon={Tag}
               label="Edit courier"
               item={original}
               onClick={() => handlers.onEdit?.(original)}
@@ -73,7 +72,7 @@ function makeActionsColumn<T extends { id?: string; canEdit?: boolean; canDelete
 
           {showDelete && (
             <ActionButton
-              icon={FileText} 
+              icon={FileText}
               label="Delete courier"
               item={original}
               onClick={() => handlers.onDelete?.(original)}

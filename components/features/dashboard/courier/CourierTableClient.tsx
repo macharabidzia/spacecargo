@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { DataTable } from "@/components/common/DataTable/DataTable";
 import Pagination from "@/components/common/Pagination";
-import ColumnToggleDropdown from "@/components/common/DataTable/ColumnToggleDropdown";
 import { useTableSearch } from "@/hooks/parcels/use-table-search";
 import { useGenericTable } from "@/hooks/use-table";
 import { useClientTranslation } from "@/i18n/i18n-provider";
@@ -35,7 +33,6 @@ export default function CourierTableClient({
   canDelete = false,
 }: Props) {
   const { t } = useClientTranslation("common");
-  const router = useRouter();
   const [openInvoiceId, setOpenInvoiceId] = useState<string | number | null>(null);
 
 
