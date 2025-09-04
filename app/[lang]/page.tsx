@@ -85,7 +85,7 @@ const Home = async ({ params }: HomePageProps) => {
       <div className="pt-10">
         <InfiniteCarousel />
       </div>
-      <div className="lg:container md:ml-5 px-10">
+      <div className="lg:container ml-10 px-10">
         <h1 className="my-30 text-center text-4xl font-bold">
           {fullDictionary.home["news.title"]}
         </h1>
