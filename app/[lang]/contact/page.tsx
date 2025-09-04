@@ -16,7 +16,11 @@ type Lang = "en" | "ka";
 type ContactProps = {
   params: Promise<{ lang: Lang }>;
 };
-
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
 export async function generateMetadata({ params }: ContactProps) {
   const { lang } = await params;
   const dict = (await getDictionary(lang)).common;
