@@ -41,25 +41,26 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
                 )}
               </div>
 
-              <div className="bg-blue-500 h-16 w-16 absolute -left-6 bottom-6 flex justify-center items-center rounded-lg">
-                <Image
-                  alt="label"
-                  width={24}
-                  height={24}
-                  priority
-                  className="flex h-6 w-6"
-                  src="/icons/receipt-edit.svg"
-                />
-              </div>
             </CardContent>
-
-            <CardFooter className="ml-10">
-              <Link
-                className="font-semibold underline hover:no-underline"
-                href={`/${lang}/news/${getTitleLang(item)}`}
-              >
-                {getTitleLang(item)}
-              </Link>
+            <CardFooter className="relative flex items-start">
+              <div className="flex items-center">
+                <div className="bg-blue-500 h-16 w-16 flex justify-center items-center rounded-lg -ml-12 flex-shrink-0">
+                  <Image
+                    alt="label"
+                    width={24}
+                    height={24}
+                    priority
+                    className="h-6 w-6"
+                    src="/icons/receipt-edit.svg"
+                  />
+                </div>
+                <Link
+                  className="font-semibold underline hover:no-underline ml-4 break-words"
+                  href={`/${lang}/news/${getTitleLang(item)}`}
+                >
+                  {getTitleLang(item)}
+                </Link>
+              </div>
             </CardFooter>
           </Card>
         ))}
