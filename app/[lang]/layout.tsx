@@ -19,9 +19,7 @@ import EditParcelDrawer from "@/components/features/dashboard/drawers/EditParcel
 import httpClient from "@/lib/httpClient";
 import RouteLoader from "@/components/common/RouterLoader";
 import { Viewport } from "next";
-export const viewport: Viewport = {
-  viewportFit: "cover",
-};
+
 export async function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
 }
@@ -63,7 +61,7 @@ export default async function LocaleLayout(props: {
       className={`${notoSansGeorgian.variable} antialiased`}
     >
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
       </head>
       <body className="text-foreground min-h-screen flex">
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
