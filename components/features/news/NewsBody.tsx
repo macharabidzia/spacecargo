@@ -1,7 +1,4 @@
-// components/common/NewsBody.tsx
 "use client";
-
-import React from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 
 export default function NewsBody({ htmlContent, className }: { htmlContent: string; className: string }) {

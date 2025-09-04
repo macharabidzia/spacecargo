@@ -51,7 +51,7 @@ const Contact = async ({ params }: ContactProps) => {
   const fullDictionary = (await getDictionary(lang)).common;
 
   return (
-    <div className="container overflow-x-hidden py-6 px-4 md:px-8 lg:px-12">
+    <div className="w-full overflow-x-hidden py-6 px-4 md:px-8 lg:px-12">
       <h1 className="text-4xl mt-8 text-center text-space-blue dark:text-white mb-12 font-bold">
         {fullDictionary.contact["pageTitle"]}
       </h1>
