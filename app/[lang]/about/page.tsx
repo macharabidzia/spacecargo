@@ -49,26 +49,40 @@ const About = async ({ params }: IAbout) => {
   return (
     <div className="container py-12">
       <Card>
-        <CardContent className="px-8 py-2">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch gap-12">
-            <div className="flex-1 text-center md:text-left py-0">
-              <Button variant="outline" disableAnimation className="mb-8 dark:bg-accent dark:text-white text-black">
+        <CardContent className="px-4 md:px-8 py-2">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-stretch gap-6 md:gap-12 w-full">
+            {/* Text */}
+            <div className="flex-1 text-center md:text-left py-0 min-w-0">
+              <Button variant="outline" disableAnimation className="mb-6 dark:bg-accent dark:text-white text-black">
                 {dictionary["about.button"]}
               </Button>
-              <h2 className="text-4xl md:text-5xl font-normal my-8 leading-tight">{dictionary["about.title"]}</h2>
-              <p className="text-gray-700 text-lg mt-12 dark:text-gray-400">{dictionary["about.description1"]}</p>
-              <p className="text-gray-700 dark:text-gray-400 text-lg mt-12">{dictionary["about.description2"]}</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal my-4 md:my-8 leading-tight">
+                {dictionary["about.title"]}
+              </h2>
+              <p className="text-gray-700 text-base sm:text-lg mt-6 md:mt-12 dark:text-gray-400 break-words">
+                {dictionary["about.description1"]}
+              </p>
+              <p className="text-gray-700 dark:text-gray-400 text-base sm:text-lg mt-6 md:mt-12 break-words">
+                {dictionary["about.description2"]}
+              </p>
             </div>
 
-            <div className="flex-1 min-h-[548px] relative rounded-md overflow-hidden w-full md:w-auto bg-gray-100 flex items-center justify-center">
-              <Image className="rounded-md object-cover bg-white" fill src="/images/1.webp" alt="Plane Image" priority />
+            {/* Image */}
+            <div className="flex-1 w-full md:w-auto min-w-0 relative rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
+              <Image
+                className="rounded-md object-cover bg-white w-full h-auto"
+                src="/images/1.webp"
+                alt="Plane Image"
+                fill
+                priority
+              />
             </div>
           </div>
 
           <Link href="contact">
-            <Button className="dark:text-white hover:bg-space-blue-light/90 p-0 m-0 bg-space-blue-light flex items-center justify-center py-6 text-md min-w-[228px] gap-2 lg:mt-0 mt-10">
-              <div className="flex flex-row items-center gap-2 cursor-pointer">
-                <p className="mb-[2.7px]">{dictionary["about.contactButton"]}</p>
+            <Button className="dark:text-white hover:bg-space-blue-light/90 bg-space-blue-light flex items-center justify-center py-4 px-3 text-md gap-2 mt-6 md:mt-10 w-full sm:w-auto max-w-full">
+              <div className="flex items-center gap-2 cursor-pointer truncate">
+                <p className="truncate mb-[2.7px]">{dictionary["about.contactButton"]}</p>
                 <ArrowRight className="w-5 h-5" />
               </div>
             </Button>
@@ -76,12 +90,12 @@ const About = async ({ params }: IAbout) => {
         </CardContent>
       </Card>
 
-      <Card className="mt-12">
-        <CardContent className="px-8 py-2">
-          <h1 className="text-3xl mb-2">{dictionary["about.logisticsTitle"]}</h1>
-          <p className="text-gray-500">{dictionary["about.logisticsDescription"]}</p>
+      <Card className="mt-8 md:mt-12">
+        <CardContent className="px-4 md:px-8 py-2">
+          <h1 className="text-2xl sm:text-3xl mb-2">{dictionary["about.logisticsTitle"]}</h1>
+          <p className="text-gray-500 text-sm sm:text-base">{dictionary["about.logisticsDescription"]}</p>
 
-          <div className="flex mt-8 flex-wrap gap-4">
+          <div className="flex flex-wrap gap-2 md:gap-4 mt-4 md:mt-8">
             {servicesData.map(service => (
               <ServiceCard
                 key={service.key}
@@ -97,6 +111,7 @@ const About = async ({ params }: IAbout) => {
         </CardContent>
       </Card>
     </div>
+
   );
 };
 

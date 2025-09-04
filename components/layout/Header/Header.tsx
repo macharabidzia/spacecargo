@@ -57,7 +57,7 @@ const Header: React.FC<HeaderInterface> = async ({
               "text-blue-600 dark:text-blue-400"
             )}
           >
-            <LogoIcon className="w-[88px] h-[88px] fill-blue-600 dark:fill-white" />
+            <LogoIcon className="sm:w-[88px] sm:h-[88px] sm:block hidden fill-blue-600 dark:fill-white" />
           </Link>
           <div className="hidden md:block">
             <NavLinkList currentLanguage={currentLanguage} dictionary={dictionary} />

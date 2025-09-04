@@ -14,15 +14,15 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
     lang === "en" ? item.Title_EN : item.Title_GE;
 
   return (
-    <section className="w-full mx-10 sm:mx-0">
+    <section className="w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-12 justify-items-center">
         {newsData.map((item: NewsItem, index: number) => (
           <Card
             key={item.id}
-            className="w-full relative  rounded-lg border bg-card text-card-foreground shadow-lg overflow-visible"
+            className="w-full relative max-w-sm rounded-lg border bg-card text-card-foreground shadow-lg overflow-visible"
           >
             <CardContent className="pt-4 h-52">
-              <div className="absolute -top-10 -left-6 w-full h-full max-h-65 overflow-hidden rounded-lg shadow-xl">
+              <div className="absolute sm:-top-10 sm:-left-6 -top-10 left-0 w-full h-full max-h-65 overflow-hidden rounded-lg shadow-xl">
                 {item.Image_Url ? (
                   <Image
                     src={item.Image_Url}
@@ -42,9 +42,9 @@ export const NewsSection = ({ lang, newsData }: NewsSectionProps) => {
               </div>
 
             </CardContent>
-            <CardFooter className="relative flex items-start">
+            <CardFooter className="relative flex items-start sm:px-6 px-4">
               <div className="flex items-center">
-                <div className="bg-blue-500 h-16 w-16 flex justify-center items-center rounded-lg -ml-12 flex-shrink-0">
+                <div className="bg-blue-500 h-16 w-16 flex justify-center items-center rounded-lg sm:-ml-12 flex-shrink-0">
                   <Image
                     alt="label"
                     width={24}

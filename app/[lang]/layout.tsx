@@ -59,9 +59,7 @@ export default async function LocaleLayout(props: {
       lang={lang || "en"}
       className={`${notoSansGeorgian.variable} antialiased`}
     >
-      <head>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-      </head>
+    
       <body className="text-foreground min-h-screen flex">
         <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem>
           <Toaster
